@@ -1,0 +1,16 @@
+{
+  "states": [
+    {
+      "name": "Alabama",
+      "counties": ["Autauga", "Baldwin", "Barbour"]
+    },
+    {
+      "name": "Alaska",
+      "counties": ["Aleutians East", "Anchorage", "Bethel"]
+    },
+    {
+      "name": "Arizona",
+      "counties": ["Apache", "Cochise", "Coconino"]
+    }
+  ]
+}

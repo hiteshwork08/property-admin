@@ -1,0 +1,25 @@
+<mat-accordion class="example-headers-align" multi>
+  <!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.receiveOfferForm" TODO: to to put disable featured in the expansion panel-->
+  <mat-expansion-panel [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.receiveOfferForm" >
+    <mat-expansion-panel-header>
+      <mat-panel-title class="text-xl"> Receive Offer </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-receive-offer-form></app-receive-offer-form>
+  </mat-expansion-panel>
+
+  <!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.scriptForm" TODO: to put disable featured in the expansion panel-->
+  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.scriptForm" >
+    <mat-expansion-panel-header>
+      <mat-panel-title class="text-xl"> Intake script </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-intake-script-form></app-intake-script-form>
+  </mat-expansion-panel>
+
+ <!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.ProcessFrom" TODO: to put disable featured in the expansion panel-->
+  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.ProcessFrom" >
+    <mat-expansion-panel-header>
+      <mat-panel-title class="text-xl"> Process Title </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-process-title></app-process-title>
+  </mat-expansion-panel>
+</mat-accordion>
