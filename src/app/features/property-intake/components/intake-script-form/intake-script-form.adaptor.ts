@@ -2,7 +2,7 @@ import { Injectable, inject } from "@angular/core";
 import { AbstractRequestFormAdaptor } from "@common/form/abstract-request-form.adaptor";
 import { ToastrService } from "ngx-toastr";
 import { of } from "rxjs";
-import { PropertyIntakeModel } from "../../property-intake.model";
+import { PropertIntakeFormEnum, PropertyIntakeModel } from "../../property-intake.model";
 
 export type Utilities = UtilitiesEnum.Electric | UtilitiesEnum.Gas | UtilitiesEnum.Water |UtilitiesEnum.Sewer| UtilitiesEnum.ElectricNearby | UtilitiesEnum.PowerPolesLinesNearby
 
@@ -51,6 +51,8 @@ export class SubmitIntakescriptOfferFormAdaptor extends AbstractRequestFormAdapt
     private propertyIntakeModel = inject(PropertyIntakeModel);
     private toastr = inject(ToastrService);
     override onRequest(formGroup: SubmitIntakeScriptOfferFormData) {
+      this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.ProcessFrom;
+  
       console.log("Form saved...", formGroup);
       this.toastr.success("Success!", "Record was saved successfully");
       return of({});

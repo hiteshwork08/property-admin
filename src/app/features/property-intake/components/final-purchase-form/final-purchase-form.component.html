@@ -1,0 +1,25 @@
+
+<form class="pb-6 min-h-full flex flex-col justify-start w-full" [formGroup]="form" appForm="final-purchase">
+
+<mat-form-field class="w-full">
+    <mat-label>Final Offer Amount</mat-label>
+    <input type="text" formControlName="finalofferamount" matInput prefix="$ " mask="separator.2" thousandSeparator="," placeholder="0.00" />
+</mat-form-field>
+   
+<mat-form-field class="w-full">
+    <mat-label>Note</mat-label>
+    <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="note"></textarea>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Verified Legal Description</mat-label>
+    <input matInput [value]="verifiedLegalDescription" disabled>
+  </mat-form-field>
+
+  <div class="flex items-start justify-end space-x-6">
+    <cancel-btn  (promptConfirmed)="promptConfirmed($event)"></cancel-btn>
+    <button type="submit" mat-raised-button color="primary" class="[height:44px!important] [width:100px!important] text-lg">Approve</button>
+  </div>
+</form>
+
