@@ -17,11 +17,13 @@ export class DndDirective {
     evt.stopPropogation();
     console.log('drag over');
   }
+
   @HostListener('dragleave', ['$event']) onDragLeave(evt) {
     evt.preventDefault();
     evt.stopPropogation();
     console.log('drag over');
   }
+
   @HostListener('drop', ['$event']) ondrop(evt) {
     evt.preventDefault();
     evt.stopPropogation();
