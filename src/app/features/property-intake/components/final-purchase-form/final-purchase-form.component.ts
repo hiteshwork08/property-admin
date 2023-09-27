@@ -12,7 +12,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import {  MatButtonModule } from '@angular/material/button';
 import { FetchModule } from '@common/fetch/fetch.directive';
 import { FormErrorModule } from '@common/form/field-error.directive';
 import { FormHandlerModule, provideFormAdaptor } from '@common/form/form.directive';
@@ -42,7 +42,7 @@ import { NgxMaskModule } from 'ngx-mask';
   providers: [provideFormAdaptor(FinalPurcahseAmountFormAdaptor, true)],
 })
 export class FinalPurchaseFormComponent {
-  verifiedLegalDescription = 'Your legal description goes here';
+   title = 'Verified Legal Description';
 
   form = new FormGroup({
     finalofferamount: new FormControl(),

@@ -8,17 +8,26 @@ import { PropertIntakeFormEnum, PropertyIntakeModel } from "./property-intake.mo
 import { IntakeScriptFormComponent } from "./components/intake-script-form/intake-script-form.component";
 import { ProcessTitleComponent } from "./components/process-title/process-title.component";
 import { FinalPurchaseFormComponent } from "./components/final-purchase-form/final-purchase-form.component";
+import { IntakeScriptApprovalFormComponent } from "./components/intake-script-approval-form/intake-script-approval-form.component";
+import { SubmitIntakeScriptOfferFormData } from "./components/intake-script-form/intake-script-form.adaptor";
 @Component({
   selector: "app-property-intake",
   templateUrl: "./property-intake.component.html",
   styleUrls: ["./property-intake.component.scss"],
   standalone: true,
-  imports: [MatExpansionModule, MatIconModule, MatFormFieldModule, MatInputModule, ReceiveOfferFormComponent, IntakeScriptFormComponent, ProcessTitleComponent,FinalPurchaseFormComponent],
+  imports: [MatExpansionModule, MatIconModule, MatFormFieldModule, MatInputModule, ReceiveOfferFormComponent, IntakeScriptFormComponent,IntakeScriptApprovalFormComponent, ProcessTitleComponent,FinalPurchaseFormComponent],
   providers: [{ provide: PropertyIntakeModel, useFactory: () => new PropertyIntakeModel() }],
 })
 export class PropertyIntakeComponent {
+  propertyIntakeFormData :SubmitIntakeScriptOfferFormData
   public propertyIntakeModel = inject(PropertyIntakeModel);
   PropertIntakeFormEnum = PropertIntakeFormEnum;
+
+  onFormDataReceived(formData: SubmitIntakeScriptOfferFormData) { 
+    this.propertyIntakeFormData = formData
+    console.log('Received data in parent component:', formData);
+  }
 }
+
 
 

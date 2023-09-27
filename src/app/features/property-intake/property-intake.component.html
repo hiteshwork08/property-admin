@@ -6,14 +6,27 @@
     <app-receive-offer-form></app-receive-offer-form>
   </mat-expansion-panel>
 
-  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.scriptForm" [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.scriptForm">
+  <!-- TODO: add this disable after competion of all forms -->
+  <!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.scriptForm" -->
+  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.scriptForm" >
     <mat-expansion-panel-header>
       <mat-panel-title class="text-xl"> Intake script </mat-panel-title>
     </mat-expansion-panel-header>
-    <app-intake-script-form></app-intake-script-form>
+    <app-intake-script-form (formData)="onFormDataReceived($event)"></app-intake-script-form>
   </mat-expansion-panel>
 
-  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.ProcessFrom" [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.ProcessFrom">
+  <!-- TODO: add this disable after competion of all forms -->
+  <!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.intakeApproval" -->
+  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.intakeApproval" >
+    <mat-expansion-panel-header>
+      <mat-panel-title class="text-xl"> Intake script approval </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-intake-script-approval-form [propertyIntakeFormData]="propertyIntakeFormData"></app-intake-script-approval-form>
+  </mat-expansion-panel>
+
+  <!-- TODO: add this disable after competion of all forms -->
+  <!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.ProcessFrom" -->
+  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.ProcessFrom">
     <mat-expansion-panel-header>
       <mat-panel-title class="text-xl"> Process Title </mat-panel-title>
     </mat-expansion-panel-header>
@@ -21,7 +34,9 @@
   </mat-expansion-panel>
 </mat-accordion>
 
-  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.FinalPurchase" [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.FinalPurchase">
+<!-- TODO: add this disable after competion of all forms -->
+<!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.FinalPurchase"  -->
+  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.FinalPurchase" >
     <mat-expansion-panel-header>
       <mat-panel-title class="text-xl"> Final Purchase </mat-panel-title>
     </mat-expansion-panel-header>

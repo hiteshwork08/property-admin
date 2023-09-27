@@ -23,7 +23,9 @@ export class SubmitIntakeReceiveOfferFormAdaptor extends AbstractRequestFormAdap
   private propertyIntakeModel = inject(PropertyIntakeModel);
   private toastr = inject(ToastrService);
   override onRequest(formGroup: SubmitIntakeReceiveOfferFormData) {
-    this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.scriptForm;
+// TODO: update FormStatus
+    // this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.scriptForm;
+
     console.log("Form saved...", formGroup);
     this.toastr.success("Success!", "Record was saved successfully");
     return of({});

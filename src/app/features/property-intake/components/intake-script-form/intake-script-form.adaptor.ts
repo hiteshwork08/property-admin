@@ -1,8 +1,10 @@
 import { Injectable, inject } from "@angular/core";
 import { AbstractRequestFormAdaptor } from "@common/form/abstract-request-form.adaptor";
 import { ToastrService } from "ngx-toastr";
-import { of } from "rxjs";
+import { Subject, of } from "rxjs";
 import { PropertIntakeFormEnum, PropertyIntakeModel } from "../../property-intake.model";
+import { FormGroup } from "@angular/forms";
+import { WrapFormControl } from "@common/form/abstract-form.adaptor";
 
 export type Utilities = UtilitiesEnum.Electric | UtilitiesEnum.Gas | UtilitiesEnum.Water |UtilitiesEnum.Sewer| UtilitiesEnum.ElectricNearby | UtilitiesEnum.PowerPolesLinesNearby
 
@@ -50,12 +52,18 @@ export class SubmitIntakescriptOfferFormAdaptor extends AbstractRequestFormAdapt
     override name = "submit-intake-script-offer";
     private propertyIntakeModel = inject(PropertyIntakeModel);
     private toastr = inject(ToastrService);
+    readonly formData$ = new Subject<SubmitIntakeScriptOfferFormData>();
     override onRequest(formGroup: SubmitIntakeScriptOfferFormData) {
-      this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.ProcessFrom;
+// TODO: need to open after complete the 
+      // this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.ProcessFrom;
   
       console.log("Form saved...", formGroup);
       this.toastr.success("Success!", "Record was saved successfully");
       return of({});
+    }
+
+    override onSuccess(formData: SubmitIntakeScriptOfferFormData, res: SubmitIntakeScriptOfferRes, formGroup: FormGroup<WrapFormControl<SubmitIntakeScriptOfferFormData>>): void {
+      this.formData$.next(formData)
     }
   }
   

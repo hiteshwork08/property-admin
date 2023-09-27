@@ -1,0 +1,168 @@
+
+
+<ng-container *ngIf="propertyIntakeFormData">
+  <div class="my-4">
+    <mat-label class="text-base text-gray-500"
+      >Able to notarize:
+      <span>{{ propertyIntakeFormData.ableToNotarize ? "Yes" : "No" }}</span>
+    </mat-label>
+    <p class="text-base text-gray-500 my-4">
+      {{ propertyIntakeFormData.ableToNotarizeNotes }}
+    </p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="propertyIntakeFormData">
+  <div class="my-4">
+    <mat-label class="text-base text-gray-500"
+      >Has POA :
+      <span>{{ propertyIntakeFormData.yearlyPOAFee ? "Yes" : "No" }}</span>
+    </mat-label>
+    <p class="text-base text-gray-500 my-4">
+      {{ propertyIntakeFormData.yearlyPOAFee }}
+    </p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="propertyIntakeFormData">
+  <div class="my-4">
+    <mat-label class="text-base text-gray-500"
+      >Has HOA :
+      <span>{{ propertyIntakeFormData.hasHOA ? "Yes" : "No" }}</span>
+    </mat-label>
+    <p class="text-base text-gray-500 my-4">
+      {{ propertyIntakeFormData.yearlyHOAFee }}
+    </p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="propertyIntakeFormData">
+  <div class="my-4">
+    <mat-label class="text-base text-gray-500"
+      >Has Liens :
+      <span>{{ propertyIntakeFormData.hasLiens ? "Yes" : "No" }}</span>
+    </mat-label>
+    <p class="text-base text-gray-500 my-4">
+      {{ propertyIntakeFormData.hasLiensNotes }}
+    </p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="propertyIntakeFormData">
+  <div class="my-4">
+    <mat-label class="text-base text-gray-500"
+      >Has Easement :
+      <span>{{ propertyIntakeFormData.hasEasement ? "Yes" : "No" }}</span>
+    </mat-label>
+    <p class="text-base text-gray-500 my-4">
+      {{ propertyIntakeFormData.hasEasementNotes }}
+    </p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="propertyIntakeFormData">
+  <div class="my-4">
+    <mat-label class="text-base text-gray-500"
+      >Has Pictures :
+      <span>{{ propertyIntakeFormData.hasPictures ? "Yes" : "No" }}</span>
+    </mat-label>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="propertyIntakeFormData">
+  <div class="my-4">
+    <mat-label class="text-base text-gray-500"
+      >Has Survey :
+      <span>{{ propertyIntakeFormData.hasSurvey ? "Yes" : "No" }}</span>
+    </mat-label>
+  </div>
+</ng-container>
+<ng-container *ngIf="propertyIntakeFormData">
+  <div class="my-4">
+    <mat-label class="text-base text-gray-500">
+      Have Deed Copy :
+      <span>{{ propertyIntakeFormData.haveDeedCopy ? "Yes" : "No" }}</span>
+    </mat-label>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="propertyIntakeFormData">
+  <div class="my-4">
+    <mat-label class="text-base text-gray-500"
+      >Can Scan Deed:
+      <span>{{ propertyIntakeFormData.canScanDeed ? "Yes" : "No" }}</span>
+    </mat-label>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="propertyIntakeFormData && propertyIntakeFormData.uniqueFeatures">
+  <div class="my-4">
+    <mat-label class="text-base text-gray-500">Unique Features : </mat-label>
+    <p class="text-base text-gray-500 my-4">
+      {{ propertyIntakeFormData.uniqueFeatures }}
+    </p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="propertyIntakeFormData && propertyIntakeFormData.yearsOwned">
+  <div class="my-4">
+    <mat-label class="text-base text-gray-500">Years Owned : </mat-label>
+    <p class="text-base text-gray-500 my-4">
+      {{ propertyIntakeFormData.yearsOwned }}
+    </p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="propertyIntakeFormData && propertyIntakeFormData.improvements">
+  <div class="my-4">
+    <mat-label class="text-base text-gray-500">improvements : </mat-label>
+    <p class="text-base text-gray-500 my-4">
+      {{ propertyIntakeFormData.improvements }}
+    </p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="propertyIntakeFormData && propertyIntakeFormData.additionalProperties">
+  <div class="my-4">
+    <mat-label class="text-base text-gray-500">Additional Properties : </mat-label>
+    <p class="text-base text-gray-500 my-4">
+      {{ propertyIntakeFormData.additionalProperties }}
+    </p>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="propertyIntakeFormData && propertyIntakeFormData.inTakeScriptNotes">
+  <div class="my-4">
+    <mat-label class="text-base text-gray-500">Intake Script Notes : </mat-label>
+    <p class="text-base text-gray-500 my-4">
+      {{ propertyIntakeFormData.inTakeScriptNotes }}
+    </p>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="propertyIntakeFormData && propertyIntakeFormData.utilities">
+  <div class="my-4">
+    <mat-label class="text-base text-gray-500"
+      >Toppings :
+    </mat-label>
+    <p class="text-base text-gray-500 my-4">
+      {{ propertyIntakeFormData.utilities }}
+    </p>
+  </div>
+</ng-container>
+
+ <form class="pb-6 min-h-full flex flex-col justify-start" [formGroup]="form" appForm="intake-script-approval-form">
+
+<div class="flex items-start gap-3 mb-3">
+  <mat-form-field class="w-full">
+    <mat-label>Comment</mat-label>
+    <textarea matInput cols="35" rows="8" placeholder="Comment here..." formControlName="comment"></textarea>
+  </mat-form-field>
+</div>
+
+<div class="flex items-start justify-end space-x-6">
+  <cancel-btn  (promptConfirmed)="promptConfirmed($event)"></cancel-btn>
+  <button type="submit" mat-raised-button color="primary" class="[height:44px!important] [width:100px!important] text-lg">Approve</button>
+</div>
+</form>

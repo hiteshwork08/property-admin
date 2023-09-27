@@ -11,11 +11,11 @@
     <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="note"></textarea>
   </mat-form-field>
 
-
-  <mat-form-field appearance="fill" class="w-full">
-    <mat-label>Verified Legal Description</mat-label>
-    <input matInput [value]="verifiedLegalDescription" disabled>
-  </mat-form-field>
+  <mat-label class="flex items-center">
+    <mat-icon >verified_user</mat-icon>
+    {{title}}
+  </mat-label>
+  
 
   <div class="flex items-start justify-end space-x-6">
     <cancel-btn  (promptConfirmed)="promptConfirmed($event)"></cancel-btn>

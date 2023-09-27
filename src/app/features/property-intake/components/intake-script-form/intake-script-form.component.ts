@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,11 +18,13 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { tap } from 'rxjs';
 import {
   AllUtilities,
+  SubmitIntakeScriptOfferFormData,
   SubmitIntakescriptOfferFormAdaptor,
   Utilities,
 } from './intake-script-form.adaptor';
 import { MatSelectModule } from '@angular/material/select';
-import { CancelFormComponent } from '@common/cancel-btn/cancel-btn.component';
+import { Data } from '@angular/router';
+
 @Component({
   selector: 'app-intake-script-form',
   templateUrl: './intake-script-form.component.html',
@@ -40,11 +42,12 @@ import { CancelFormComponent } from '@common/cancel-btn/cancel-btn.component';
     MatButtonModule,
     MatSlideToggleModule,
     MatSelectModule,
-    CancelFormComponent,
   ],
   providers: [provideFormAdaptor(SubmitIntakescriptOfferFormAdaptor, true)],
 })
 export class IntakeScriptFormComponent {
+  @Output() formData = new EventEmitter<SubmitIntakeScriptOfferFormData>();
+
   form = new FormGroup({
     ableToNotarize: new FormControl<boolean>(false),
     ableToNotarizeNotes: new FormControl<string>(null),
@@ -70,7 +73,9 @@ export class IntakeScriptFormComponent {
     Comment: new FormControl<string>(null),
   });
 
-  constructor() {
+  constructor(
+    private submitIntakescriptOfferFormAdaptor: SubmitIntakescriptOfferFormAdaptor
+  ) {
     this.form.controls.ableToNotarize.valueChanges
       .pipe(
         tap((data) => {
@@ -116,11 +121,11 @@ export class IntakeScriptFormComponent {
         })
       )
       .subscribe();
+
+    this.submitIntakescriptOfferFormAdaptor.formData$.subscribe((data) =>
+      this.formData.emit(data)
+    );
   }
 
   utilities: Utilities[] = AllUtilities;
-
-  promptConfirmed(value) {
-    console.log(value);
-  }
 }
