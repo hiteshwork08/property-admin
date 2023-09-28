@@ -1,1 +1,181 @@
-<p>received-docs-form works!</p>
+<form
+  class="pb-6 min-h-full flex flex-col justify-start w-full"
+  [formGroup]="form"
+  appForm="received-doc-form"
+>
+  <div class="flex space-x-4">
+    <mat-checkbox class="w-full text-base mb-4" [checked]="true" disabled
+      >Deed Document</mat-checkbox
+    >
+    <mat-checkbox
+      class="w-full text-base mb-4 pl-4"
+      color="primary"
+      (change)="toggleUploadField()"
+      >Sales Agreement</mat-checkbox
+    >
+  </div>
+
+  <div>
+    <h1 class="w-full text-base mb-4">Upload Deed Document</h1>
+    <div *ngIf="!deedDocument.value">
+      <div
+        class="w-full h-52 p-8 text-center border-dashed border-2 border-gray-300 relative mx-auto"
+        appDnd
+      >
+        <label
+          for="deedFileDropRef"
+          class="flex flex-col items-center justify-center text-gray-700 cursor-pointer w-full h-full"
+        >
+          <input
+            type="file"
+            #deedFileDropRef
+            id="deedFileDropRef"
+            accept = "application/pdf,.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+            class="opacity-0 absolute z-[-1] w-full h-full top-0 left-0"
+            (change)="onFileDropped($event, deedDocument)"
+          />
+          <img
+            src="assets/images/pngwing.com.png"
+            width="63"
+            height="64"
+            alt="Drag and Drop"
+          />
+          <h3>Drag and Drop Files here</h3>
+          <h3>or</h3>
+          <label
+            class="text-red-500 text-base px-4 py-2 rounded-[21.5px] cursor-pointer bg-red-200"
+            (click)="deedFileDropRef.click()"
+            >Browse for files</label
+          >
+        </label>
+      </div>
+    </div>
+
+    <div class="file-list mt-6" *ngIf="deedDocument.value">
+      <div
+        class="flex justify-between items-center border-dashed border-2 border-gray-300 mb-4 p-2"
+      >
+        <div class="flex items-center">
+          <img
+            src="assets/images/image1"
+            width="63"
+            height="64"
+            alt="File Thumbnail"
+          />
+          <h4 class="text-gray-700 text-base font-medium ml-4">
+            {{ deedDocument.value.name }}
+          </h4>
+        </div>
+        <div class="cursor-pointer flex items-center">
+          <img
+            src="assets/images/trash-can_115312.svg"
+            class="delete"
+            width="35px"
+            alt="Delete Icon"
+            (click)="resetControl(deedDocument)"
+          />
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <mat-form-field class="w-full">
+          <mat-label>Notes</mat-label>
+          <textarea
+            matInput
+            cols="35"
+            rows="8"
+            placeholder="Note"
+            formControlName="deednotes"
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showUploadField">
+    <h1 class="w-full text-base mb-4">Upload Sales Agreement</h1>
+    <div *ngIf="!salesAgreementDocument.value">
+      <div
+        class="w-full h-52 p-8 text-center border-dashed border-2 border-gray-300 relative mx-auto"
+        appDnd
+      >
+        <label
+          for="salesFileDropRef"
+          class="flex flex-col items-center justify-center text-gray-700 cursor-pointer w-full h-full"
+        >
+          <input
+            type="file"
+            #salesFileDropRef
+            id="salesFileDropRef"
+            accept = "application/pdf,.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+            class="opacity-0 absolute z-[-1] w-full h-full top-0 left-0"
+            (change)="onFileDropped($event, salesAgreementDocument)"
+          />
+          <img
+            src="assets/images/pngwing.com.png"
+            width="63"
+            height="64"
+            alt="Drag and Drop"
+          />
+          <h3>Drag and Drop Files here</h3>
+          <h3>or</h3>
+          <label
+            class="text-red-500 text-base px-4 py-2 rounded-[21.5px] cursor-pointer bg-red-200"
+            (click)="salesFileDropRef.click()"
+            >Browse for files</label
+          >
+        </label>
+      </div>
+    </div>
+
+    <div class="file-list mt-6" *ngIf="salesAgreementDocument.value">
+      <div
+        class="flex justify-between items-center border-dashed border-2 border-gray-300 mb-4 p-2"
+      >
+        <div class="flex items-center">
+          <img
+            src="assets/images/image1"
+            width="63"
+            height="64"
+            alt="File Thumbnail"
+          />
+          <h4 class="text-gray-700 text-base font-medium ml-4">
+            {{ salesAgreementDocument.value.name }}
+          </h4>
+        </div>
+        <div class="cursor-pointer flex items-center">
+          <img
+            src="assets/images/trash-can_115312.svg"
+            class="delete"
+            width="35px"
+            alt="Delete Icon"
+            (click)="resetControl(salesAgreementDocument)"
+          />
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <mat-form-field class="w-full">
+          <mat-label>Notes</mat-label>
+          <textarea
+            matInput
+            cols="35"
+            rows="8"
+            placeholder="Note"
+            formControlName="salesAgreementNotes"
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-end mt-6 space-x-4">
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      class="[height:44px!important] [width:100px!important] text-lg"
+      [disabled]="form.invalid"
+    >
+      Save
+    </button>
+  </div>
+</form>

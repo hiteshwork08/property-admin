@@ -15,6 +15,8 @@ import { IntakeScriptApprovalFormComponent } from './components/intake-script-ap
 import { SubmitIntakeScriptOfferFormData } from './components/intake-script-form/intake-script-form.adaptor';
 import { PrepareDocsFormComponent } from './components/prepare-docs-form/prepare-docs-form.component';
 import { ReceivedDocsFormComponent } from './components/received-docs-form/received-docs-form.component';
+import { RecordDeedFormComponent } from './components/record-deed-form/record-deed-form.component';
+import { PaymentCompleteFormComponent } from './components/payment-complete-form/payment-complete-form.component';
 @Component({
   selector: 'app-property-intake',
   templateUrl: './property-intake.component.html',
@@ -31,7 +33,9 @@ import { ReceivedDocsFormComponent } from './components/received-docs-form/recei
     ProcessTitleComponent,
     FinalPurchaseFormComponent,
     PrepareDocsFormComponent,
-    ReceivedDocsFormComponent
+    ReceivedDocsFormComponent,
+    RecordDeedFormComponent,
+    PaymentCompleteFormComponent
   ],
   providers: [
     {

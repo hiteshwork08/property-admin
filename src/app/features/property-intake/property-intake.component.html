@@ -60,3 +60,21 @@
     </mat-expansion-panel-header>
     <app-received-docs-form></app-received-docs-form>
   </mat-expansion-panel>
+
+<!-- TODO: add this disable after competion of all forms -->
+<!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.ReceivedDocs"  -->
+  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.ReceivedDocs" >
+    <mat-expansion-panel-header>
+      <mat-panel-title class="text-xl">Record Deed</mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-record-deed-form></app-record-deed-form>
+  </mat-expansion-panel>
+
+<!-- TODO: add this disable after competion of all forms -->
+<!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.PaymentComplete"  -->
+  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.PaymentComplete" >
+    <mat-expansion-panel-header>
+      <mat-panel-title class="text-xl">Payment Complete</mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-payment-complete-form></app-payment-complete-form>
+  </mat-expansion-panel>
