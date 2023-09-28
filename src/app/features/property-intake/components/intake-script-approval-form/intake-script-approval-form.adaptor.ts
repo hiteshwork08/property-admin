@@ -2,7 +2,7 @@ import { Injectable, inject } from "@angular/core";
 import { AbstractRequestFormAdaptor } from "@common/form/abstract-request-form.adaptor";
 import { ToastrService } from "ngx-toastr";
 import { Subject, of } from "rxjs";
-import {  PropertyIntakeModel } from "../../property-intake.model";
+import {  PropertIntakeFormEnum, PropertyIntakeModel } from "../../property-intake.model";
 
 
 export interface intakeScriptApprovalFormData {
@@ -21,10 +21,10 @@ export class IntakeScriptApprovalFormAdaptor extends AbstractRequestFormAdaptor<
     override onRequest(formGroup: intakeScriptApprovalFormData) {
       
 // TODO: need to open after complete the 
-      // this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.ProcessFrom;
+      this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.ProcessFrom;
   
       console.log("Form Approved", formGroup);
-      this.toastr.success("Approved SuccessFully!", "Record was saved successfully");
+      this.toastr.success("Approved SuccessFully!", "Form Approved Successfuly");
       return of({});
     }
 

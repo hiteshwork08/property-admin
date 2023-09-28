@@ -9,6 +9,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgxMaskModule, IConfig } from "ngx-mask";
 import { ToastrModule } from "ngx-toastr";
 import { MatDialogModule } from "@angular/material/dialog";
+import { ReceivedDocsFormComponent } from './features/property-intake/components/received-docs-form/received-docs-form.component';
 
 export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
 

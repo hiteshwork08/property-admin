@@ -42,3 +42,21 @@
     </mat-expansion-panel-header>
     <app-final-purchase-form></app-final-purchase-form>
   </mat-expansion-panel>
+
+<!-- TODO: add this disable after competion of all forms -->
+<!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.PrepareDocs"  -->
+  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.PrepareDocs" >
+    <mat-expansion-panel-header>
+      <mat-panel-title class="text-xl">Prepare Docs</mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-prepare-docs-form></app-prepare-docs-form>
+  </mat-expansion-panel>
+
+<!-- TODO: add this disable after competion of all forms -->
+<!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.ReceivedDocs"  -->
+  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.ReceivedDocs" >
+    <mat-expansion-panel-header>
+      <mat-panel-title class="text-xl">Recevied Docs</mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-received-docs-form></app-received-docs-form>
+  </mat-expansion-panel>

@@ -16,7 +16,7 @@ export class SubmitProcessTitleFormAdaptor extends AbstractRequestFormAdaptor<Su
     private toastr = inject(ToastrService)
     override onRequest(formGroup: SubmitProcessTitleFormData) {
       // TODO: update FormStatus
-      // this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.FinalPurchase;
+      this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.FinalPurchase;
   
       console.log("Form saved...", formGroup);
       this.toastr.success("Success!", "Record was saved successfully");  
