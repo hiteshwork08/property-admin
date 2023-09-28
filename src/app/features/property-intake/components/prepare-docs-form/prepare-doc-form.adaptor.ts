@@ -23,8 +23,8 @@ export class PrepareDocsFormAdaptor extends AbstractRequestFormAdaptor<PrepareDo
     private toastr = inject(ToastrService);
     readonly formData$ = new Subject<PrepareDocsFormData>();
     override onRequest(formGroup: PrepareDocsFormData) {
-// TODO: need to open after complete the 
-      // this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.ProcessFrom;
+
+      this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.ReceivedDocs;
   
       console.log("Form saved...", formGroup);
       this.toastr.success("Success!", "Completed SucessFully");

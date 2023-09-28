@@ -23,8 +23,8 @@ export class ReceivedDocsFormAdaptor extends AbstractRequestFormAdaptor<Received
     private toastr = inject(ToastrService);
     readonly formData$ = new Subject<ReceivedDocsFormData>();
     override onRequest(formGroup: ReceivedDocsFormData) {
-// TODO: need to open after complete the 
-      // this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.ProcessFrom;
+
+      this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.RecordDeed;
   
       console.log("Form saved...", formGroup);
       this.toastr.success("Success!", "Completed SucessFully");

@@ -54,8 +54,8 @@ export class SubmitIntakescriptOfferFormAdaptor extends AbstractRequestFormAdapt
     private toastr = inject(ToastrService);
     readonly formData$ = new Subject<SubmitIntakeScriptOfferFormData>();
     override onRequest(formGroup: SubmitIntakeScriptOfferFormData) {
-// TODO: need to open after complete the 
-      // this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.ProcessFrom;
+
+      this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.intakeApproval;
   
       console.log("Form saved...", formGroup);
       this.toastr.success("Success!", "Record was saved successfully");

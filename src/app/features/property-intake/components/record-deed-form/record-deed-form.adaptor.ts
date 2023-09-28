@@ -16,8 +16,8 @@ export class RecordDeedFormAdaptor extends AbstractRequestFormAdaptor<RecordDeed
     private propertyIntakeModel = inject(PropertyIntakeModel);
     private toastr = inject(ToastrService)
     override onRequest(formGroup: RecordDeedFormData) {
-      // TODO: update FormStatus
-      // this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.FinalPurchase;
+     
+      this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.PaymentComplete;
   
       console.log("Form saved...", formGroup);
       this.toastr.success("Success!", "Record was saved successfully");  

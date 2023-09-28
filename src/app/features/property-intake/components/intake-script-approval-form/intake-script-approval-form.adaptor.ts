@@ -20,7 +20,7 @@ export class IntakeScriptApprovalFormAdaptor extends AbstractRequestFormAdaptor<
     readonly formData$ = new Subject<intakeScriptApprovalFormData>();
     override onRequest(formGroup: intakeScriptApprovalFormData) {
       
-// TODO: need to open after complete the 
+
       this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.ProcessFrom;
   
       console.log("Form Approved", formGroup);

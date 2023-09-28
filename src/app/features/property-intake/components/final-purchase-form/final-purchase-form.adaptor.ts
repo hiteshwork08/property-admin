@@ -17,8 +17,8 @@ export class FinalPurcahseAmountFormAdaptor extends AbstractRequestFormAdaptor <
     private propertyIntakeModel = inject(PropertyIntakeModel);
     private toaster = inject(ToastrService);
     override onRequest (formGroup: FinalPurcahseAmountForm){
-      // TODO: update FormStatus
-      // this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.PaymentComplete;
+      
+      this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.PrepareDocs;
   
         console.log("final purcase form saved...",formGroup);
         this.toaster.success("sucess!","Record was saved sucessfully")
