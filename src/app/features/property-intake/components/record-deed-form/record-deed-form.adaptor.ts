@@ -5,7 +5,7 @@ import { of } from "rxjs";
 import { AbstractRequestFormAdaptor } from "@common/form/abstract-request-form.adaptor";
 
 export interface RecordDeedFormData{
-    images:[['']]
+  deedDocument:[['']]
 }
 
 export interface RecordDeedTitle{}

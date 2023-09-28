@@ -5,17 +5,17 @@
 >
   <div class="flex space-x-4">
     <mat-checkbox class="w-full text-base mb-4" [checked]="true" disabled
-      >Deed Document</mat-checkbox
+      >Signed Deed Document</mat-checkbox
     >
     <mat-checkbox
       class="w-full text-base mb-4 pl-4"
       color="primary"
       (change)="toggleUploadField()"
-      >Sales Agreement</mat-checkbox
+      >Signed Sales Agreement</mat-checkbox
     >
   </div>
 
-  <div>
+  <div flex space-x-4>
     <h1 class="w-full text-base mb-4">Upload Deed Document</h1>
     <div *ngIf="!deedDocument.value">
       <div
@@ -91,9 +91,9 @@
     </div>
   </div>
 
-  <div *ngIf="showUploadField">
+  <div *ngIf="showUploadField" class="mt-8" >
     <h1 class="w-full text-base mb-4">Upload Sales Agreement</h1>
-    <div *ngIf="!salesAgreementDocument.value">
+    <div *ngIf="!salesAgreementDocument.value" >
       <div
         class="w-full h-52 p-8 text-center border-dashed border-2 border-gray-300 relative mx-auto"
         appDnd
