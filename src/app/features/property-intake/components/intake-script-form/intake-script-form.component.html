@@ -14,7 +14,7 @@
         <input matInput  formControlName="yearlyPOAFee">
       </mat-form-field>
     </div>
-   
+
     <div class="flex items-start gap-3 mb-3 md:flex-col">
       <mat-slide-toggle class="md:[width:100%]  3xl:[width:35%]" color="primary" formControlName="hasHOA"> Has HOA </mat-slide-toggle>
       <mat-form-field class="w-full" *ngIf="form.controls.yearlyHOAFee.enabled">
@@ -78,11 +78,9 @@
         <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="inTakeScriptNotes"></textarea>
       </mat-form-field>
     </div>
-    
-
-    
-    <mat-form-field>
-      <mat-label>Toppings</mat-label>
+ 
+    <!-- <mat-form-field>
+      <mat-label>utilities</mat-label>
       <mat-select formControlName="utilities" multiple>
         <mat-select-trigger>
           {{form.controls.utilities.value?.[0] || ''}}
@@ -92,8 +90,19 @@
         </mat-select-trigger>
         <mat-option *ngFor="let topping of utilities" [value]="topping">{{topping}}</mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
 
+
+    <h2 class="m-0">utilities</h2>
+    <mat-chip-listbox class="my-2" selectable multiple aria-label="Fish selection" formControlName="utilities">
+      <mat-chip-option *ngFor="let topping of utilities" [value]="topping">
+        {{ topping }}
+      </mat-chip-option>
+    </mat-chip-listbox>
+    
+
+   
+    
 
     <div class="flex items-start justify-end space-x-6">
       
@@ -103,3 +112,4 @@
   </form>
   
 
+ 

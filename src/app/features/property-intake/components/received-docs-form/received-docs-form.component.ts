@@ -50,16 +50,13 @@ import { ReceivedDocsFormAdaptor } from './received-doc-form.adaptor';
   providers: [provideFormAdaptor(ReceivedDocsFormAdaptor, true)],
 })
 export class ReceivedDocsFormComponent {
-  files: any[] = [];
   form: FormGroup;
-  showUploadField = false;
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       deedDocument: ['', Validators.required],
-      deednotes: [''],
       salesAgreementDocument: ['', Validators.required],
-      salesAgreementNotes: [''],
+      notes: [''],
     });
   }
 
@@ -71,9 +68,6 @@ export class ReceivedDocsFormComponent {
     return this.form.controls['deedDocument'];
   }
 
-  toggleUploadField() {
-    this.showUploadField = !this.showUploadField;
-  }
   isSaveButtonEnabled() {
     return this.deedDocument.valid || this.salesAgreementDocument.valid;
   }

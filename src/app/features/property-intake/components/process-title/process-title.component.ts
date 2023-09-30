@@ -24,24 +24,51 @@ export class ProcessTitleComponent {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      images: [[],Validators.required]
+      images: ['',Validators.required]
     });
   }
 
-  onFileDropped(event) {
-    this.prepareFileslist(event.target.files)
+   get images() {
+      return this.form.controls['images']
+    }
+
+    onFileDrop(event :Event) {
+    const inputElement = event.target as HTMLInputElement;
+      if (inputElement.files && inputElement.files.length > 0) 
+      this.images.setValue(inputElement.files[0]);
+  }
+ 
+
+  deleteFile() {
+    this.images.reset();
   }
 
 
-  deleteFile(index: number) {
-    this.files.splice(index, 1);
-  }
-
-  prepareFileslist(files){
-    this.files.push(...files);
-  }
 }
 
+// deedForm: FormGroup;
 
+// constructor(private formBuilder: FormBuilder) {}
+
+// get deedDocument() {
+//   return this.deedForm.controls['deedDocument']
+// }
+
+// ngOnInit(): void {
+//   this.deedForm = this.formBuilder.group({
+//     deedDocument: ['', Validators.required],
+//   });
+// }
+
+// onFileDrop(event: Event) {
+//   const inputElement = event.target as HTMLInputElement;
+//   if (inputElement.files && inputElement.files.length > 0) 
+//   this.deedDocument.setValue(inputElement.files[0]);
+  
+// }
+
+// removeFile() {
+//   this.deedDocument.reset();
+// }
 
 

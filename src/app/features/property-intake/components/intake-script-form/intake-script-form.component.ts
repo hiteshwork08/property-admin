@@ -55,15 +55,15 @@ export class IntakeScriptFormComponent {
     canScanDeed: new FormControl<boolean>(false),
     yearsOwned: new FormControl<string>(null),
     hasPOA: new FormControl<boolean>(false),
-    yearlyPOAFee: new FormControl<string>(null),
+    yearlyPOAFee: new FormControl<string>({value:null, disabled:true}),
     hasHOA: new FormControl<boolean>(false),
-    yearlyHOAFee: new FormControl<string>(null),
+    yearlyHOAFee: new FormControl<string>({value:null, disabled:true}),
     backTaxesOwed: new FormControl<string>(null),
     hasLiens: new FormControl<boolean>(false),
-    hasLiensNotes: new FormControl<string>(null),
+    hasLiensNotes: new FormControl<string>({value:null, disabled:true}),
     uniqueFeatures: new FormControl<string>(null),
     hasEasement: new FormControl<boolean>(false),
-    hasEasementNotes: new FormControl<string>(null),
+    hasEasementNotes: new FormControl<string>({value:null, disabled:true}),
     improvements: new FormControl<string>(null),
     additionalProperties: new FormControl<string>(null),
     inTakeScriptNotes: new FormControl<string>(null),
@@ -85,12 +85,12 @@ export class IntakeScriptFormComponent {
         })
       )
       .subscribe();
-    this.form.controls.hasPOA.valueChanges
+     this.form.controls.hasPOA.valueChanges
       .pipe(
         tap((data) => {
           data
-            ? this.form.controls.yearlyPOAFee.disable()
-            : this.form.controls.yearlyPOAFee.enable();
+            ? this.form.controls.yearlyPOAFee.enable()
+            : this.form.controls.yearlyPOAFee.disable();
         })
       )
       .subscribe();
@@ -98,8 +98,8 @@ export class IntakeScriptFormComponent {
       .pipe(
         tap((data) => {
           data
-            ? this.form.controls.yearlyHOAFee.disable()
-            : this.form.controls.yearlyHOAFee.enable();
+            ? this.form.controls.yearlyHOAFee.enable()
+            : this.form.controls.yearlyHOAFee.disable();
         })
       )
       .subscribe();
@@ -107,8 +107,8 @@ export class IntakeScriptFormComponent {
       .pipe(
         tap((data) => {
           data
-            ? this.form.controls.hasLiensNotes.disable()
-            : this.form.controls.hasLiensNotes.enable();
+            ? this.form.controls.hasLiensNotes.enable()
+            : this.form.controls.hasLiensNotes.disable();
         })
       )
       .subscribe();
@@ -116,8 +116,8 @@ export class IntakeScriptFormComponent {
       .pipe(
         tap((data) => {
           data
-            ? this.form.controls.hasEasementNotes.disable()
-            : this.form.controls.hasEasementNotes.enable();
+            ? this.form.controls.hasEasementNotes.enable()
+            : this.form.controls.hasEasementNotes.disable();
         })
       )
       .subscribe();
@@ -129,3 +129,4 @@ export class IntakeScriptFormComponent {
 
   utilities: Utilities[] = AllUtilities;
 }
+

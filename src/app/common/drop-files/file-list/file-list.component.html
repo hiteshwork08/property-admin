@@ -1,0 +1,13 @@
+<div class="file-list mt-6" *ngFor="let document of documents;let i = index">
+  <div class="flex justify-between items-center border-dashed border-2 border-gray-300 mb-4 p-2">
+    <div class="flex items-center">
+      <img src="assets/images/image1" width="63" height="64" alt="File Thumbnail" />
+      <h4 class="text-gray-700 text-base font-medium ml-4">
+        {{ document.name }}
+      </h4>
+    </div>
+    <div class="cursor-pointer flex items-center" (click)="resetControl.emit();removeItem.emit(i)">
+      <img src="assets/images/trash-can_115312.svg" class="delete" width="35px" alt="Delete Icon" />
+    </div>
+  </div>
+</div>

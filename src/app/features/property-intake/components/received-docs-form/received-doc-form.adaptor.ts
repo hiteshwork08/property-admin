@@ -8,9 +8,8 @@ import { WrapFormControl } from "@common/form/abstract-form.adaptor";
 
 export interface ReceivedDocsFormData {
   deedDocument: string,
-  deednotes: string,
   salesAgreementDocument: string,
-  salesAgreementNotes: string
+  notes: string
   }
 
 

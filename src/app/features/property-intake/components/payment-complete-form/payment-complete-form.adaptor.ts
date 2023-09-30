@@ -23,8 +23,8 @@ export class PaymentCompleteFormAdaptor extends AbstractRequestFormAdaptor<
   private toastr = inject(ToastrService);
   readonly formData$ = new Subject<PaymentCompleteFormData>();
   override onRequest(formGroup: PaymentCompleteFormData) {
-    
-    this.propertyIntakeModel.propertyIntakeStatus = PropertIntakeFormEnum.receiveOfferForm;
+    this.propertyIntakeModel.propertyIntakeStatus =
+      PropertIntakeFormEnum.PaymentComplete;
 
     console.log('payment Successful', formGroup);
     this.toastr.success('Payment Successful');
