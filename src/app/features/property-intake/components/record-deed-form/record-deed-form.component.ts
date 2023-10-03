@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DropFilesComponent } from '@common/drop-files/drop-files.component';
 
 @Component({
   selector: 'app-record-deed-form',
@@ -29,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     FetchModule,
     FormErrorModule,
+    DropFilesComponent,
     FormHandlerModule,
     FormsModule,
     MatIconModule,
@@ -45,7 +47,7 @@ export class RecordDeedFormComponent {
   constructor(private formBuilder: FormBuilder) {}
 
   get deedDocument() {
-    return this.deedForm.controls['deedDocument']
+    return this.deedForm.controls['deedDocument'];
   }
 
   ngOnInit(): void {
@@ -54,15 +56,13 @@ export class RecordDeedFormComponent {
     });
   }
 
-  onFileDrop(event: Event) {
+  onFileDropped(event: Event) {
     const inputElement = event.target as HTMLInputElement;
-    if (inputElement.files && inputElement.files.length > 0) 
-    this.deedDocument.setValue(inputElement.files[0]);
-    
+    if (inputElement.files && inputElement.files.length > 0)
+      this.deedDocument.setValue(inputElement.files[0]);
   }
 
   removeFile() {
     this.deedDocument.reset();
   }
-
 }

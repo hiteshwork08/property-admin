@@ -29,6 +29,7 @@ import { FormErrorModule } from '@common/form/field-error.directive';
     FormHandlerModule,
     FormErrorModule,
     FetchModule,
+    MatInputModule,
     MatButtonModule,
   ],
   templateUrl: './payment-complete-form.component.html',

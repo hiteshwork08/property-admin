@@ -19,6 +19,7 @@ import {
   provideFormAdaptor,
 } from '@common/form/form.directive';
 import { ReceivedDocsFormAdaptor } from './received-doc-form.adaptor';
+import { DropFilesComponent } from '@common/drop-files/drop-files.component';
 
 @Component({
   selector: 'app-received-docs-form',
@@ -38,6 +39,7 @@ import { ReceivedDocsFormAdaptor } from './received-doc-form.adaptor';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    DropFilesComponent,
     FormHandlerModule,
     FormErrorModule,
     FetchModule,

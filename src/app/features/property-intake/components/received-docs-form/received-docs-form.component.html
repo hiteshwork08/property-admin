@@ -1,7 +1,7 @@
 <form class="pb-6 min-h-full flex flex-col justify-start w-full" [formGroup]="form" appForm="received-doc-form">
 
 
-  <div flex space-x-4>
+  <!-- <div flex space-x-4>
     <h1 class="w-full text-base mb-4">Upload Deed Document</h1>
     <div *ngIf="!deedDocument.value">
       <div class="w-full h-52 p-8 text-center border-dashed border-2 border-gray-300 relative mx-auto" appDnd>
@@ -17,11 +17,16 @@
             (click)="deedFileDropRefReceive.click()">Browse for files</label>
         </label>
       </div>
-    </div>
+    </div> -->
+
+  <div>
+    <app-drop-files label="Upload Deed Document" elementRef="deedFileDropRefReceive"
+      (onFileDropped)="deedDocument.setValue($event)" (resetControl)="deedDocument.reset()"></app-drop-files>
+  </div>
 
 
 
-    <div class="file-list mt-6" *ngIf="deedDocument.value">
+  <!-- <div class="file-list mt-6" *ngIf="deedDocument.value">
       <div class="flex justify-between items-center border-dashed border-2 border-gray-300 mb-4 p-2">
         <div class="flex items-center">
           <img src="assets/images/image1" width="63" height="64" alt="File Thumbnail" />
@@ -35,9 +40,9 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <div class="mt-8">
+  <!-- <div class="mt-8">
     <h1 class="w-full text-base mb-4">Upload Sales Agreement</h1>
     <div *ngIf="!salesAgreementDocument.value">
       <div class="w-full h-52 p-8 text-center border-dashed border-2 border-gray-300 relative mx-auto" appDnd>
@@ -53,9 +58,16 @@
             (click)="salesFileDropRef.click()">Browse for files</label>
         </label>
       </div>
-    </div>
+    </div> -->
 
-    <div class="file-list mt-6" *ngIf="salesAgreementDocument.value">
+  <div>
+    <app-drop-files label="Upload Sales Agreement" elementRef="salesFileDropRef"
+      (onFileDropped)="salesAgreementDocument.setValue($event)"
+      (resetControl)="salesAgreementDocument.reset()"></app-drop-files>
+  </div>
+
+
+  <!-- <div class="file-list mt-6" *ngIf="salesAgreementDocument.value">
       <div class="flex justify-between items-center border-dashed border-2 border-gray-300 mb-4 p-2">
         <div class="flex items-center">
           <img src="assets/images/image1" width="63" height="64" alt="File Thumbnail" />
@@ -69,7 +81,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="flex items-start gap-3 mt-5">
     <mat-form-field class="w-full">

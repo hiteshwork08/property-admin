@@ -1,70 +1,55 @@
-<ng-container *ngIf="propertyIntakeFormData">
+<div *ngIf="propertyIntakeFormData">
   <div class="my-4">
     <mat-label class="text-base text-gray-500">Able to notarize:</mat-label>
     <span>{{ propertyIntakeFormData.ableToNotarize ? "Yes" : "No" }}</span>
     <p class="text-base text-gray-500 my-4">{{ propertyIntakeFormData.ableToNotarizeNotes }}</p>
   </div>
-</ng-container>
 
-<ng-container *ngIf="propertyIntakeFormData">
+
   <div class="my-4">
     <mat-label class="text-base text-gray-500">Has POA:</mat-label>
     <span>{{ propertyIntakeFormData.yearlyPOAFee ? "Yes" : "No" }}</span>
     <p class="text-base text-gray-500 my-4">{{ propertyIntakeFormData.yearlyPOAFee }}</p>
   </div>
-</ng-container>
 
-<ng-container *ngIf="propertyIntakeFormData">
   <div class="my-4">
     <mat-label class="text-base text-gray-500">Has HOA:</mat-label>
     <span>{{ propertyIntakeFormData.hasHOA ? "Yes" : "No" }}</span>
     <p class="text-base text-gray-500 my-4">{{ propertyIntakeFormData.yearlyHOAFee }}</p>
   </div>
-</ng-container>
 
-<ng-container *ngIf="propertyIntakeFormData">
   <div class="my-4">
     <mat-label class="text-base text-gray-500">Has Liens:</mat-label>
     <span>{{ propertyIntakeFormData.hasLiens ? "Yes" : "No" }}</span>
     <p class="text-base text-gray-500 my-4">{{ propertyIntakeFormData.hasLiensNotes }}</p>
   </div>
-</ng-container>
 
-<ng-container *ngIf="propertyIntakeFormData">
   <div class="my-4">
     <mat-label class="text-base text-gray-500">Has Easement:</mat-label>
     <span>{{ propertyIntakeFormData.hasEasement ? "Yes" : "No" }}</span>
     <p class="text-base text-gray-500 my-4">{{ propertyIntakeFormData.hasEasementNotes }}</p>
   </div>
-</ng-container>
 
-<ng-container *ngIf="propertyIntakeFormData">
   <div class="my-4">
     <mat-label class="text-base text-gray-500">Has Pictures:</mat-label>
     <span>{{ propertyIntakeFormData.hasPictures ? "Yes" : "No" }}</span>
   </div>
-</ng-container>
 
-<ng-container *ngIf="propertyIntakeFormData">
   <div class="my-4">
     <mat-label class="text-base text-gray-500">Has Survey:</mat-label>
     <span>{{ propertyIntakeFormData.hasSurvey ? "Yes" : "No" }}</span>
   </div>
-</ng-container>
 
-<ng-container *ngIf="propertyIntakeFormData">
   <div class="my-4">
     <mat-label class="text-base text-gray-500">Have Deed Copy:</mat-label>
     <span>{{ propertyIntakeFormData.haveDeedCopy ? "Yes" : "No" }}</span>
   </div>
-</ng-container>
 
-<ng-container *ngIf="propertyIntakeFormData">
   <div class="my-4">
     <mat-label class="text-base text-gray-500">Can Scan Deed:</mat-label>
     <span>{{ propertyIntakeFormData.canScanDeed ? "Yes" : "No" }}</span>
   </div>
-</ng-container>
+</div>
 
 <ng-container *ngIf="propertyIntakeFormData && propertyIntakeFormData.uniqueFeatures">
   <div class="my-4">

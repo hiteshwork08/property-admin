@@ -1,115 +1,98 @@
 <form class="pb-6 min-h-full flex flex-col justify-start" [formGroup]="form" appForm="submit-intake-script-offer">
 
-  <div class="flex items-start gap-3 mb-3 md:flex-col">
-    <mat-slide-toggle class="md:[width:100%]  3xl:[width:35%]" color="primary" formControlName="ableToNotarize"> Able to Notarize </mat-slide-toggle>
-    <mat-form-field class="w-full" *ngIf="form.controls.ableToNotarizeNotes.enabled">
-      <mat-label>Notarize note</mat-label>
-      <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="ableToNotarizeNotes"></textarea>
+
+  <mat-checkbox class="mt-4" color="primary" formControlName="ableToNotarize"> Able to
+    Notarize </mat-checkbox>
+  <mat-form-field class="w-1/2 mt-4" *ngIf="form.controls.ableToNotarizeNotes.enabled">
+    <mat-label>Notarize note</mat-label>
+    <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="ableToNotarizeNotes"></textarea>
+  </mat-form-field>
+
+
+
+
+
+
+  <mat-checkbox class="mt-4" color="primary" formControlName="hasPOA"> Has POA
+  </mat-checkbox>
+  <mat-form-field class="w-1/2 mt-4" *ngIf="form.controls.yearlyPOAFee.enabled">
+    <mat-label>Yearly POA Fee</mat-label>
+    <input matInput formControlName="yearlyPOAFee">
+  </mat-form-field>
+
+  <mat-checkbox class="mt-4" color="primary" formControlName="hasHOA"> Has HOA
+  </mat-checkbox>
+  <mat-form-field class="w-1/2 mt-4" *ngIf="form.controls.yearlyHOAFee.enabled">
+    <mat-label>Yearly HOA Fee</mat-label>
+    <input matInput formControlName="yearlyHOAFee">
+  </mat-form-field>
+
+  <mat-checkbox class="mt-4" color="primary" formControlName="hasLiens"> Has Liens
+  </mat-checkbox>
+  <mat-form-field class="w-1/2 mt-4" *ngIf="form.controls.hasLiensNotes.enabled">
+    <mat-label>Has Liens Notes</mat-label>
+    <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="hasLiensNotes"></textarea>
+  </mat-form-field>
+
+  <mat-checkbox class="mt-4" color="primary" formControlName="hasEasement"> Has
+    Easement </mat-checkbox>
+  <mat-form-field class="w-1/2 mt-4" *ngIf="form.controls.hasEasementNotes.enabled">
+    <mat-label>Has Easement Notes</mat-label>
+    <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="hasEasementNotes"></textarea>
+  </mat-form-field>
+
+  <div class="flex items-center gap-3 mt-3">
+    <mat-checkbox class="mt-4 w-full" color="primary" formControlName="hasPictures"> Has Pictures
+    </mat-checkbox>
+    <mat-checkbox class="mt-4 w-full" color="primary" formControlName="hasSurvey"> Has Survey </mat-checkbox>
+    <mat-checkbox class="mt-4 w-full" color="primary" formControlName="haveDeedCopy"> Have Deed Copy
+    </mat-checkbox>
+    <mat-checkbox class="mt-4 w-full" color="primary" formControlName="canScanDeed"> Can Scan Deed
+    </mat-checkbox>
+  </div>
+
+  <div class="flex items-center gap-3 mt-6">
+    <mat-form-field class="w-full">
+      <mat-label>Unique Features</mat-label>
+      <input matInput class="w-1/2 " formControlName="uniqueFeatures">
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Years Owned</mat-label>
+      <input matInput class="w-1/2 " formControlName="yearsOwned">
     </mat-form-field>
   </div>
-  <div class="flex items-start gap-3 mb-3 md:flex-col">
-    <mat-slide-toggle class="md:[width:100%]  3xl:[width:35%]" color="primary" formControlName="hasPOA"> Has POA </mat-slide-toggle>
-    <mat-form-field class="w-full" *ngIf="form.controls.yearlyPOAFee.enabled">
-      <mat-label>Yearly POA Fee</mat-label>
-        <input matInput  formControlName="yearlyPOAFee">
-      </mat-form-field>
-    </div>
 
-    <div class="flex items-start gap-3 mb-3 md:flex-col">
-      <mat-slide-toggle class="md:[width:100%]  3xl:[width:35%]" color="primary" formControlName="hasHOA"> Has HOA </mat-slide-toggle>
-      <mat-form-field class="w-full" *ngIf="form.controls.yearlyHOAFee.enabled">
-        <mat-label>Yearly HOA Fee</mat-label>
-        <input matInput formControlName="yearlyHOAFee">
-      </mat-form-field>
-    </div>
-    
-    <div class="flex items-start gap-3 mb-3 md:flex-col">
-      <mat-slide-toggle class="md:[width:100%]  3xl:[width:35%]" color="primary" formControlName="hasLiens"> Has Liens </mat-slide-toggle>
-      <mat-form-field class="w-full" *ngIf="form.controls.hasLiensNotes.enabled">
-        <mat-label>Has Liens Notes</mat-label>
-        <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="hasLiensNotes"></textarea>
-      </mat-form-field>
-    </div>
-    
-    <div class="flex items-start gap-3 mb-3 md:flex-col">
-      <mat-slide-toggle class="md:[width:100%]  3xl:[width:35%]" color="primary" formControlName="hasEasement"> Has Easement </mat-slide-toggle>
-      <mat-form-field class="w-full" *ngIf="form.controls.hasEasementNotes.enabled">
-        <mat-label>Has Easement Notes</mat-label>
-        <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="hasEasementNotes"></textarea>
-      </mat-form-field>
-    </div>
-    
-    <div class="flex items-start gap-3 mb-3">
-      <mat-slide-toggle class="w-full" color="primary" formControlName="hasPictures"> Has Pictures </mat-slide-toggle>
-    </div>
-    <div class="flex items-start gap-3 mb-3">
-      <mat-slide-toggle class="w-full" color="primary" formControlName="hasSurvey"> Has Survey </mat-slide-toggle>
-    </div>
-    <div class="flex items-start gap-3 mb-3">
-      <mat-slide-toggle class="w-full" color="primary" formControlName="haveDeedCopy"> Have Deed Copy </mat-slide-toggle>
-    </div>
-    <div class="flex items-start gap-3 mb-3">
-      <mat-slide-toggle class="w-full" color="primary" formControlName="canScanDeed"> Can Scan Deed </mat-slide-toggle>
-    </div>
+  <div class="flex items-center gap-3">
+    <mat-form-field class="w-full">
+      <mat-label>Improvements</mat-label>
+      <input matInput class="w-1/2 " formControlName="improvements">
+    </mat-form-field>
 
-    <mat-form-field class="flex items-start gap-3 mb-3" >
-      <mat-label>Unique Features</mat-label>
-      <input matInput class="w-full" formControlName="uniqueFeatures">
-    </mat-form-field>
-    
-    <mat-form-field class="flex items-start gap-3 mb-3">
-      <mat-label>Years Owned</mat-label>
-      <input matInput class="w-full" formControlName="yearsOwned">
-    </mat-form-field>
-    
-    <mat-form-field class="flex items-start gap-3 mb-3" >
-      <mat-label>improvements</mat-label>
-      <input matInput class="w-full" formControlName="improvements">
-    </mat-form-field>
-    
-    <mat-form-field class="flex items-start gap-3 mb-3" >
+    <mat-form-field class="w-full">
       <mat-label>Additional Properties</mat-label>
-      <input matInput class="w-full" formControlName="additionalProperties">
+      <input matInput class="w-1/2 " formControlName="additionalProperties">
     </mat-form-field>
-    
-    <div class="flex items-start gap-3">
-      <mat-form-field class="w-full">
-        <mat-label>Intake Script Notes</mat-label>
-        <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="inTakeScriptNotes"></textarea>
-      </mat-form-field>
-    </div>
- 
-    <!-- <mat-form-field>
-      <mat-label>utilities</mat-label>
-      <mat-select formControlName="utilities" multiple>
-        <mat-select-trigger>
-          {{form.controls.utilities.value?.[0] || ''}}
-          <span *ngIf="(form.controls.utilities.value?.length || 0) > 1" class="example-additional-selection">
-            (+{{(form.controls.utilities.value?.length || 0) - 1}} {{form.controls.utilities.value?.length === 2 ? 'other' : 'others'}})
-          </span>
-        </mat-select-trigger>
-        <mat-option *ngFor="let topping of utilities" [value]="topping">{{topping}}</mat-option>
-      </mat-select>
-    </mat-form-field> -->
+  </div>
 
+  <div class="flex items-start gap-3">
+    <mat-form-field class="w-full mt-4">
+      <mat-label>Intake Script Notes</mat-label>
+      <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="inTakeScriptNotes"></textarea>
+    </mat-form-field>
+  </div>
 
-    <h2 class="m-0">utilities</h2>
-    <mat-chip-listbox class="my-2" selectable multiple aria-label="Fish selection" formControlName="utilities">
-      <mat-chip-option *ngFor="let topping of utilities" [value]="topping">
-        {{ topping }}
-      </mat-chip-option>
-    </mat-chip-listbox>
-    
+  <h2 class="m-0">Utilities</h2>
+  <mat-chip-listbox class="my-2" selectable multiple aria-label="Fish selection" formControlName="utilities">
+    <mat-chip-option *ngFor="let topping of utilities" [value]="topping">
+      {{ topping }}
+    </mat-chip-option>
+  </mat-chip-listbox>
 
-   
-    
+  <div class="flex items-start justify-end space-x-6">
 
-    <div class="flex items-start justify-end space-x-6">
-      
-      <button type="submit" mat-raised-button color="primary" class="[height:44px!important] [width:100px!important] text-lg">Submit</button>
-    </div>
-    
-  </form>
-  
+    <button type="submit" mat-raised-button color="primary"
+      class="[height:44px!important] [width:100px!important] text-lg">Submit</button>
+  </div>
 
- 
+</form>

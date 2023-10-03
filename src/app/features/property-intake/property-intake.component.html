@@ -1,14 +1,15 @@
 <mat-accordion class="example-headers-align" multi>
-  <mat-expansion-panel [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.receiveOfferForm"  [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.receiveOfferForm">
+  <mat-expansion-panel [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.receiveOfferForm"
+    [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.receiveOfferForm">
     <mat-expansion-panel-header>
       <mat-panel-title class="text-xl"> Receive Offer </mat-panel-title>
     </mat-expansion-panel-header>
     <app-receive-offer-form></app-receive-offer-form>
   </mat-expansion-panel>
-  
-<!-- TODO:  -->
-  <!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.scriptForm" -->
-  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.scriptForm" >
+
+  <mat-expansion-panel class="my-2"
+    [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.scriptForm"
+    [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.scriptForm">
     <mat-expansion-panel-header>
       <mat-panel-title class="text-xl"> Intake script </mat-panel-title>
     </mat-expansion-panel-header>
@@ -16,16 +17,19 @@
   </mat-expansion-panel>
 
 
-<!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.intakeApproval" -->
-  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.intakeApproval"  >
+  <mat-expansion-panel class="my-2"
+    [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.intakeApproval"
+    [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.intakeApproval">
     <mat-expansion-panel-header>
       <mat-panel-title class="text-xl"> Intake script approval </mat-panel-title>
     </mat-expansion-panel-header>
-    <app-intake-script-approval-form [propertyIntakeFormData]="propertyIntakeFormData"></app-intake-script-approval-form>
+    <app-intake-script-approval-form
+      [propertyIntakeFormData]="propertyIntakeFormData"></app-intake-script-approval-form>
   </mat-expansion-panel>
 
-<!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.ProcessFrom" -->
-  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.ProcessFrom" >
+  <mat-expansion-panel class="my-2"
+    [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.ProcessFrom"
+    [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.ProcessFrom">
     <mat-expansion-panel-header>
       <mat-panel-title class="text-xl"> Process Title </mat-panel-title>
     </mat-expansion-panel-header>
@@ -33,42 +37,47 @@
   </mat-expansion-panel>
 </mat-accordion>
 
-<!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.FinalPurchase" -->
-  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.FinalPurchase" >
-    <mat-expansion-panel-header>
-      <mat-panel-title class="text-xl"> Final Purchase </mat-panel-title>
-    </mat-expansion-panel-header>
-    <app-final-purchase-form></app-final-purchase-form>
-  </mat-expansion-panel>
+<mat-expansion-panel class="my-2"
+  [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.FinalPurchase"
+  [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.FinalPurchase">
+  <mat-expansion-panel-header>
+    <mat-panel-title class="text-xl"> Final Purchase </mat-panel-title>
+  </mat-expansion-panel-header>
+  <app-final-purchase-form></app-final-purchase-form>
+</mat-expansion-panel>
 
-<!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.PrepareDocs" -->
-  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.PrepareDocs" >
-    <mat-expansion-panel-header>
-      <mat-panel-title class="text-xl">Prepare Docs</mat-panel-title>
-    </mat-expansion-panel-header>
-    <app-prepare-docs-form></app-prepare-docs-form>
-  </mat-expansion-panel>
+<mat-expansion-panel class="my-2"
+  [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.PrepareDocs"
+  [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.PrepareDocs">
+  <mat-expansion-panel-header>
+    <mat-panel-title class="text-xl">Prepare Docs</mat-panel-title>
+  </mat-expansion-panel-header>
+  <app-prepare-docs-form></app-prepare-docs-form>
+</mat-expansion-panel>
 
-<!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.ReceivedDocs" -->
-  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.ReceivedDocs" >
-    <mat-expansion-panel-header>
-      <mat-panel-title class="text-xl">Recevied Docs</mat-panel-title>
-    </mat-expansion-panel-header>
-    <app-received-docs-form></app-received-docs-form>
-  </mat-expansion-panel>
+<mat-expansion-panel class="my-2"
+  [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.ReceivedDocs"
+  [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.ReceivedDocs">
+  <mat-expansion-panel-header>
+    <mat-panel-title class="text-xl">Recevied Docs</mat-panel-title>
+  </mat-expansion-panel-header>
+  <app-received-docs-form></app-received-docs-form>
+</mat-expansion-panel>
 
-  <!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.RecordDeed" -->
-  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.RecordDeed" >
-    <mat-expansion-panel-header>
-      <mat-panel-title class="text-xl">Record Deed</mat-panel-title>
-    </mat-expansion-panel-header>
-    <app-record-deed-form></app-record-deed-form>
-  </mat-expansion-panel>
+<mat-expansion-panel class="my-2"
+  [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.RecordDeed"
+  [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.RecordDeed">
+  <mat-expansion-panel-header>
+    <mat-panel-title class="text-xl">Record Deed</mat-panel-title>
+  </mat-expansion-panel-header>
+  <app-record-deed-form></app-record-deed-form>
+</mat-expansion-panel>
 
-<!-- [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.PaymentComplete" -->
-  <mat-expansion-panel class="my-2" [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.PaymentComplete" >
-    <mat-expansion-panel-header>
-      <mat-panel-title class="text-xl">Payment Complete</mat-panel-title>
-    </mat-expansion-panel-header>
-    <app-payment-complete-form></app-payment-complete-form>
-  </mat-expansion-panel>
+<mat-expansion-panel class="my-2"
+  [expanded]="propertyIntakeModel.propertyIntakeStatus === PropertIntakeFormEnum.PaymentComplete"
+  [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.PaymentComplete">
+  <mat-expansion-panel-header>
+    <mat-panel-title class="text-xl">Payment Complete</mat-panel-title>
+  </mat-expansion-panel-header>
+  <app-payment-complete-form></app-payment-complete-form>
+</mat-expansion-panel>

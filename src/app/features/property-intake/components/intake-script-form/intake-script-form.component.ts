@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
@@ -24,6 +29,8 @@ import {
 } from './intake-script-form.adaptor';
 import { MatSelectModule } from '@angular/material/select';
 import { Data } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-intake-script-form',
@@ -42,6 +49,10 @@ import { Data } from '@angular/router';
     MatButtonModule,
     MatSlideToggleModule,
     MatSelectModule,
+    MatCardModule,
+    FormsModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
   ],
   providers: [provideFormAdaptor(SubmitIntakescriptOfferFormAdaptor, true)],
 })
@@ -55,15 +66,15 @@ export class IntakeScriptFormComponent {
     canScanDeed: new FormControl<boolean>(false),
     yearsOwned: new FormControl<string>(null),
     hasPOA: new FormControl<boolean>(false),
-    yearlyPOAFee: new FormControl<string>({value:null, disabled:true}),
+    yearlyPOAFee: new FormControl<string>({ value: null, disabled: true }),
     hasHOA: new FormControl<boolean>(false),
-    yearlyHOAFee: new FormControl<string>({value:null, disabled:true}),
+    yearlyHOAFee: new FormControl<string>({ value: null, disabled: true }),
     backTaxesOwed: new FormControl<string>(null),
     hasLiens: new FormControl<boolean>(false),
-    hasLiensNotes: new FormControl<string>({value:null, disabled:true}),
+    hasLiensNotes: new FormControl<string>({ value: null, disabled: true }),
     uniqueFeatures: new FormControl<string>(null),
     hasEasement: new FormControl<boolean>(false),
-    hasEasementNotes: new FormControl<string>({value:null, disabled:true}),
+    hasEasementNotes: new FormControl<string>({ value: null, disabled: true }),
     improvements: new FormControl<string>(null),
     additionalProperties: new FormControl<string>(null),
     inTakeScriptNotes: new FormControl<string>(null),
@@ -85,7 +96,7 @@ export class IntakeScriptFormComponent {
         })
       )
       .subscribe();
-     this.form.controls.hasPOA.valueChanges
+    this.form.controls.hasPOA.valueChanges
       .pipe(
         tap((data) => {
           data
@@ -129,4 +140,3 @@ export class IntakeScriptFormComponent {
 
   utilities: Utilities[] = AllUtilities;
 }
-
