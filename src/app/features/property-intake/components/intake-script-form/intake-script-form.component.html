@@ -3,45 +3,41 @@
 
   <mat-checkbox class="mt-4" color="primary" formControlName="ableToNotarize"> Able to
     Notarize </mat-checkbox>
-  <mat-form-field class="w-1/2 mt-4" *ngIf="form.controls.ableToNotarizeNotes.enabled">
+  <mat-form-field class="w-1/2 mt-4 md:w-full" *ngIf="form.controls.ableToNotarizeNotes.enabled">
     <mat-label>Notarize note</mat-label>
     <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="ableToNotarizeNotes"></textarea>
   </mat-form-field>
 
 
-
-
-
-
   <mat-checkbox class="mt-4" color="primary" formControlName="hasPOA"> Has POA
   </mat-checkbox>
-  <mat-form-field class="w-1/2 mt-4" *ngIf="form.controls.yearlyPOAFee.enabled">
+  <mat-form-field class="w-1/2 mt-4 md:w-full" *ngIf="form.controls.yearlyPOAFee.enabled">
     <mat-label>Yearly POA Fee</mat-label>
     <input matInput formControlName="yearlyPOAFee">
   </mat-form-field>
 
   <mat-checkbox class="mt-4" color="primary" formControlName="hasHOA"> Has HOA
   </mat-checkbox>
-  <mat-form-field class="w-1/2 mt-4" *ngIf="form.controls.yearlyHOAFee.enabled">
+  <mat-form-field class="w-1/2 mt-4 md:w-full" *ngIf="form.controls.yearlyHOAFee.enabled">
     <mat-label>Yearly HOA Fee</mat-label>
     <input matInput formControlName="yearlyHOAFee">
   </mat-form-field>
 
   <mat-checkbox class="mt-4" color="primary" formControlName="hasLiens"> Has Liens
   </mat-checkbox>
-  <mat-form-field class="w-1/2 mt-4" *ngIf="form.controls.hasLiensNotes.enabled">
+  <mat-form-field class="w-1/2 mt-4 md:w-full" *ngIf="form.controls.hasLiensNotes.enabled">
     <mat-label>Has Liens Notes</mat-label>
     <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="hasLiensNotes"></textarea>
   </mat-form-field>
 
   <mat-checkbox class="mt-4" color="primary" formControlName="hasEasement"> Has
     Easement </mat-checkbox>
-  <mat-form-field class="w-1/2 mt-4" *ngIf="form.controls.hasEasementNotes.enabled">
+  <mat-form-field class="w-1/2 mt-4 md:w-full" *ngIf="form.controls.hasEasementNotes.enabled">
     <mat-label>Has Easement Notes</mat-label>
     <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="hasEasementNotes"></textarea>
   </mat-form-field>
 
-  <div class="flex items-center gap-3 mt-3">
+  <div class="flex items-center gap-3 mt-3 md:flex-col">
     <mat-checkbox class="mt-4 w-full" color="primary" formControlName="hasPictures"> Has Pictures
     </mat-checkbox>
     <mat-checkbox class="mt-4 w-full" color="primary" formControlName="hasSurvey"> Has Survey </mat-checkbox>
@@ -51,7 +47,8 @@
     </mat-checkbox>
   </div>
 
-  <div class="flex items-center gap-3 mt-6">
+
+  <div class="flex items-center gap-3 mt-6 md:flex-col">
     <mat-form-field class="w-full">
       <mat-label>Unique Features</mat-label>
       <input matInput class="w-1/2 " formControlName="uniqueFeatures">
@@ -63,7 +60,7 @@
     </mat-form-field>
   </div>
 
-  <div class="flex items-center gap-3">
+  <div class="flex items-center gap-3 md:flex-col">
     <mat-form-field class="w-full">
       <mat-label>Improvements</mat-label>
       <input matInput class="w-1/2 " formControlName="improvements">
@@ -75,7 +72,7 @@
     </mat-form-field>
   </div>
 
-  <div class="flex items-start gap-3">
+  <div class="flex items-start gap-3 md:flex-col">
     <mat-form-field class="w-full mt-4">
       <mat-label>Intake Script Notes</mat-label>
       <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="inTakeScriptNotes"></textarea>

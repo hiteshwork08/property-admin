@@ -1,11 +1,12 @@
 <ng-container *appFetch="'fetch-states'; let states; loading: loading; error: error">
   <form class="pb-6 min-h-full flex flex-col justify-center" [formGroup]="form" appForm="submit-intake-receive-offer">
-    
-    <div class="flex items-center gap-3">
+
+    <div class="flex items-center gap-3 md:flex-col ">
       <mat-form-field class="w-full">
         <mat-label>State</mat-label>
         <mat-select formControlName="selectedState" placeholder="State">
-          <input type="search" #stateSearchInput class="p-4 w-full [height:44px] focus:outline-0" placeholder="Search states..." />
+          <input type="search" #stateSearchInput class="p-4 w-full [height:44px] focus:outline-0"
+            placeholder="Search states..." />
           <mat-option *ngFor="let state of states | searchFilter : stateSearchInput.value : 'name'" [value]="state">
             {{ state.name }}
           </mat-option>
@@ -15,7 +16,8 @@
       <mat-form-field class="w-full">
         <mat-label>County</mat-label>
         <mat-select formControlName="county" placeholder="County">
-          <input type="search" #countySearchInput class="p-4 w-full [height:44px] focus:outline-0" placeholder="Search county..." />
+          <input type="search" #countySearchInput class="p-4 w-full [height:44px] focus:outline-0"
+            placeholder="Search county..." />
           <mat-option *ngFor="let state of availableCounty | searchFilter : countySearchInput.value" [value]="state">
             {{ state }}
           </mat-option>
@@ -23,7 +25,7 @@
       </mat-form-field>
     </div>
 
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-3 md:flex-col">
       <mat-form-field class="w-full">
         <mat-label>APN</mat-label>
         <input type="text" matInput formControlName="APN" />
@@ -32,15 +34,17 @@
       <mat-form-field class="w-full">
         <mat-label>Intake type</mat-label>
         <mat-select formControlName="intakeType" placeholder="Intake type">
-          <input type="search" #intakeTypeSearchInput class="p-4 w-full [height:44px] focus:outline-0" placeholder="Search intake type..." />
-          <mat-option *ngFor="let item of intakeTypes | searchFilter : intakeTypeSearchInput.value : 'name'" [value]="item.id">
+          <input type="search" #intakeTypeSearchInput class="p-4 w-full [height:44px] focus:outline-0"
+            placeholder="Search intake type..." />
+          <mat-option *ngFor="let item of intakeTypes | searchFilter : intakeTypeSearchInput.value : 'name'"
+            [value]="item.id">
             {{ item.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
 
-    <div class="flex items-end gap-3">
+    <div class="flex items-end gap-3 md:flex-col">
       <mat-form-field class="w-full [height:150px]">
         <mat-label>Seller</mat-label>
         <mat-chip-grid #chipGrid aria-label="Seller" color="primary" highlighted="true">
@@ -51,13 +55,8 @@
             </button>
           </mat-chip-row>
         </mat-chip-grid>
-        <input
-          placeholder="New seller..."
-          #sellerInput
-          [matChipInputFor]="chipGrid"
-          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          (matChipInputTokenEnd)="addSeller($event)"
-        />
+        <input placeholder="New seller..." #sellerInput [matChipInputFor]="chipGrid"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addSeller($event)" />
       </mat-form-field>
       <mat-form-field class="w-full">
         <mat-label>Date received</mat-label>
@@ -68,17 +67,19 @@
       </mat-form-field>
     </div>
 
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-3 md:flex-col">
       <mat-form-field class="w-full">
         <mat-label>Initial offer amount</mat-label>
-        <input type="text" formControlName="initialOfferAmount" matInput prefix="$ " mask="separator.2" thousandSeparator="," placeholder="0.00" />
+        <input type="text" formControlName="initialOfferAmount" matInput prefix="$ " mask="separator.2"
+          thousandSeparator="," placeholder="0.00" />
       </mat-form-field>
       <mat-form-field class="w-full">
         <mat-label>Counter offer amount</mat-label>
-        <input type="text" formControlName="initialCounterOfferAmount" matInput prefix="$ " mask="separator.2" thousandSeparator="," placeholder="0.00" />
+        <input type="text" formControlName="initialCounterOfferAmount" matInput prefix="$ " mask="separator.2"
+          thousandSeparator="," placeholder="0.00" />
       </mat-form-field>
     </div>
-    
+
     <div class="flex items-center gap-3">
       <mat-form-field class="w-full">
         <mat-label>Note</mat-label>
@@ -87,11 +88,14 @@
     </div>
 
     <div class="flex items-center justify-end">
-      <button type="submit" mat-raised-button color="primary" class="[height:44px!important] [width:100px!important] text-lg">Save</button>
+      <button type="submit" mat-raised-button color="primary"
+        class="[height:44px!important] [width:100px!important] text-lg">Save</button>
     </div>
   </form>
 </ng-container>
-<ng-template #loading><p class="flex-auto p-4 text-center">Loading...</p></ng-template>
+<ng-template #loading>
+  <p class="flex-auto p-4 text-center">Loading...</p>
+</ng-template>
 <ng-template #error>
   <p class="flex-auto p-4 text-center text-red-500">Couldn't load tasks</p>
 </ng-template>
