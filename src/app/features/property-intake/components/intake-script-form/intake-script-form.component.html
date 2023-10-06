@@ -1,75 +1,216 @@
 <form class="pb-6 min-h-full flex flex-col justify-start" [formGroup]="form" appForm="submit-intake-script-offer">
 
 
-  <mat-checkbox class="mt-4" color="primary" formControlName="ableToNotarize"> Able to
+  <!-- <mat-checkbox class="mt-4" color="primary" value="value1" formControlName="ableToNotarize"> Able to
     Notarize </mat-checkbox>
+  <mat-checkbox class="mt-4" color="primary" value="value2" formControlName="ableToNotarize"> Able to
+    Notarize </mat-checkbox>
+
+
   <mat-form-field class="w-1/2 mt-4 md:w-full" *ngIf="form.controls.ableToNotarizeNotes.enabled">
+    <mat-label>Notarize note</mat-label>
+    <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="ableToNotarizeNotes"></textarea>
+  </mat-form-field> -->
+
+
+  <!-- <mat-label>Notarize note</mat-label>
+  <mat-checkbox class="mt-4" color="primary" #checkBox
+    [checked]="form.get('ableToNotarize').value === IntakeScriptFormControlStates.Yes"
+    (click)="formControlChange('ableToNotarize',IntakeScriptFormControlStates.Yes)">Yes</mat-checkbox>
+  <mat-checkbox class="mt-4" color="primary"
+    [checked]="form.get('ableToNotarize').value === IntakeScriptFormControlStates.No"
+    (change)="formControlChange('ableToNotarize',IntakeScriptFormControlStates.No)">No</mat-checkbox>
+
+  <mat-form-field class="w-1/2 mt-4 md:w-full"
+    *ngIf="form.get('ableToNotarize').value === IntakeScriptFormControlStates.Yes">
+    <mat-label>Notarize note</mat-label>
+    <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="ableToNotarizeNotes"></textarea>
+  </mat-form-field> -->
+
+  <mat-label>Able to Notarize :
+    <mat-radio-group aria-label="Select an option" formControlName="ableToNotarize">
+      <mat-radio-button color="primary"
+        [checked]="form.get('ableToNotarize').value === IntakeScriptFormControlStates.Yes"
+        (click)="formControlChange('ableToNotarize',IntakeScriptFormControlStates.Yes)">Yes</mat-radio-button>
+      <mat-radio-button color="primary"
+        [checked]="form.get('ableToNotarize').value === IntakeScriptFormControlStates.No"
+        (click)="formControlChange('ableToNotarize',IntakeScriptFormControlStates.No)">No</mat-radio-button>
+    </mat-radio-group>
+  </mat-label>
+
+
+  <mat-form-field class="w-1/2 mt-4 md:w-full"
+    *ngIf="form.get('ableToNotarize').value === IntakeScriptFormControlStates.Yes">
     <mat-label>Notarize note</mat-label>
     <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="ableToNotarizeNotes"></textarea>
   </mat-form-field>
 
 
-  <mat-checkbox class="mt-4" color="primary" formControlName="hasPOA"> Has POA
-  </mat-checkbox>
-  <mat-form-field class="w-1/2 mt-4 md:w-full" *ngIf="form.controls.yearlyPOAFee.enabled">
+
+  <mat-label>Has POA :
+    <mat-radio-group aria-label="Select an option" formControlName="hasPOA">
+      <mat-radio-button color="primary" [checked]="form.get('hasPOA').value === IntakeScriptFormControlStates.Yes"
+        (click)="formControlChange('hasPOA',IntakeScriptFormControlStates.Yes)">Yes</mat-radio-button>
+      <mat-radio-button color="primary" [checked]="form.get('hasPOA').value === IntakeScriptFormControlStates.No"
+        (click)="formControlChange('hasPOA',IntakeScriptFormControlStates.No)">No</mat-radio-button>
+      <mat-radio-button color="primary" [checked]="form.get('hasPOA').value === IntakeScriptFormControlStates.Not_sure"
+        (click)="formControlChange('hasPOA',IntakeScriptFormControlStates.Not_sure)">Not sure</mat-radio-button>
+    </mat-radio-group>
+  </mat-label>
+
+  <mat-form-field class="w-1/2 mt-4 md:w-full" *ngIf="form.get('hasPOA').value === IntakeScriptFormControlStates.Yes">
     <mat-label>Yearly POA Fee</mat-label>
     <input matInput formControlName="yearlyPOAFee">
   </mat-form-field>
 
-  <mat-checkbox class="mt-4" color="primary" formControlName="hasHOA"> Has HOA
-  </mat-checkbox>
-  <mat-form-field class="w-1/2 mt-4 md:w-full" *ngIf="form.controls.yearlyHOAFee.enabled">
+  <mat-label>Has HOA :
+    <mat-radio-group aria-label="Select an option" formControlName="hasHOA">
+      <mat-radio-button color="primary" [checked]="form.get('hasHOA').value === IntakeScriptFormControlStates.Yes"
+        (click)="formControlChange('hasHOA',IntakeScriptFormControlStates.Yes)">Yes</mat-radio-button>
+      <mat-radio-button color="primary" [checked]="form.get('hasHOA').value === IntakeScriptFormControlStates.No"
+        (click)="formControlChange('hasHOA',IntakeScriptFormControlStates.No)">No</mat-radio-button>
+      <mat-radio-button color="primary" [checked]="form.get('hasHOA').value === IntakeScriptFormControlStates.Not_sure"
+        (click)="formControlChange('hasHOA',IntakeScriptFormControlStates.Not_sure)">Not sure</mat-radio-button>
+    </mat-radio-group>
+  </mat-label>
+
+  <mat-form-field class="w-1/2 mt-4 md:w-full" *ngIf="form.get('hasHOA').value === IntakeScriptFormControlStates.Yes">
     <mat-label>Yearly HOA Fee</mat-label>
     <input matInput formControlName="yearlyHOAFee">
   </mat-form-field>
 
-  <mat-checkbox class="mt-4" color="primary" formControlName="hasLiens"> Has Liens
-  </mat-checkbox>
-  <mat-form-field class="w-1/2 mt-4 md:w-full" *ngIf="form.controls.hasLiensNotes.enabled">
+  <mat-label>Has Liens :
+    <mat-radio-group aria-label="Select an option" formControlName="hasLiens">
+      <mat-radio-button color="primary" [checked]="form.get('hasLiens').value === IntakeScriptFormControlStates.Yes"
+        (click)="formControlChange('hasLiens',IntakeScriptFormControlStates.Yes)">Yes</mat-radio-button>
+      <mat-radio-button color="primary" [checked]="form.get('hasLiens').value === IntakeScriptFormControlStates.No"
+        (click)="formControlChange('hasLiens',IntakeScriptFormControlStates.No)">No</mat-radio-button>
+      <mat-radio-button color="primary"
+        [checked]="form.get('hasLiens').value === IntakeScriptFormControlStates.Not_sure"
+        (click)="formControlChange('hasLiens',IntakeScriptFormControlStates.Not_sure)">Not sure</mat-radio-button>
+    </mat-radio-group>
+  </mat-label>
+
+  <mat-form-field class="w-1/2 mt-4 md:w-full" *ngIf="form.get('hasLiens').value === IntakeScriptFormControlStates.Yes">
     <mat-label>Has Liens Notes</mat-label>
-    <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="hasLiensNotes"></textarea>
+    <input matInput formControlName="hasLiensNotes">
   </mat-form-field>
 
-  <mat-checkbox class="mt-4" color="primary" formControlName="hasEasement"> Has
-    Easement </mat-checkbox>
-  <mat-form-field class="w-1/2 mt-4 md:w-full" *ngIf="form.controls.hasEasementNotes.enabled">
+  <mat-label>Has Easement :
+    <mat-radio-group aria-label="Select an option" formControlName="hasEasement">
+      <mat-radio-button color="primary" [checked]="form.get('hasEasement').value === IntakeScriptFormControlStates.Yes"
+        (click)="formControlChange('hasEasement',IntakeScriptFormControlStates.Yes)">Yes</mat-radio-button>
+      <mat-radio-button color="primary" [checked]="form.get('hasEasement').value === IntakeScriptFormControlStates.No"
+        (click)="formControlChange('hasEasement',IntakeScriptFormControlStates.No)">No</mat-radio-button>
+      <mat-radio-button color="primary"
+        [checked]="form.get('hasEasement').value === IntakeScriptFormControlStates.Not_sure"
+        (click)="formControlChange('hasEasement',IntakeScriptFormControlStates.Not_sure)">Not sure</mat-radio-button>
+    </mat-radio-group>
+  </mat-label>
+
+  <mat-form-field class="w-1/2 mt-4 md:w-full"
+    *ngIf="form.get('hasEasement').value === IntakeScriptFormControlStates.Yes">
     <mat-label>Has Easement Notes</mat-label>
-    <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="hasEasementNotes"></textarea>
+    <input matInput formControlName="hasEasementNotes">
   </mat-form-field>
 
-  <div class="flex items-center gap-3 mt-3 md:flex-col">
-    <mat-checkbox class="mt-4 w-full" color="primary" formControlName="hasPictures"> Has Pictures
-    </mat-checkbox>
-    <mat-checkbox class="mt-4 w-full" color="primary" formControlName="hasSurvey"> Has Survey </mat-checkbox>
-    <mat-checkbox class="mt-4 w-full" color="primary" formControlName="haveDeedCopy"> Have Deed Copy
-    </mat-checkbox>
-    <mat-checkbox class="mt-4 w-full" color="primary" formControlName="canScanDeed"> Can Scan Deed
-    </mat-checkbox>
-  </div>
 
+  <mat-label>Has Pictures :
+    <mat-radio-group aria-label="Select an option" formControlName="hasPictures">
+      <mat-radio-button color="primary" [checked]="form.get('hasPictures').value === IntakeScriptFormControlStates.Yes"
+        (click)="formControlChange('hasPictures',IntakeScriptFormControlStates.Yes)">Yes</mat-radio-button>
+      <mat-radio-button color="primary" [checked]="form.get('hasPictures').value === IntakeScriptFormControlStates.No"
+        (click)="formControlChange('hasPictures',IntakeScriptFormControlStates.No)">No</mat-radio-button>
+    </mat-radio-group>
+  </mat-label>
+
+
+  <mat-label>Has Survey :
+    <mat-radio-group aria-label="Select an option" formControlName="hasSurvey">
+      <mat-radio-button color="primary" [checked]="form.get('hasSurvey').value === IntakeScriptFormControlStates.Yes"
+        (click)="formControlChange('hasSurvey',IntakeScriptFormControlStates.Yes)">Yes</mat-radio-button>
+      <mat-radio-button color="primary" [checked]="form.get('hasSurvey').value === IntakeScriptFormControlStates.No"
+        (click)="formControlChange('hasSurvey',IntakeScriptFormControlStates.No)">No</mat-radio-button>
+    </mat-radio-group>
+  </mat-label>
+
+  <mat-label>Have Deed Copy :
+    <mat-radio-group aria-label="Select an option" formControlName="haveDeedCopy">
+      <mat-radio-button color="primary" [checked]="form.get('haveDeedCopy').value === IntakeScriptFormControlStates.Yes"
+        (click)="formControlChange('haveDeedCopy',IntakeScriptFormControlStates.Yes)">Yes</mat-radio-button>
+      <mat-radio-button color="primary" [checked]="form.get('haveDeedCopy').value === IntakeScriptFormControlStates.No"
+        (click)="formControlChange('haveDeedCopy',IntakeScriptFormControlStates.No)">No</mat-radio-button>
+    </mat-radio-group>
+  </mat-label>
+
+  <mat-label>Can Scan Deed :
+    <mat-radio-group aria-label="Select an option" formControlName="canScanDeed">
+      <mat-radio-button color="primary" [checked]="form.get('canScanDeed').value === IntakeScriptFormControlStates.Yes"
+        (click)="formControlChange('canScanDeed',IntakeScriptFormControlStates.Yes)">Yes</mat-radio-button>
+      <mat-radio-button color="primary" [checked]="form.get('canScanDeed').value === IntakeScriptFormControlStates.No"
+        (click)="formControlChange('canScanDeed',IntakeScriptFormControlStates.No)">No</mat-radio-button>
+    </mat-radio-group>
+  </mat-label>
 
   <div class="flex items-center gap-3 mt-6 md:flex-col">
-    <mat-form-field class="w-full">
+    <mat-form-field class="w-1/2">
+      <mat-label>Years Owned</mat-label>
+      <input matInput class="w-1/2" formControlName="yearsOwned">
+    </mat-form-field>
+  </div>
+
+  <div class="flex items-center gap-3 mt-6 md:flex-col">
+    <mat-form-field class="w-1/2 [height:150px]">
       <mat-label>Unique Features</mat-label>
-      <input matInput class="w-1/2 " formControlName="uniqueFeatures">
+      <mat-chip-grid #chipGrid aria-label="Unique Features" color="primary" highlighted="true">
+        <mat-chip-row *ngFor="let features of form.controls.uniqueFeatures.value" (removed)="removeFeature(features)">
+          {{ features }}
+          <button matChipRemove [attr.aria-label]="'remove ' + features">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input placeholder="New features..." #Features [matChipInputFor]="chipGrid"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addFeature($event)" />
     </mat-form-field>
 
-    <mat-form-field class="w-full">
-      <mat-label>Years Owned</mat-label>
-      <input matInput class="w-1/2 " formControlName="yearsOwned">
+
+    <mat-form-field class="w-1/2 [height:150px]">
+      <mat-label>Improvements</mat-label>
+      <mat-chip-grid #chipGridImprovements aria-label="Improvements" color="primary" highlighted="true">
+        <mat-chip-row *ngFor="let newImprovements of form.controls.improvements.value"
+          (removed)="removeimprovements(newImprovements)">
+          {{ newImprovements }}
+          <button matChipRemove [attr.aria-label]="'remove ' + newImprovements">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input placeholder="New improvements..." #Improvements [matChipInputFor]="chipGridImprovements"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addimprovements($event)" />
     </mat-form-field>
   </div>
 
   <div class="flex items-center gap-3 md:flex-col">
-    <mat-form-field class="w-full">
-      <mat-label>Improvements</mat-label>
-      <input matInput class="w-1/2 " formControlName="improvements">
+
+    <mat-form-field class="w-1/2 [height:150px]">
+      <mat-label>Additional Properties</mat-label>
+      <mat-chip-grid #chipGridadditionalProperties aria-label="additionalProperties" color="primary" highlighted="true">
+        <mat-chip-row *ngFor="let additionalProperties of form.controls.additionalProperties.value"
+          (removed)="removeadditionalProperties(additionalProperties)">
+          {{ additionalProperties }}
+          <button matChipRemove [attr.aria-label]="'remove ' + additionalProperties">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input placeholder="New additional Properties..." #additionalProperties
+        [matChipInputFor]="chipGridadditionalProperties" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="addProperties($event)" />
     </mat-form-field>
 
-    <mat-form-field class="w-full">
-      <mat-label>Additional Properties</mat-label>
-      <input matInput class="w-1/2 " formControlName="additionalProperties">
-    </mat-form-field>
+
+
   </div>
 
   <div class="flex items-start gap-3 md:flex-col">
