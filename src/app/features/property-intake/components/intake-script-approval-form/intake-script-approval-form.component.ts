@@ -13,7 +13,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { CancelFormComponent } from '@common/cancel-btn/cancel-btn.component';
-import { SubmitIntakeScriptOfferFormData } from '../intake-script-form/intake-script-form.adaptor';
+import {
+  IntakeScriptFormControlStates,
+  SubmitIntakeScriptOfferFormData,
+} from '../intake-script-form/intake-script-form.adaptor';
 import {
   FormHandlerModule,
   provideFormAdaptor,
@@ -21,7 +24,7 @@ import {
 import { IntakeScriptApprovalFormAdaptor } from './intake-script-approval-form.adaptor';
 import { FetchModule } from '@common/fetch/fetch.directive';
 import { FormErrorModule } from '@common/form/field-error.directive';
-import { MatCardModule } from '@angular/material/card';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-intake-script-approval-form',
@@ -39,6 +42,8 @@ import { MatCardModule } from '@angular/material/card';
     MatButtonModule,
     MatSlideToggleModule,
     MatSelectModule,
+    MatRadioModule,
+    MatButtonModule,
     FormsModule,
   ],
   templateUrl: './intake-script-approval-form.component.html',
@@ -46,7 +51,6 @@ import { MatCardModule } from '@angular/material/card';
   providers: [provideFormAdaptor(IntakeScriptApprovalFormAdaptor, true)],
 })
 export class IntakeScriptApprovalFormComponent implements OnInit {
-  @Input() propertyIntakeFormData: SubmitIntakeScriptOfferFormData;
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}

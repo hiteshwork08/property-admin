@@ -6,7 +6,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Component, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -67,133 +74,54 @@ import { DropFilesComponent } from '@common/drop-files/drop-files.component';
   ],
   providers: [provideFormAdaptor(SubmitIntakescriptOfferFormAdaptor, true)],
 })
-export class IntakeScriptFormComponent {
+export class IntakeScriptFormComponent implements OnChanges {
   @Output() formData = new EventEmitter<SubmitIntakeScriptOfferFormData>();
+  @Input() propertyIntakeFormData: SubmitIntakeScriptOfferFormData;
+  @Input() readOnly: boolean = false;
   IntakeScriptFormControlStates = IntakeScriptFormControlStates;
   files: File[] = [];
   form = new FormGroup({
-    ableToNotarize: new FormControl<IntakeScriptFormControlStateType1>(
-      null,
-      Validators.required
-    ),
-    ableToNotarizeNotes: new FormControl<string>(null, Validators.required),
-    haveDeedCopy: new FormControl<IntakeScriptFormControlStateType1>(
-      null,
-      Validators.required
-    ),
-    canScanDeed: new FormControl<IntakeScriptFormControlStateType1>(
-      null,
-      Validators.required
-    ),
-    yearsOwned: new FormControl<string>(null, [
-      Validators.required,
-      Validators.pattern(/^\d+$/),
-    ]),
-    hasPOA: new FormControl<IntakeScriptFormControlStateType2>(
-      null,
-      Validators.required
-    ),
-    yearlyPOAFee: new FormControl<string>(
-      { value: null, disabled: true },
-      Validators.required
-    ),
-    hasHOA: new FormControl<IntakeScriptFormControlStateType2>(
-      null,
-      Validators.required
-    ),
-    yearlyHOAFee: new FormControl<string>(
-      { value: null, disabled: true },
-      Validators.required
-    ),
+    ableToNotarize: new FormControl<IntakeScriptFormControlStateType1>(null),
+    ableToNotarizeNotes: new FormControl<string>(null),
+    haveDeedCopy: new FormControl<IntakeScriptFormControlStateType1>(null),
+    canScanDeed: new FormControl<IntakeScriptFormControlStateType1>(null),
+    yearsOwned: new FormControl<string>(null, [, Validators.pattern(/^\d+$/)]),
+    hasPOA: new FormControl<IntakeScriptFormControlStateType2>(null),
+    yearlyPOAFee: new FormControl<string>({ value: null, disabled: true }),
+    hasHOA: new FormControl<IntakeScriptFormControlStateType2>(null),
+    yearlyHOAFee: new FormControl<string>({ value: null, disabled: true }),
     backTaxesOwed: new FormControl<string>(null),
-    hasLiens: new FormControl<IntakeScriptFormControlStateType2>(
-      null,
-      Validators.required
-    ),
-    hasLiensNotes: new FormControl<string>(
-      { value: null, disabled: true },
-      Validators.required
-    ),
-    uniqueFeatures: new FormControl<string[]>([], Validators.required),
-    hasEasement: new FormControl<IntakeScriptFormControlStateType2>(
-      null,
-      Validators.required
-    ),
-    hasEasementNotes: new FormControl<string>(
-      { value: null, disabled: true },
-      Validators.required
-    ),
-    improvements: new FormControl<string[]>([], Validators.required),
-    additionalProperties: new FormControl<string[]>([], Validators.required),
-    inTakeScriptNotes: new FormControl<string>(null, Validators.required),
-    hasPictures: new FormControl<IntakeScriptFormControlStateType1>(
-      null,
-      Validators.required
-    ),
-    pictures: new FormControl<FileList | File>(null, Validators.required),
-    hasSurvey: new FormControl<IntakeScriptFormControlStateType1>(
-      null,
-      Validators.required
-    ),
-    utilities: new FormControl<Utilities[]>([], Validators.required),
-    Comment: new FormControl<string>(null, Validators.required),
+    hasLiens: new FormControl<IntakeScriptFormControlStateType2>(null),
+    hasLiensNotes: new FormControl<string>({ value: null, disabled: true }),
+    uniqueFeatures: new FormControl<string[]>([]),
+    hasEasement: new FormControl<IntakeScriptFormControlStateType2>(null),
+    hasEasementNotes: new FormControl<string>({ value: null, disabled: true }),
+    improvements: new FormControl<string[]>([]),
+    additionalProperties: new FormControl<string[]>([]),
+    inTakeScriptNotes: new FormControl<string>(null),
+    hasPictures: new FormControl<IntakeScriptFormControlStateType1>(null),
+    pictures: new FormControl<FileList | File>(null),
+    hasSurvey: new FormControl<IntakeScriptFormControlStateType1>(null),
+    utilities: new FormControl<Utilities[]>([]),
+    Comment: new FormControl<string>(null),
   });
   separatorKeysCodes: number[] = [ENTER, COMMA];
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (
+      changes &&
+      changes['propertyIntakeFormData'] &&
+      changes['propertyIntakeFormData']['currentValue']
+    ) {
+      this.propertyIntakeFormData =
+        changes['propertyIntakeFormData']['currentValue'];
+      this.form.patchValue(this.propertyIntakeFormData);
+    }
+  }
 
   constructor(
     private submitIntakescriptOfferFormAdaptor: SubmitIntakescriptOfferFormAdaptor
   ) {
-    this.form.controls.ableToNotarize.valueChanges
-      .pipe(
-        tap((data) => {
-          this.form.controls.ableToNotarizeNotes.reset();
-          data === IntakeScriptFormControlStates.No
-            ? this.form.controls.ableToNotarizeNotes.disable()
-            : this.form.controls.ableToNotarizeNotes.enable();
-        })
-      )
-      .subscribe();
-    this.form.controls.hasPOA.valueChanges
-      .pipe(
-        tap((data) => {
-          data === IntakeScriptFormControlStates.Yes ||
-          IntakeScriptFormControlStates.Not_sure
-            ? this.form.controls.yearlyPOAFee.enable()
-            : this.form.controls.yearlyPOAFee.disable();
-        })
-      )
-      .subscribe();
-    this.form.controls.hasHOA.valueChanges
-      .pipe(
-        tap((data) => {
-          data === IntakeScriptFormControlStates.Yes ||
-          IntakeScriptFormControlStates.Not_sure
-            ? this.form.controls.yearlyHOAFee.enable()
-            : this.form.controls.yearlyHOAFee.disable();
-        })
-      )
-      .subscribe();
-    this.form.controls.hasLiens.valueChanges
-      .pipe(
-        tap((data) => {
-          data === IntakeScriptFormControlStates.Yes ||
-          IntakeScriptFormControlStates.Not_sure
-            ? this.form.controls.hasLiensNotes.enable()
-            : this.form.controls.hasLiensNotes.disable();
-        })
-      )
-      .subscribe();
-    this.form.controls.hasEasement.valueChanges
-      .pipe(
-        tap((data) => {
-          data === IntakeScriptFormControlStates.Yes ||
-          IntakeScriptFormControlStates.Not_sure
-            ? this.form.controls.hasEasementNotes.enable()
-            : this.form.controls.hasEasementNotes.disable();
-        })
-      )
-      .subscribe();
-
     this.submitIntakescriptOfferFormAdaptor.formData$.subscribe((data) =>
       this.formData.emit(data)
     );

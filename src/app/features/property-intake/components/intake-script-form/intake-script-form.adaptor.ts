@@ -50,27 +50,27 @@ export const AllUtilities: Utilities[] = [
 ];
 
 export interface SubmitIntakeScriptOfferFormData {
-  ableToNotarize: boolean;
+  ableToNotarize: IntakeScriptFormControlStateType1;
   ableToNotarizeNotes: string;
-  haveDeedCopy: boolean;
-  canScanDeed: boolean;
+  haveDeedCopy: IntakeScriptFormControlStateType1;
+  canScanDeed: IntakeScriptFormControlStateType1;
   yearsOwned: string;
-  hasPOA: boolean;
+  hasPOA: IntakeScriptFormControlStateType2;
   yearlyPOAFee: string;
-  hasHOA: boolean;
+  hasHOA: IntakeScriptFormControlStateType2;
   yearlyHOAFee: string;
   backTaxesOwed: string;
-  hasLiens: boolean;
+  hasLiens: IntakeScriptFormControlStateType2;
   hasLiensNotes: string;
-  uniqueFeatures: string;
-  hasEasement: boolean;
+  uniqueFeatures: string[];
+  hasEasement: IntakeScriptFormControlStateType2;
   hasEasementNotes: string;
-  improvements: string;
-  additionalProperties: string;
+  improvements: string[];
+  additionalProperties: string[];
   inTakeScriptNotes: string;
-  hasPictures: boolean;
+  hasPictures: IntakeScriptFormControlStateType1;
   pictures: FileList | null;
-  hasSurvey: boolean;
+  hasSurvey: IntakeScriptFormControlStateType1;
   utilities: Utilities[];
   Comment: string;
 }

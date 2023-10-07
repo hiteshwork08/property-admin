@@ -1,0 +1,21 @@
+<form class="p-4" [formGroup]="imageForm" (submit)="onSubmit()">
+
+  <mat-form-field class="flex ">
+    <mat-label>Client Property ID</mat-label>
+    <input matInput formControlName="ClientPropertyID" placeholder="Client Property ID" required>
+  </mat-form-field>
+
+  <mat-form-field class="flex ">
+    <mat-label>Image Description</mat-label>
+    <textarea matInput formControlName="ImageDescription" cols="35" rows="8"
+      placeholder="Images Description"></textarea>
+  </mat-form-field>
+
+  <div class="flex items-center md:flex-col w-full 2xl:w-full">
+    <app-drop-files class="w-1/2 2xl:w-full mb-3" elementRef="fileDropRef" label=""
+      (onFileDropped)="pictures.setValue($event)" [multiple]="true" (resetControl)="pictures.reset()"></app-drop-files>
+  </div>
+
+
+  <button mat-raised-button color="primary" type="submit">Add</button>
+</form>

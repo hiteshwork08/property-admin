@@ -17,6 +17,8 @@ import { PrepareDocsFormComponent } from './components/prepare-docs-form/prepare
 import { ReceivedDocsFormComponent } from './components/received-docs-form/received-docs-form.component';
 import { RecordDeedFormComponent } from './components/record-deed-form/record-deed-form.component';
 import { PaymentCompleteFormComponent } from './components/payment-complete-form/payment-complete-form.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MarketingSalesComponent } from '../marketing-sales/marketing-sales.component';
 @Component({
   selector: 'app-property-intake',
   templateUrl: './property-intake.component.html',
@@ -27,6 +29,7 @@ import { PaymentCompleteFormComponent } from './components/payment-complete-form
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTabsModule,
     ReceiveOfferFormComponent,
     IntakeScriptFormComponent,
     IntakeScriptApprovalFormComponent,
@@ -35,7 +38,8 @@ import { PaymentCompleteFormComponent } from './components/payment-complete-form
     PrepareDocsFormComponent,
     ReceivedDocsFormComponent,
     RecordDeedFormComponent,
-    PaymentCompleteFormComponent
+    PaymentCompleteFormComponent,
+    MarketingSalesComponent,
   ],
   providers: [
     {
@@ -45,9 +49,9 @@ import { PaymentCompleteFormComponent } from './components/payment-complete-form
   ],
 })
 export class PropertyIntakeComponent {
-  propertyIntakeFormData: SubmitIntakeScriptOfferFormData;
   public propertyIntakeModel = inject(PropertyIntakeModel);
   PropertIntakeFormEnum = PropertIntakeFormEnum;
+  propertyIntakeFormData: SubmitIntakeScriptOfferFormData;
 
   onFormDataReceived(formData: SubmitIntakeScriptOfferFormData) {
     this.propertyIntakeFormData = formData;

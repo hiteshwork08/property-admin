@@ -11,7 +11,7 @@ import { FileListComponent } from './file-list/file-list.component';
   styleUrls: ['./drop-files.component.scss'],
 })
 export class DropFilesComponent {
-  @Input() multi = false;
+  @Input() multiple = false;
   @Input() accept: string[] = [];
   @Input() elementRef: string = '';
   @Input() label: string = 'Upload file';
@@ -29,10 +29,11 @@ export class DropFilesComponent {
         }
       }
       this.onFileDropped.next(
-        this.multi ? inputElement.files : inputElement.files[0]
+        this.multiple ? inputElement.files : inputElement.files[0]
       );
     }
   }
+
   removeItem(index: number) {
     this.documents.splice(index, 1);
     // this.onFileDropped.next(this.multi ? this.documents : this.documents[0]);

@@ -11,7 +11,7 @@
   </div>
 
   <div *ngIf="showUploadField" class="mt-8">
-    <app-drop-files label="Upload Sales Agreement" elementRef="salesFileDropRef" [multi]="true"
+    <app-drop-files label="Upload Sales Agreement" elementRef="salesFileDropRef" [multiple]="false"
       (onFileDropped)="salesAgreementDocument.setValue($event)"
       (resetControl)="salesAgreementDocument.reset()"></app-drop-files>
   </div>
