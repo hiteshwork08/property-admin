@@ -27,9 +27,9 @@ export enum UtilitiesEnum {
 }
 
 export enum IntakeScriptFormControlStates {
-  Yes,
-  No,
-  Not_sure,
+  Yes = 'Yes',
+  No = 'No',
+  Not_sure = 'Not Sure',
 }
 
 export type IntakeScriptFormControlStateType1 =
@@ -69,6 +69,7 @@ export interface SubmitIntakeScriptOfferFormData {
   additionalProperties: string;
   inTakeScriptNotes: string;
   hasPictures: boolean;
+  pictures: FileList | null;
   hasSurvey: boolean;
   utilities: Utilities[];
   Comment: string;

@@ -4,6 +4,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -37,6 +38,7 @@ import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatIconModule } from '@angular/material/icon';
+import { DropFilesComponent } from '@common/drop-files/drop-files.component';
 
 @Component({
   selector: 'app-intake-script-form',
@@ -61,37 +63,80 @@ import { MatIconModule } from '@angular/material/icon';
     MatCheckboxModule,
     ReactiveFormsModule,
     MatRadioModule,
+    DropFilesComponent,
   ],
   providers: [provideFormAdaptor(SubmitIntakescriptOfferFormAdaptor, true)],
 })
 export class IntakeScriptFormComponent {
   @Output() formData = new EventEmitter<SubmitIntakeScriptOfferFormData>();
-
   IntakeScriptFormControlStates = IntakeScriptFormControlStates;
-
+  files: File[] = [];
   form = new FormGroup({
-    ableToNotarize: new FormControl<IntakeScriptFormControlStateType1>(null),
-    ableToNotarizeNotes: new FormControl<string>(null),
-    haveDeedCopy: new FormControl<IntakeScriptFormControlStateType1>(null),
-    canScanDeed: new FormControl<IntakeScriptFormControlStateType1>(null),
-    yearsOwned: new FormControl<string>(null),
-    hasPOA: new FormControl<IntakeScriptFormControlStateType2>(null),
-    yearlyPOAFee: new FormControl<string>({ value: null, disabled: true }),
-    hasHOA: new FormControl<IntakeScriptFormControlStateType2>(null),
-    yearlyHOAFee: new FormControl<string>({ value: null, disabled: true }),
+    ableToNotarize: new FormControl<IntakeScriptFormControlStateType1>(
+      null,
+      Validators.required
+    ),
+    ableToNotarizeNotes: new FormControl<string>(null, Validators.required),
+    haveDeedCopy: new FormControl<IntakeScriptFormControlStateType1>(
+      null,
+      Validators.required
+    ),
+    canScanDeed: new FormControl<IntakeScriptFormControlStateType1>(
+      null,
+      Validators.required
+    ),
+    yearsOwned: new FormControl<string>(null, [
+      Validators.required,
+      Validators.pattern(/^\d+$/),
+    ]),
+    hasPOA: new FormControl<IntakeScriptFormControlStateType2>(
+      null,
+      Validators.required
+    ),
+    yearlyPOAFee: new FormControl<string>(
+      { value: null, disabled: true },
+      Validators.required
+    ),
+    hasHOA: new FormControl<IntakeScriptFormControlStateType2>(
+      null,
+      Validators.required
+    ),
+    yearlyHOAFee: new FormControl<string>(
+      { value: null, disabled: true },
+      Validators.required
+    ),
     backTaxesOwed: new FormControl<string>(null),
-    hasLiens: new FormControl<IntakeScriptFormControlStateType2>(null),
-    hasLiensNotes: new FormControl<string>({ value: null, disabled: true }),
-    uniqueFeatures: new FormControl<string[]>([]),
-    hasEasement: new FormControl<IntakeScriptFormControlStateType2>(null),
-    hasEasementNotes: new FormControl<string>({ value: null, disabled: true }),
-    improvements: new FormControl<string[]>([]),
-    additionalProperties: new FormControl<string[]>([]),
-    inTakeScriptNotes: new FormControl<string>(null),
-    hasPictures: new FormControl<IntakeScriptFormControlStateType1>(null),
-    hasSurvey: new FormControl<IntakeScriptFormControlStateType1>(null),
-    utilities: new FormControl<Utilities[]>([]),
-    Comment: new FormControl<string>(null),
+    hasLiens: new FormControl<IntakeScriptFormControlStateType2>(
+      null,
+      Validators.required
+    ),
+    hasLiensNotes: new FormControl<string>(
+      { value: null, disabled: true },
+      Validators.required
+    ),
+    uniqueFeatures: new FormControl<string[]>([], Validators.required),
+    hasEasement: new FormControl<IntakeScriptFormControlStateType2>(
+      null,
+      Validators.required
+    ),
+    hasEasementNotes: new FormControl<string>(
+      { value: null, disabled: true },
+      Validators.required
+    ),
+    improvements: new FormControl<string[]>([], Validators.required),
+    additionalProperties: new FormControl<string[]>([], Validators.required),
+    inTakeScriptNotes: new FormControl<string>(null, Validators.required),
+    hasPictures: new FormControl<IntakeScriptFormControlStateType1>(
+      null,
+      Validators.required
+    ),
+    pictures: new FormControl<FileList | File>(null, Validators.required),
+    hasSurvey: new FormControl<IntakeScriptFormControlStateType1>(
+      null,
+      Validators.required
+    ),
+    utilities: new FormControl<Utilities[]>([], Validators.required),
+    Comment: new FormControl<string>(null, Validators.required),
   });
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
@@ -211,5 +256,21 @@ export class IntakeScriptFormComponent {
     if (index >= 0) {
       additionalProperties.splice(index, 1);
     }
+  }
+
+  get pictures() {
+    return this.form.controls['pictures'];
+  }
+
+  onFileDropped(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files && inputElement.files.length > 0) {
+      const fileList: FileList = inputElement.files;
+      this.pictures.setValue(fileList);
+    }
+  }
+
+  deleteFile() {
+    this.pictures.reset();
   }
 }

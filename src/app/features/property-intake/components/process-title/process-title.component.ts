@@ -54,28 +54,3 @@ export class ProcessTitleComponent {
     this.images.reset();
   }
 }
-
-// deedForm: FormGroup;
-
-// constructor(private formBuilder: FormBuilder) {}
-
-// get deedDocument() {
-//   return this.deedForm.controls['deedDocument']
-// }
-
-// ngOnInit(): void {
-//   this.deedForm = this.formBuilder.group({
-//     deedDocument: ['', Validators.required],
-//   });
-// }
-
-// onFileDrop(event: Event) {
-//   const inputElement = event.target as HTMLInputElement;
-//   if (inputElement.files && inputElement.files.length > 0)
-//   this.deedDocument.setValue(inputElement.files[0]);
-
-// }
-
-// removeFile() {
-//   this.deedDocument.reset();
-// }
