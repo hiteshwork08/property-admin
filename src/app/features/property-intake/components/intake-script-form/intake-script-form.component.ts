@@ -79,7 +79,6 @@ export class IntakeScriptFormComponent implements OnChanges {
   @Input() propertyIntakeFormData: SubmitIntakeScriptOfferFormData;
   @Input() readOnly: boolean = false;
   IntakeScriptFormControlStates = IntakeScriptFormControlStates;
-  files: File[] = [];
   form = new FormGroup({
     ableToNotarize: new FormControl<IntakeScriptFormControlStateType1>(null),
     ableToNotarizeNotes: new FormControl<string>(null),
@@ -100,7 +99,7 @@ export class IntakeScriptFormComponent implements OnChanges {
     additionalProperties: new FormControl<string[]>([]),
     inTakeScriptNotes: new FormControl<string>(null),
     hasPictures: new FormControl<IntakeScriptFormControlStateType1>(null),
-    pictures: new FormControl<FileList | File>(null),
+    pictures: new FormControl<FileList>(null),
     hasSurvey: new FormControl<IntakeScriptFormControlStateType1>(null),
     utilities: new FormControl<Utilities[]>([]),
     Comment: new FormControl<string>(null),
@@ -190,12 +189,8 @@ export class IntakeScriptFormComponent implements OnChanges {
     return this.form.controls['pictures'];
   }
 
-  onFileDropped(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    if (inputElement.files && inputElement.files.length > 0) {
-      const fileList: FileList = inputElement.files;
-      this.pictures.setValue(fileList);
-    }
+  onFileDropped(event: FileList | File) {
+    if (event instanceof FileList) this.pictures.setValue(event);
   }
 
   deleteFile() {

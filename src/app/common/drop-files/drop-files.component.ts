@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { DndDirective } from '@common/directive/dnd.directive';
 import { FileListComponent } from './file-list/file-list.component';
 
@@ -10,32 +17,47 @@ import { FileListComponent } from './file-list/file-list.component';
   templateUrl: './drop-files.component.html',
   styleUrls: ['./drop-files.component.scss'],
 })
-export class DropFilesComponent {
+export class DropFilesComponent implements OnChanges {
   @Input() multiple = false;
-  @Input() accept: string[] = [];
+  @Input() accept: string = '';
   @Input() elementRef: string = '';
   @Input() label: string = 'Upload file';
   @Output() onFileDropped = new EventEmitter<FileList | File>();
   @Output() resetControl = new EventEmitter<void>();
 
+  @Input() existingDocuments: File | FileList = undefined;
   documents: File[] = [];
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (
+      changes &&
+      changes['existingDocuments'] &&
+      changes['existingDocuments']['currentValue']
+    ) {
+      this.existingDocuments = changes['existingDocuments']['currentValue'];
+      this.existingDocuments instanceof File
+        ? this.documents.push(this.existingDocuments)
+        : this.setFiles(this.existingDocuments);
+    }
+  }
   inteceptFileDrop(event: Event) {
     const inputElement = event.target as HTMLInputElement;
-    if (inputElement.files && inputElement.files.length > 0) {
-      if (inputElement.files && inputElement.files.length > 0) {
-        for (let i = 0; i < inputElement.files.length; i++) {
-          this.documents.push(inputElement.files[i]);
-        }
+    this.onFileDropped.next(
+      this.multiple ? inputElement.files : inputElement.files[0]
+    );
+  }
+
+  setFiles(inputElement: FileList) {
+    if (inputElement.length > 0) {
+      for (let i = 0; i < inputElement.length; i++) {
+        this.documents.push(inputElement[i]);
       }
-      this.onFileDropped.next(
-        this.multiple ? inputElement.files : inputElement.files[0]
-      );
     }
   }
 
   removeItem(index: number) {
     this.documents.splice(index, 1);
+    //TODO: Fix issue to also update the form controls
     // this.onFileDropped.next(this.multi ? this.documents : this.documents[0]);
   }
 }

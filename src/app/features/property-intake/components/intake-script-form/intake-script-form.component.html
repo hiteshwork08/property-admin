@@ -125,7 +125,8 @@
   <div class="flex items-center md:flex-col w-full 2xl:w-full"
     *ngIf="form.get('hasPictures').value === IntakeScriptFormControlStates.Yes">
     <app-drop-files class="w-1/2 2xl:w-full mb-3" elementRef="fileDropRef" label=""
-      (onFileDropped)="pictures.setValue($event)" [multiple]="true" (resetControl)="pictures.reset()"></app-drop-files>
+      (onFileDropped)="onFileDropped($event)" [existingDocuments]="form.get('pictures').value " [multiple]="true"
+      (resetControl)="pictures.reset()"></app-drop-files>
   </div>
 
 
