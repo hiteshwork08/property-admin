@@ -14,12 +14,18 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import {
+  ChannelAds,
+  ChannelAdsResFormAdaptor,
+} from './Manage-channel-ad.adaptor';
+import {
+  FormHandlerModule,
+  provideFormAdaptor,
+} from '@common/form/form.directive';
+import { FetchModule } from '@common/fetch/fetch.directive';
+import { FormErrorModule } from '@common/form/field-error.directive';
+import { ToastrService } from 'ngx-toastr';
 
-interface ChannelAds {
-  position: number;
-  channelId: string;
-  channelAdId: string;
-}
 @Component({
   selector: 'app-manage-channel-ad',
   standalone: true,
@@ -32,30 +38,39 @@ interface ChannelAds {
     FormsModule,
     MatButtonModule,
     MatTableModule,
+    FormHandlerModule,
+    FormErrorModule,
+    FetchModule,
     MatIconModule,
   ],
   templateUrl: './manage-channel-ad.component.html',
   styleUrls: ['./manage-channel-ad.component.scss'],
+  providers: [provideFormAdaptor(ChannelAdsResFormAdaptor, true)],
 })
 export class ManageChannelAdComponent {
   isEditMode = false;
   editData: ChannelAds | null = null;
   showForm = false;
-  form: FormGroup;
+  form: FormGroup = new FormGroup({
+    id: new FormControl<number | undefined>(undefined),
+    channelId: new FormControl<string>(''),
+    channelAdId: new FormControl<string>('', Validators.required),
+  });
   channelAds: ChannelAds[] = [];
-  displayedColumns: string[] = [
-    'position',
-    'channelId',
-    'channelAdId',
-    'actions',
-  ];
+  displayedColumns: string[] = ['id', 'channelId', 'channelAdId', 'actions'];
 
   channelIds: string[] = ['ChannelID1', 'ChannelID2', 'ChannelID3'];
 
-  constructor(private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      channelId: [this.channelIds, Validators.required],
-      channelAdId: ['', Validators.required],
+  constructor(
+    private toastr: ToastrService,
+    private channelAdsResFormAdaptor: ChannelAdsResFormAdaptor
+  ) {
+    this.channelAdsResFormAdaptor.formData$.subscribe(() => {
+      if (this.editData) {
+        this.onUpdate();
+      } else {
+        this.addItem();
+      }
     });
   }
 
@@ -70,70 +85,48 @@ export class ManageChannelAdComponent {
 
   deleteItem(itemToDelete: ChannelAds) {
     const index = this.channelAds.findIndex(
-      (item) => item.position === itemToDelete.position
+      (item) => item.id === itemToDelete.id
     );
     if (index !== -1) {
       this.channelAds.splice(index, 1);
+      this.channelAds = [...this.channelAds];
+      this.toastr.success('Chaneel Ads deleted successfully.');
       this.recalculatePositions();
     }
   }
 
-  addItem(newItem: ChannelAds) {
-    newItem.position = this.channelAds.length + 1;
+  addItem() {
+    const newItem = this.form.value;
+    newItem.id = this.channelAds.length + 1;
     this.channelAds.push(newItem);
     this.channelAds = [...this.channelAds];
-    this.form.reset();
+    this.restAll();
     this.recalculatePositions();
-  }
-
-  updateItem(updatedItem: ChannelAds) {
-    const index = this.channelAds.findIndex(
-      (item) => item.position === updatedItem.position
-    );
-    if (index !== -1) {
-      this.channelAds[index] = updatedItem;
-    }
-    this.channelAds = [...this.channelAds];
+    this.toastr.success('Chaneel Ads successfully.');
   }
 
   onUpdate() {
     if (this.form.valid) {
       const formData = this.form.value;
-      const updatedAds: ChannelAds = {
-        ...this.editData!,
-        channelId: formData.channelId,
-        channelAdId: formData.channelAdId,
-      };
-      this.updateItem(updatedAds);
-
-      this.form.reset();
-      this.isEditMode = false;
-      this.editData = null;
-      this.showForm = false;
+      const index = this.channelAds.findIndex(
+        (item) => item.id === formData.id
+      );
+      if (index !== -1) {
+        this.channelAds[index] = formData;
+      }
+      this.channelAds = [...this.channelAds];
+      this.restAll();
+      this.toastr.success('Chaneel Ads successfully.');
     }
   }
 
   private recalculatePositions() {
     for (let i = 0; i < this.channelAds.length; i++) {
-      this.channelAds[i].position = i + 1;
+      this.channelAds[i].id = i + 1;
     }
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      const formData = this.form.value;
-      const newAd: ChannelAds = {
-        position: 0,
-        channelId: formData.channelId,
-        channelAdId: formData.channelAdId,
-      };
-
-      this.addItem(newAd);
-      this.showForm = false;
-    }
-  }
-
-  onCancel() {
+  restAll() {
     this.isEditMode = false;
     this.editData = null;
     this.showForm = false;

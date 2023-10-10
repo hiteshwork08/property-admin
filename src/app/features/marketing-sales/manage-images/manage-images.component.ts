@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -14,7 +15,17 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
-import { Image } from '../manage-images/manage-images.model';
+import {
+  Image,
+  ImageFormAdaptor,
+} from '../manage-images/manage-images.adaptor';
+import {
+  FormHandlerModule,
+  provideFormAdaptor,
+} from '@common/form/form.directive';
+import { FetchModule } from '@common/fetch/fetch.directive';
+import { FormErrorModule } from '@common/form/field-error.directive';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-manage-images',
   standalone: true,
@@ -29,27 +40,41 @@ import { Image } from '../manage-images/manage-images.model';
     MatDialogModule,
     MatTableModule,
     MatIconModule,
+    FormHandlerModule,
+    FormErrorModule,
+    FetchModule,
   ],
   templateUrl: './manage-images.component.html',
   styleUrls: ['./manage-images.component.scss'],
+  providers: [provideFormAdaptor(ImageFormAdaptor, true)],
 })
 export class ManageImagesComponent {
   isEditMode = false;
   editData: Image | null = null;
   showForm = false;
-  form: FormGroup;
+  form: FormGroup = new FormGroup({
+    id: new FormControl<number | undefined>(undefined),
+    ImageDescription: new FormControl<string>('', Validators.required),
+    ImageFile: new FormControl<FileList | null>(null),
+  });
   Items: Image[] = [];
   displayedColumns: string[] = [
-    'position',
+    'id',
     'ImageDescription',
     'ImageFile',
     'actions',
   ];
 
-  constructor(private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      ImageDescription: ['', Validators.required],
-      ImageFile: [''],
+  constructor(
+    private toastr: ToastrService,
+    private imageFormAdaptor: ImageFormAdaptor
+  ) {
+    this.imageFormAdaptor.imageData$.subscribe(() => {
+      if (this.editData) {
+        this.onUpdate();
+      } else {
+        this.addItem();
+      }
     });
   }
 
@@ -59,91 +84,64 @@ export class ManageImagesComponent {
     this.showForm = true;
     this.form.patchValue(this.editData);
   }
-  get ImageFileControl() {
-    return this.form.controls['ImageFile'];
-  }
 
   ngOnInit(): void {}
 
+  get ImageFileControl() {
+    return this.form.get('ImageFile') as FormControl;
+  }
+
   deleteItem(itemToDelete: Image) {
-    const index = this.Items.findIndex(
-      (item) => item.position === itemToDelete.position
-    );
+    const index = this.Items.findIndex((item) => item.id === itemToDelete.id);
     if (index !== -1) {
       this.Items.splice(index, 1);
       this.Items = [...this.Items];
+      this.toastr.success('Image deleted successfully.');
       this.recalculatePositions();
     }
   }
-
-  addItem(newItem: Image) {
-    newItem.position = this.Items.length + 1;
+  addItem() {
+    const newItem = this.form.value;
+    newItem.id = this.Items.length + 1;
     this.Items.push(newItem);
     this.Items = [...this.Items];
-    this.form.reset();
+    this.resetAll();
     this.recalculatePositions();
-  }
-
-  updateItem(updatedItem: Image) {
-    const index = this.Items.findIndex(
-      (item) => item.position === updatedItem.position
-    );
-    if (index !== -1) {
-      this.Items[index] = updatedItem;
-    }
+    this.toastr.success('Image added successfully.');
   }
 
   onUpdate() {
     if (this.form.valid) {
-      const formData = this.form.value;
-      const updatedImage: Image = {
-        ...this.editData!,
-        ImageDescription: formData.ImageDescription,
-        ImageFile: formData.ImageFile,
-      };
+      const imageData = this.form.value;
 
-      this.updateItem(updatedImage);
+      const index = this.Items.findIndex((item) => item.id === imageData.id);
+      if (index !== -1) {
+        this.Items[index] = imageData;
+      }
       this.Items = [...this.Items];
-      this.form.reset();
-      this.isEditMode = false;
-      this.editData = null;
-      this.showForm = false;
+      this.resetAll();
+      this.toastr.success('Image updated successfully.');
     }
   }
 
   private recalculatePositions() {
     for (let i = 0; i < this.Items.length; i++) {
-      this.Items[i].position = i + 1;
-    }
-  }
-
-  onSubmit() {
-    if (this.form.valid) {
-      const formData = this.form.value;
-      const selectedFiles = formData.ImageFile;
-      const newImage: Image = {
-        position: 0,
-        ImageDescription: formData.ImageDescription,
-        ImageFile: selectedFiles,
-      };
-
-      this.addItem(newImage);
-      this.form.reset();
-      this.showForm = false;
+      this.Items[i].id = i + 1;
     }
   }
 
   onFileDropped(files: any) {
-    this.form.get('ImageFile')?.setValue(files);
+    this.ImageFileControl.setValue(files);
   }
 
   deleteFile() {
-    this.form.get('ImageFile')?.reset();
+    this.ImageFileControl.reset();
   }
 
-  onCancel() {
+  resetAll() {
     this.isEditMode = false;
     this.editData = null;
     this.showForm = false;
+    this.form.reset();
   }
 }

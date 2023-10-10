@@ -1,37 +1,10 @@
 <form class="pb-6 min-h-full flex flex-col justify-start w-full" [formGroup]="deedForm" appForm="record-deed-form">
 
-  <!-- <h1 class="w-full text-base mb-4"> Upload file of recorded deed</h1>
-  <div class="w-full h-52 p-8 text-center border-dashed border-2 border-gray-300 relative mx-auto" appDnd
-    *ngIf="!deedDocument.value ">
-    <label for="deedDocument"
-      class="flex flex-col items-center justify-center text-gray-700 cursor-pointer w-full h-full">
-      <input type="file" #fileDropReference id="deedDocument" multiple
-        class="opacity-0 absolute z-[-1] w-full h-full top-0 left-0" (change)="onFileDropDeed($event)" />
-      <img src="assets/images/pngwing.com.png" width="63" height="64" alt="Drag and Drop" />
-      <h3>Drag and Drop File here</h3>
-      <h3>or</h3>
-      <label class="text-red-500 text-base  px-4 py-2 rounded-[21.5px] cursor-pointer bg-red-200"
-        (click)="fileDropReference.click()">Browse for file</label>
-    </label>
-  </div> -->
-
   <div>
     <app-drop-files label="Upload file of recorded deed" elementRef="deedDocument"
-      (onFileDropped)="deedDocument.setValue($event)" (resetControl)="deedDocument.reset()"></app-drop-files>
+      (onFileDropped)="deedDocument.setValue($event)" [existingDocuments]="deedDocument.value"
+      (resetControl)="deedDocument.reset()"></app-drop-files>
   </div>
-
-  <!-- <div class="file-list mt-6" *ngIf="deedDocument.value as file">
-    <div class="flex justify-between items-center border-dashed border-2 border-gray-300 mb-4 p-2">
-      <div class="flex items-center">
-        <img src="assets/images/image1" width="63" height="64" alt="File Thumbnail" />
-        <h4 class="text-gray-700 text-base font-medium ml-4">{{ file.name }}</h4>
-      </div>
-      <div class="cursor-pointer flex items-center">
-        <img src="assets/images/trash-can_115312.svg" class="delete" width="35px" alt="Delete Icon"
-          (click)="removeFile()" />
-      </div>
-    </div>
-  </div> -->
   <div class="flex items-center justify-end mt-6 space-x-4">
     <button type="submit" mat-raised-button color="primary"
       class="[height:44px!important] [width:100px!important] text-lg">Save</button>

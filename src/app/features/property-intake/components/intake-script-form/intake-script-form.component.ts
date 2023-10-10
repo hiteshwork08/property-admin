@@ -84,7 +84,7 @@ export class IntakeScriptFormComponent implements OnChanges {
     ableToNotarizeNotes: new FormControl<string>(null),
     haveDeedCopy: new FormControl<IntakeScriptFormControlStateType1>(null),
     canScanDeed: new FormControl<IntakeScriptFormControlStateType1>(null),
-    yearsOwned: new FormControl<string>(null, [, Validators.pattern(/^\d+$/)]),
+    yearsOwned: new FormControl<string>(null, [Validators.pattern(/^\d+$/)]),
     hasPOA: new FormControl<IntakeScriptFormControlStateType2>(null),
     yearlyPOAFee: new FormControl<string>({ value: null, disabled: true }),
     hasHOA: new FormControl<IntakeScriptFormControlStateType2>(null),

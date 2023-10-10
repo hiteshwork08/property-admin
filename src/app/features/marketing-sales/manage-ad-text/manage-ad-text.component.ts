@@ -6,6 +6,7 @@ import {
   FormGroup,
   FormBuilder,
   Validators,
+  FormControl,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -14,12 +15,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { DropFilesComponent } from '@common/drop-files/drop-files.component';
-
-export class adsDetails {
-  position: number;
-  title: string;
-  adtext: string;
-}
+import { FetchModule } from '@common/fetch/fetch.directive';
+import { FormErrorModule } from '@common/form/field-error.directive';
+import {
+  FormHandlerModule,
+  provideFormAdaptor,
+} from '@common/form/form.directive';
+import { adsDetails, adsDetailsResFormAdaptor } from './Manage-ad-text.adaptor';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-ad-text',
@@ -35,22 +38,36 @@ export class adsDetails {
     MatDialogModule,
     MatTableModule,
     MatIconModule,
+    FormHandlerModule,
+    FormErrorModule,
+    FetchModule,
   ],
   templateUrl: './manage-ad-text.component.html',
   styleUrls: ['./manage-ad-text.component.scss'],
+  providers: [provideFormAdaptor(adsDetailsResFormAdaptor, true)],
 })
 export class ManageAdTextComponent {
   isEditMode = false;
   editData: adsDetails | null = null;
   showForm = false;
-  form: FormGroup;
+  form: FormGroup = new FormGroup({
+    id: new FormControl<number | undefined>(undefined),
+    title: new FormControl<string>(null, Validators.required),
+    adtext: new FormControl<string>(null, Validators.required),
+  });
   AdsDetails: adsDetails[] = [];
-  displayedColumns: string[] = ['position', 'title', 'adtext', 'actions'];
+  displayedColumns: string[] = ['id', 'title', 'adtext', 'actions'];
 
-  constructor(private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      title: ['', Validators.required],
-      adtext: ['', Validators.required],
+  constructor(
+    private toastr: ToastrService,
+    private AdsDetailsResFormAdaptor: adsDetailsResFormAdaptor
+  ) {
+    this.AdsDetailsResFormAdaptor.formData$.subscribe(() => {
+      if (this.editData) {
+        this.onUpdate();
+      } else {
+        this.addItem();
+      }
     });
   }
 
@@ -60,79 +77,55 @@ export class ManageAdTextComponent {
     this.showForm = true;
     this.form.patchValue(this.editData);
   }
-
   ngOnInit(): void {}
 
   deleteItem(itemToDelete: adsDetails) {
     const index = this.AdsDetails.findIndex(
-      (item) => item.position === itemToDelete.position
+      (item) => item.id === itemToDelete.id
     );
     if (index !== -1) {
       this.AdsDetails.splice(index, 1);
       this.AdsDetails = [...this.AdsDetails];
+      this.toastr.success('Ad-Details deleted successfully.');
       this.recalculatePositions();
     }
   }
 
-  addItem(newItem: adsDetails) {
-    newItem.position = this.AdsDetails.length + 1;
+  addItem() {
+    const newItem = this.form.value;
+    newItem.id = this.AdsDetails.length + 1;
     this.AdsDetails.push(newItem);
     this.AdsDetails = [...this.AdsDetails];
-    this.form.reset();
+    this.restAll();
     this.recalculatePositions();
-  }
-
-  updateItem(updatedItem: adsDetails) {
-    const index = this.AdsDetails.findIndex(
-      (item) => item.position === updatedItem.position
-    );
-    if (index !== -1) {
-      this.AdsDetails[index] = updatedItem;
-    }
+    this.toastr.success('Ads-Details added successfully.');
   }
 
   onUpdate() {
     if (this.form.valid) {
       const formData = this.form.value;
-      const updatedAds: adsDetails = {
-        ...this.editData!,
-        title: formData.title,
-        adtext: formData.adtext,
-      };
-
-      this.updateItem(updatedAds);
+      const index = this.AdsDetails.findIndex(
+        (item) => item.id === formData.id
+      );
+      if (index !== -1) {
+        this.AdsDetails[index] = formData;
+      }
       this.AdsDetails = [...this.AdsDetails];
-      this.form.reset();
-      this.isEditMode = false;
-      this.editData = null;
-      this.showForm = false;
+      this.restAll();
+      this.toastr.success('Ads-Details updated successfully.');
     }
   }
 
   private recalculatePositions() {
     for (let i = 0; i < this.AdsDetails.length; i++) {
-      this.AdsDetails[i].position = i + 1;
+      this.AdsDetails[i].id = i + 1;
     }
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      const formData = this.form.value;
-      const updatedAds: adsDetails = {
-        position: 0,
-        title: formData.title,
-        adtext: formData.adtext,
-      };
-
-      this.addItem(updatedAds);
-      this.form.reset();
-      this.showForm = false;
-    }
-  }
-
-  onCancel() {
+  restAll() {
     this.isEditMode = false;
     this.editData = null;
     this.showForm = false;
+    this.form.reset();
   }
 }

@@ -1,7 +1,8 @@
 <form class="pb-6 min-h-full flex flex-col justify-start w-full" [formGroup]="form" appForm="submit-process-title">
   <div>
     <app-drop-files label="Upload file of recorded deed" elementRef="fileDropRef"
-      (onFileDropped)="images.setValue($event)" (resetControl)="images.reset()"></app-drop-files>
+      (onFileDropped)="images.setValue($event)" [existingDocuments]="images.value"
+      (resetControl)="images.reset()"></app-drop-files>
   </div>
 
   <div class="flex items-center justify-end mt-6 space-x-4">

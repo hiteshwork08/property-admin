@@ -1,7 +1,8 @@
-<button mat-raised-button color="primary" (click)="showForm=!showForm; isEditMode=false; editData=null">Add
+<button mat-raised-button color="primary" (click)="showForm=!showForm; isEditMode=false; editData=null"
+  *ngIf="!showForm">Add
   Details</button>
 
-<form class="p-4" [formGroup]="form" (submit)="isEditMode ? onUpdate() : onSubmit()" *ngIf="showForm">
+<form class="p-4" [formGroup]="form" *ngIf="showForm" appForm="manage-Channel-Ad">
 
   <h4>Channel ID</h4>
   <mat-form-field class="w-1/2">
@@ -13,6 +14,7 @@
     </mat-select>
   </mat-form-field>
 
+
   <mat-form-field class="flex w-1/2">
     <mat-label>Channel Ad ID</mat-label>
     <input matInput formControlName="channelAdId" placeholder="Please enter the text..">
@@ -20,7 +22,7 @@
 
   <div class="flex items-start justify-end space-x-6 mt-3">
     <button type="button" mat-raised-button color="warn" class="[height:44px!important] [width:100px!important] text-lg"
-      (click)="onCancel()">Cancel</button>
+      (click)="restAll()">Cancel</button>
     <button type="submit" mat-raised-button color="primary"
       class="[height:44px!important] [width:100px!important] text-lg">{{ isEditMode ? 'Update' : 'Submit' }}</button>
   </div>
@@ -29,7 +31,7 @@
 <div style="text-align: center; min-height: 600px;" class="mt-2">
   <table mat-table [dataSource]="channelAds">
 
-    <ng-container matColumnDef="position">
+    <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef class="center-align-header radio">
         ID
       </th>

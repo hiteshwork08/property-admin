@@ -1,11 +1,13 @@
-<div class="flex items-start  w-1/2 md:flex-col 2xl:w-full">
-  <mat-form-field class="w-full">
-    <mat-label> Comment</mat-label>
-    <textarea matInput cols="35" rows="8" placeholder="Note" formControlName=""></textarea>
-  </mat-form-field>
-</div>
+<form class="pb-6 min-h-full flex flex-col justify-start" [formGroup]="form" appForm="Pre-Marketing-Approval">
+  <div class="flex items-start  w-1/2 md:flex-col 2xl:w-full">
+    <mat-form-field class="w-full">
+      <mat-label> Comment</mat-label>
+      <textarea matInput cols="35" rows="8" placeholder="comment" formControlName="comment"></textarea>
+    </mat-form-field>
+  </div>
 
 
-<div class="flex items-center justify-end mt-6 space-x-4">
-  <button type="submit" mat-raised-button color="primary" class="[height:44px!important] text-lg">Complete</button>
-</div>
+  <div class="flex items-center justify-end mt-6 space-x-4">
+    <button type="submit" mat-raised-button color="primary" class="[height:44px!important] text-lg">Complete</button>
+  </div>
+</form>
