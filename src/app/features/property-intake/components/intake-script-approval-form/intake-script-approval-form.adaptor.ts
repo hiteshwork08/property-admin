@@ -6,6 +6,7 @@ import {
   PropertIntakeFormEnum,
   PropertyIntakeModel,
 } from '../../property-intake.model';
+import { FormGroup } from '@angular/forms';
 
 export interface intakeScriptApprovalFormData {
   comment: string;

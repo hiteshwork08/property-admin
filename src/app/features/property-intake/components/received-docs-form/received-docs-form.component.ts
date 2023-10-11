@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -52,6 +52,7 @@ import { DropFilesComponent } from '@common/drop-files/drop-files.component';
   providers: [provideFormAdaptor(ReceivedDocsFormAdaptor, true)],
 })
 export class ReceivedDocsFormComponent {
+  @Input() readOnly = false;
   form: FormGroup;
 
   constructor(private fb: FormBuilder) {

@@ -18,8 +18,13 @@
       *ngIf="form.get('ableToNotarize').value === IntakeScriptFormControlStates.No">
       <mat-label>Notarize note</mat-label>
       <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="ableToNotarizeNotes"></textarea>
+      <mat-error *ngIf="form.get('ableToNotarizeNotes').hasError('required')">
+        This field is required.
+      </mat-error>
     </mat-form-field>
   </div>
+
+
 
 
   <div class="flex items-center  w-1/2 justify-between 2xl:w-full md:flex-col">
@@ -40,7 +45,7 @@
     <mat-form-field class="w-1/2 mt-4 2xl:w-full"
       *ngIf="form.get('hasPOA').value === IntakeScriptFormControlStates.Yes">
       <mat-label>Yearly POA Fee</mat-label>
-      <input matInput [readOnly]="readOnly" formControlName="yearlyPOAFee">
+      <input matInput type="number" [readOnly]="readOnly" formControlName="yearlyPOAFee">
     </mat-form-field>
   </div>
 
@@ -62,7 +67,7 @@
     <mat-form-field class="w-1/2 mt-4 2xl:w-full"
       *ngIf="form.get('hasHOA').value === IntakeScriptFormControlStates.Yes">
       <mat-label>Yearly HOA Fee</mat-label>
-      <input matInput [readOnly]="readOnly" formControlName="yearlyHOAFee">
+      <input matInput type="number" [readOnly]="readOnly" formControlName="yearlyHOAFee">
     </mat-form-field>
   </div>
 
@@ -167,9 +172,16 @@
   </div>
 
   <div class="flex items-center gap-3 mt-6 md:flex-col 2xl:w-full">
-    <mat-form-field class="w-1/2 md:flex-col 2xl:w-full">
+    <mat-form-field class="w-full md:flex-col 2xl:w-full">
       <mat-label>Years Owned</mat-label>
-      <input matInput [readOnly]="readOnly" class=" w-1/2" formControlName="yearsOwned">
+      <input matInput type="number" [readOnly]="readOnly" class=" w-full" formControlName="yearsOwned">
+    </mat-form-field>
+
+  </div>
+  <div class="flex items-center gap-3  md:flex-col 2xl:w-full">
+    <mat-form-field class="w-full md:flex-col 2xl:w-full">
+      <mat-label>Back Taxes Owed</mat-label>
+      <input matInput [readOnly]="readOnly" class=" w-full" formControlName="backTaxesOwed">
     </mat-form-field>
   </div>
 
@@ -244,7 +256,7 @@
   <div class="flex items-start justify-end space-x-6">
 
     <button type="submit" mat-raised-button color="primary"
-      class="[height:44px!important] [width:100px!important] text-lg">Submit</button>
+      class="[height:44px!important] [width:100px!important] text-lg" [hidden]="readOnly">Submit</button>
   </div>
 
 </form>

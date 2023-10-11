@@ -8,7 +8,8 @@
           <mat-expansion-panel-header>
             <mat-panel-title class="text-xl"> Receive Offer </mat-panel-title>
           </mat-expansion-panel-header>
-          <app-receive-offer-form></app-receive-offer-form>
+          <app-receive-offer-form
+            [readOnly]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.receiveOfferForm"></app-receive-offer-form>
         </mat-expansion-panel>
       </mat-accordion>
 
@@ -19,7 +20,8 @@
         <mat-expansion-panel-header>
           <mat-panel-title class="text-xl"> Intake script </mat-panel-title>
         </mat-expansion-panel-header>
-        <app-intake-script-form (formData)="onFormDataReceived($event)"></app-intake-script-form>
+        <app-intake-script-form (formData)="onFormDataReceived($event)"
+          [readOnly]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.scriptForm"></app-intake-script-form>
       </mat-expansion-panel>
 
 
@@ -31,7 +33,8 @@
         </mat-expansion-panel-header>
         <app-intake-script-form [propertyIntakeFormData]="propertyIntakeFormData"
           [readOnly]="true"></app-intake-script-form>
-        <app-intake-script-approval-form></app-intake-script-approval-form>
+        <app-intake-script-approval-form
+          [readOnly]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.intakeApproval"></app-intake-script-approval-form>
       </mat-expansion-panel>
 
       <mat-expansion-panel class="my-2"
@@ -40,7 +43,8 @@
         <mat-expansion-panel-header>
           <mat-panel-title class="text-xl"> Process Title </mat-panel-title>
         </mat-expansion-panel-header>
-        <app-process-title></app-process-title>
+        <app-process-title
+          [readOnly]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.ProcessFrom"></app-process-title>
       </mat-expansion-panel>
 
       <mat-expansion-panel class="my-2"
@@ -49,7 +53,8 @@
         <mat-expansion-panel-header>
           <mat-panel-title class="text-xl"> Final Purchase </mat-panel-title>
         </mat-expansion-panel-header>
-        <app-final-purchase-form></app-final-purchase-form>
+        <app-final-purchase-form
+          [readOnly]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.FinalPurchase"></app-final-purchase-form>
       </mat-expansion-panel>
 
       <mat-expansion-panel class="my-2"
@@ -58,7 +63,8 @@
         <mat-expansion-panel-header>
           <mat-panel-title class="text-xl">Prepare Docs</mat-panel-title>
         </mat-expansion-panel-header>
-        <app-prepare-docs-form></app-prepare-docs-form>
+        <app-prepare-docs-form
+          [readOnly]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.PrepareDocs"></app-prepare-docs-form>
       </mat-expansion-panel>
 
       <mat-expansion-panel class="my-2"
@@ -67,7 +73,8 @@
         <mat-expansion-panel-header>
           <mat-panel-title class="text-xl">Recevied Docs</mat-panel-title>
         </mat-expansion-panel-header>
-        <app-received-docs-form></app-received-docs-form>
+        <app-received-docs-form
+          [readOnly]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.ReceivedDocs"></app-received-docs-form>
       </mat-expansion-panel>
 
       <mat-expansion-panel class="my-2"
@@ -76,7 +83,8 @@
         <mat-expansion-panel-header>
           <mat-panel-title class="text-xl">Record Deed</mat-panel-title>
         </mat-expansion-panel-header>
-        <app-record-deed-form></app-record-deed-form>
+        <app-record-deed-form
+          [readOnly]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.RecordDeed"></app-record-deed-form>
       </mat-expansion-panel>
 
       <mat-expansion-panel class="my-2"
@@ -85,12 +93,13 @@
         <mat-expansion-panel-header>
           <mat-panel-title class="text-xl">Payment Complete</mat-panel-title>
         </mat-expansion-panel-header>
-        <app-payment-complete-form></app-payment-complete-form>
+        <app-payment-complete-form
+          [readOnly]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.PaymentComplete"></app-payment-complete-form>
       </mat-expansion-panel>
     </div>
   </mat-tab>
 
-  <mat-tab label="Marketing">
+  <mat-tab label="Marketing" [disabled]="propertyIntakeModel.propertyIntakeStatus !== PropertIntakeFormEnum.Complete">
 
     <app-marketing-sales></app-marketing-sales>
   </mat-tab>

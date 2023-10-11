@@ -49,6 +49,7 @@ import { MarketingSalesComponent } from '../marketing-sales/marketing-sales.comp
   ],
 })
 export class PropertyIntakeComponent {
+  readOnly = true;
   public propertyIntakeModel = inject(PropertyIntakeModel);
   PropertIntakeFormEnum = PropertIntakeFormEnum;
   propertyIntakeFormData: SubmitIntakeScriptOfferFormData;

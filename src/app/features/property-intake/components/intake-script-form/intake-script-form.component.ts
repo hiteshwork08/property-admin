@@ -80,28 +80,55 @@ export class IntakeScriptFormComponent implements OnChanges {
   @Input() readOnly: boolean = false;
   IntakeScriptFormControlStates = IntakeScriptFormControlStates;
   form = new FormGroup({
-    ableToNotarize: new FormControl<IntakeScriptFormControlStateType1>(null),
+    ableToNotarize: new FormControl<IntakeScriptFormControlStateType1>(
+      null,
+      Validators.required
+    ),
     ableToNotarizeNotes: new FormControl<string>(null),
-    haveDeedCopy: new FormControl<IntakeScriptFormControlStateType1>(null),
-    canScanDeed: new FormControl<IntakeScriptFormControlStateType1>(null),
-    yearsOwned: new FormControl<string>(null, [Validators.pattern(/^\d+$/)]),
-    hasPOA: new FormControl<IntakeScriptFormControlStateType2>(null),
-    yearlyPOAFee: new FormControl<string>({ value: null, disabled: true }),
-    hasHOA: new FormControl<IntakeScriptFormControlStateType2>(null),
-    yearlyHOAFee: new FormControl<string>({ value: null, disabled: true }),
-    backTaxesOwed: new FormControl<string>(null),
-    hasLiens: new FormControl<IntakeScriptFormControlStateType2>(null),
-    hasLiensNotes: new FormControl<string>({ value: null, disabled: true }),
+    haveDeedCopy: new FormControl<IntakeScriptFormControlStateType1>(
+      null,
+      Validators.required
+    ),
+    canScanDeed: new FormControl<IntakeScriptFormControlStateType1>(
+      null,
+      Validators.required
+    ),
+    yearsOwned: new FormControl<string>(null, Validators.required),
+    hasPOA: new FormControl<IntakeScriptFormControlStateType2>(
+      null,
+      Validators.required
+    ),
+    yearlyPOAFee: new FormControl<string>(null),
+    hasHOA: new FormControl<IntakeScriptFormControlStateType2>(
+      null,
+      Validators.required
+    ),
+    yearlyHOAFee: new FormControl<string>(null),
+    backTaxesOwed: new FormControl<string>(null, Validators.required),
+    hasLiens: new FormControl<IntakeScriptFormControlStateType2>(
+      null,
+      Validators.required
+    ),
+    hasLiensNotes: new FormControl<string>(null, Validators.required),
     uniqueFeatures: new FormControl<string[]>([]),
-    hasEasement: new FormControl<IntakeScriptFormControlStateType2>(null),
-    hasEasementNotes: new FormControl<string>({ value: null, disabled: true }),
+    hasEasement: new FormControl<IntakeScriptFormControlStateType2>(
+      null,
+      Validators.required
+    ),
+    hasEasementNotes: new FormControl<string>(null),
     improvements: new FormControl<string[]>([]),
     additionalProperties: new FormControl<string[]>([]),
     inTakeScriptNotes: new FormControl<string>(null),
-    hasPictures: new FormControl<IntakeScriptFormControlStateType1>(null),
+    hasPictures: new FormControl<IntakeScriptFormControlStateType1>(
+      null,
+      Validators.required
+    ),
     pictures: new FormControl<FileList>(null),
-    hasSurvey: new FormControl<IntakeScriptFormControlStateType1>(null),
-    utilities: new FormControl<Utilities[]>([]),
+    hasSurvey: new FormControl<IntakeScriptFormControlStateType1>(
+      null,
+      Validators.required
+    ),
+    utilities: new FormControl<Utilities[]>([], Validators.required),
     Comment: new FormControl<string>(null),
   });
   separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -124,6 +151,62 @@ export class IntakeScriptFormComponent implements OnChanges {
     this.submitIntakescriptOfferFormAdaptor.formData$.subscribe((data) =>
       this.formData.emit(data)
     );
+    // this.form.controls.Comment.addValidators(Validators.required);
+    // this.form.controls.Comment.clearValidators();
+
+    this.form.get('ableToNotarize').valueChanges.subscribe((value) => {
+      if (value === IntakeScriptFormControlStates.No) {
+        this.form.get('ableToNotarizeNotes').setValidators(Validators.required);
+      } else {
+        this.form.get('ableToNotarizeNotes').clearValidators();
+      }
+      this.form.get('ableToNotarizeNotes').updateValueAndValidity();
+    });
+
+    this.form.get('hasPOA').valueChanges.subscribe((value) => {
+      if (value === IntakeScriptFormControlStates.Yes) {
+        this.form.get('yearlyPOAFee').setValidators(Validators.required);
+      } else {
+        this.form.get('yearlyPOAFee').clearValidators();
+      }
+      this.form.get('yearlyPOAFee').updateValueAndValidity();
+    });
+
+    this.form.get('hasHOA').valueChanges.subscribe((value) => {
+      if (value === IntakeScriptFormControlStates.Yes) {
+        this.form.get('yearlyHOAFee').setValidators(Validators.required);
+      } else {
+        this.form.get('yearlyHOAFee').clearValidators();
+      }
+      this.form.get('yearlyHOAFee').updateValueAndValidity();
+    });
+
+    this.form.get('hasLiens').valueChanges.subscribe((value) => {
+      if (value === IntakeScriptFormControlStates.Yes) {
+        this.form.get('hasLiensNotes').setValidators(Validators.required);
+      } else {
+        this.form.get('hasLiensNotes').clearValidators();
+      }
+      this.form.get('hasLiensNotes').updateValueAndValidity();
+    });
+
+    this.form.get('hasEasement').valueChanges.subscribe((value) => {
+      if (value === IntakeScriptFormControlStates.Yes) {
+        this.form.get('hasEasementNotes').setValidators(Validators.required);
+      } else {
+        this.form.get('hasEasementNotes').clearValidators();
+      }
+      this.form.get('hasEasementNotes').updateValueAndValidity();
+    });
+
+    this.form.get('hasPictures').valueChanges.subscribe((value) => {
+      if (value === IntakeScriptFormControlStates.Yes) {
+        this.form.get('pictures').setValidators(Validators.required);
+      } else {
+        this.form.get('pictures').clearValidators();
+      }
+      this.form.get('pictures').updateValueAndValidity();
+    });
   }
 
   utilities: Utilities[] = AllUtilities;
@@ -133,10 +216,12 @@ export class IntakeScriptFormComponent implements OnChanges {
   }
 
   addFeature(event: MatChipInputEvent): void {
-    const uniqueFeatures = this.form.controls.uniqueFeatures.value;
     const value = (event.value || '').trim();
     if (value) {
-      uniqueFeatures.push(value);
+      this.form.controls.uniqueFeatures.setValue([
+        ...this.form.controls.uniqueFeatures.value,
+        value,
+      ]);
     }
     event.chipInput!.clear();
   }
@@ -149,11 +234,14 @@ export class IntakeScriptFormComponent implements OnChanges {
       uniqueFeatures.splice(index, 1);
     }
   }
+
   addimprovements(event: MatChipInputEvent): void {
-    const improvements = this.form.controls.improvements.value;
     const value = (event.value || '').trim();
     if (value) {
-      improvements.push(value);
+      this.form.controls.improvements.setValue([
+        ...this.form.controls.improvements.value,
+        value,
+      ]);
     }
     event.chipInput!.clear();
   }
@@ -168,10 +256,12 @@ export class IntakeScriptFormComponent implements OnChanges {
   }
 
   addProperties(event: MatChipInputEvent): void {
-    const additionalProperties = this.form.controls.additionalProperties.value;
     const value = (event.value || '').trim();
     if (value) {
-      additionalProperties.push(value);
+      this.form.controls.additionalProperties.setValue([
+        ...this.form.controls.additionalProperties.value,
+        value,
+      ]);
     }
     event.chipInput!.clear();
   }

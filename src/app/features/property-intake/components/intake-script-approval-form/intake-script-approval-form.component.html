@@ -1,4 +1,5 @@
-<form class="pb-6 min-h-full flex flex-col justify-start" [formGroup]="form" appForm="intake-script-approval-form">
+<form class="pb-6 min-h-full flex flex-col justify-start" [ngClass]="{'pointer-events-none': readOnly}"
+  [formGroup]="form" appForm="intake-script-approval-form">
   <div class="flex items-start gap-3 mb-3">
     <mat-form-field class="w-full">
       <mat-label>Comment</mat-label>
@@ -7,8 +8,8 @@
   </div>
 
   <div class="flex items-start justify-end space-x-6">
-    <cancel-btn (promptConfirmed)="promptConfirmed($event)"></cancel-btn>
+    <cancel-btn (promptConfirmed)="promptConfirmed($event)" [hidden]="readOnly"></cancel-btn>
     <button type="submit" mat-raised-button color="primary"
-      class="[height:44px!important] [width:100px!important] text-lg">Approve</button>
+      class="[height:44px!important] [width:100px!important] text-lg" [hidden]="readOnly">Approve</button>
   </div>
 </form>

@@ -1,4 +1,5 @@
-<form class="pb-6 min-h-full flex flex-col justify-start w-full" [formGroup]="form" appForm="prepare-doc-form">
+<form class="pb-6 min-h-full flex flex-col justify-start w-full" [formGroup]="form" appForm="prepare-doc-form"
+  [ngClass]="{'pointer-events-none': readOnly}">
   <div class="flex space-x-4">
     <mat-checkbox class="w-full text-base mb-4" [checked]="true" disabled>Deed Document</mat-checkbox>
     <mat-checkbox class="w-full text-base mb-4 pl-4" color="primary" (change)="toggleUploadField()">Sales
@@ -25,11 +26,11 @@
   </div>
 
   <div class="flex items-center justify-end mt-6 space-x-4">
-    <button type="submit" mat-raised-button color="primary" class="[height:44px!important] text-lg"
+    <button type="submit" mat-raised-button color="primary" class="[height:44px!important] text-lg" [hidden]="readOnly"
       [disabled]="!isSaveButtonEnabled">
       Save
     </button>
-    <button type="submit" mat-raised-button color="primary" class="[height:44px!important] text-lg"
+    <button type="submit" mat-raised-button color="primary" class="[height:44px!important] text-lg" [hidden]="readOnly"
       [disabled]="form.invalid">
       Save and Complete
     </button>

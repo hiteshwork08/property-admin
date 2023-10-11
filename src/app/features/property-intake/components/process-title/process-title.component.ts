@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -29,6 +29,7 @@ import { DropFilesComponent } from '@common/drop-files/drop-files.component';
   providers: [provideFormAdaptor(SubmitProcessTitleFormAdaptor, true)],
 })
 export class ProcessTitleComponent {
+  @Input() readOnly = false;
   files: File[] = [];
   form: FormGroup;
 

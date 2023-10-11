@@ -52,7 +52,7 @@ import { MatRadioModule } from '@angular/material/radio';
 })
 export class IntakeScriptApprovalFormComponent implements OnInit {
   form: FormGroup;
-
+  @Input() readOnly = false;
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -37,6 +37,7 @@ import { FormErrorModule } from '@common/form/field-error.directive';
   providers: [provideFormAdaptor(PaymentCompleteFormAdaptor, true)],
 })
 export class PaymentCompleteFormComponent {
+  @Input() readOnly = false;
   form: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}

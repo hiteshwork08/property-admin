@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -42,6 +42,7 @@ import { DropFilesComponent } from '@common/drop-files/drop-files.component';
   providers: [provideFormAdaptor(RecordDeedFormAdaptor, true)],
 })
 export class RecordDeedFormComponent {
+  @Input() readOnly = false;
   deedForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
