@@ -116,7 +116,7 @@ export class ManageChannelAdComponent {
       }
       this.channelAds = [...this.channelAds];
       this.restAll();
-      this.toastr.success('Chaneel Ads successfully.');
+      this.toastr.success('Chaneel Ads updated successfully.');
     }
   }
 
@@ -130,5 +130,6 @@ export class ManageChannelAdComponent {
     this.isEditMode = false;
     this.editData = null;
     this.showForm = false;
+    this.form.reset();
   }
 }

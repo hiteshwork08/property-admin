@@ -21,6 +21,7 @@ import {
 } from '@common/form/form.directive';
 import { FinalPurcahseAmountFormAdaptor } from './final-purchase-form.adaptor';
 import { NgxMaskModule } from 'ngx-mask';
+import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
 
 @Component({
   selector: 'app-final-purchase-form',
@@ -39,6 +40,7 @@ import { NgxMaskModule } from 'ngx-mask';
     FormsModule,
     MatButtonModule,
     CancelFormComponent,
+    ReadOnlyFormDirective,
   ],
   templateUrl: './final-purchase-form.component.html',
   styleUrls: ['./final-purchase-form.component.scss'],

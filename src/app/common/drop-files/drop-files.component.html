@@ -1,6 +1,6 @@
 <h1 class="w-full text-base mb-4">{{label}}</h1>
 <div *ngIf="!documents.length">
-  <div class="w-full h-52 p-8 text-center border-dashed border-2 border-gray-300 relative mx-auto" appDnd>
+  <div class="w-full h-52 p-8 text-center border-dashed border-2 border-gray-300 relative mx-auto" dragDropZone>
     <label [for]="elementRef"
       class="flex flex-col items-center justify-center text-gray-700 cursor-pointer w-full h-full">
       <input type="file" #inputFile [id]="elementRef" [multiple]="multiple" [accept]="accept"

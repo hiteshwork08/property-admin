@@ -1,5 +1,6 @@
-<form class="pb-6 min-h-full flex flex-col justify-start" [ngClass]="{'pointer-events-none': readOnly}"
-  [formGroup]="form" appForm="intake-script-approval-form">
+<form class="pb-6 min-h-full flex flex-col justify-start relative" [formGroup]="form" [readOnlyForm]="readOnly"
+  [messageToDisplayOnCLick]="form.valid ? 'Click edit to make changes':'Please fill the above form'"
+  appForm="intake-script-approval-form">
   <div class="flex items-start gap-3 mb-3">
     <mat-form-field class="w-full">
       <mat-label>Comment</mat-label>

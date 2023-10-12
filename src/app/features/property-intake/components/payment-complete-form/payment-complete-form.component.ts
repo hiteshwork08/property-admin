@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -16,6 +17,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { FetchModule } from '@common/fetch/fetch.directive';
 import { FormErrorModule } from '@common/form/field-error.directive';
+import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
 
 @Component({
   selector: 'app-payment-complete-form',
@@ -31,6 +33,7 @@ import { FormErrorModule } from '@common/form/field-error.directive';
     FetchModule,
     MatInputModule,
     MatButtonModule,
+    ReadOnlyFormDirective,
   ],
   templateUrl: './payment-complete-form.component.html',
   styleUrls: ['./payment-complete-form.component.scss'],
@@ -38,13 +41,9 @@ import { FormErrorModule } from '@common/form/field-error.directive';
 })
 export class PaymentCompleteFormComponent {
   @Input() readOnly = false;
-  form: FormGroup;
+  form = new FormGroup({
+    note: new FormControl(''),
+  });
 
-  constructor(private formBuilder: FormBuilder) {}
-
-  ngOnInit() {
-    this.form = this.formBuilder.group({
-      note: [''],
-    });
-  }
+  constructor() {}
 }

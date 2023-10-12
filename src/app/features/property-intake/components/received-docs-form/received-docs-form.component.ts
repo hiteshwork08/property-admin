@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -20,6 +21,7 @@ import {
 } from '@common/form/form.directive';
 import { ReceivedDocsFormAdaptor } from './received-doc-form.adaptor';
 import { DropFilesComponent } from '@common/drop-files/drop-files.component';
+import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
 
 @Component({
   selector: 'app-received-docs-form',
@@ -46,6 +48,7 @@ import { DropFilesComponent } from '@common/drop-files/drop-files.component';
     MatSelectModule,
     MatButtonModule,
     MatInputModule,
+    ReadOnlyFormDirective,
   ],
   templateUrl: './received-docs-form.component.html',
   styleUrls: ['./received-docs-form.component.scss'],
@@ -53,15 +56,15 @@ import { DropFilesComponent } from '@common/drop-files/drop-files.component';
 })
 export class ReceivedDocsFormComponent {
   @Input() readOnly = false;
-  form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      deedDocument: ['', Validators.required],
-      salesAgreementDocument: ['', Validators.required],
-      notes: [''],
-    });
-  }
+  form = new FormGroup({
+    deedDocument: new FormControl<File | FileList>(null, Validators.required),
+    salesAgreementDocument: new FormControl<File | FileList>(
+      null,
+      Validators.required
+    ),
+    notes: new FormControl<string>(''),
+  });
 
   get salesAgreementDocument() {
     return this.form.controls['salesAgreementDocument'];

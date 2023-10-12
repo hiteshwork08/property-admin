@@ -1,7 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SubmitProcessTitleFormAdaptor } from './process-title.adaptor';
 import {
@@ -11,6 +16,7 @@ import {
 import { FormErrorModule } from '@common/form/field-error.directive';
 import { FetchModule } from '@common/fetch/fetch.directive';
 import { DropFilesComponent } from '@common/drop-files/drop-files.component';
+import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
 
 @Component({
   selector: 'app-process-title',
@@ -23,6 +29,7 @@ import { DropFilesComponent } from '@common/drop-files/drop-files.component';
     FetchModule,
     FormErrorModule,
     FormHandlerModule,
+    ReadOnlyFormDirective,
   ],
   templateUrl: './process-title.component.html',
   styleUrls: ['./process-title.component.scss'],
@@ -31,15 +38,9 @@ import { DropFilesComponent } from '@common/drop-files/drop-files.component';
 export class ProcessTitleComponent {
   @Input() readOnly = false;
   files: File[] = [];
-  form: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) {}
-
-  ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      images: ['', Validators.required],
-    });
-  }
+  form = new FormGroup({
+    images: new FormControl(null, Validators.required),
+  });
 
   get images() {
     return this.form.controls['images'];

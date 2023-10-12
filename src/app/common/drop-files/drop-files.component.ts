@@ -7,13 +7,13 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { DndDirective } from '@common/directive/dnd.directive';
+import { DropZoneDirective } from '@common/directive/drag-drop.directive';
 import { FileListComponent } from './file-list/file-list.component';
 
 @Component({
   selector: 'app-drop-files',
   standalone: true,
-  imports: [CommonModule, DndDirective, FileListComponent],
+  imports: [CommonModule, DropZoneDirective, FileListComponent],
   templateUrl: './drop-files.component.html',
   styleUrls: ['./drop-files.component.scss'],
 })

@@ -46,6 +46,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatIconModule } from '@angular/material/icon';
 import { DropFilesComponent } from '@common/drop-files/drop-files.component';
+import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
 
 @Component({
   selector: 'app-intake-script-form',
@@ -71,6 +72,7 @@ import { DropFilesComponent } from '@common/drop-files/drop-files.component';
     ReactiveFormsModule,
     MatRadioModule,
     DropFilesComponent,
+    ReadOnlyFormDirective,
   ],
   providers: [provideFormAdaptor(SubmitIntakescriptOfferFormAdaptor, true)],
 })

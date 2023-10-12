@@ -19,6 +19,8 @@ import { RecordDeedFormComponent } from './components/record-deed-form/record-de
 import { PaymentCompleteFormComponent } from './components/payment-complete-form/payment-complete-form.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MarketingSalesComponent } from '../marketing-sales/marketing-sales.component';
+import { CommonModule } from '@angular/common';
+import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
 @Component({
   selector: 'app-property-intake',
   templateUrl: './property-intake.component.html',
@@ -30,6 +32,7 @@ import { MarketingSalesComponent } from '../marketing-sales/marketing-sales.comp
     MatFormFieldModule,
     MatInputModule,
     MatTabsModule,
+    CommonModule,
     ReceiveOfferFormComponent,
     IntakeScriptFormComponent,
     IntakeScriptApprovalFormComponent,
@@ -40,6 +43,7 @@ import { MarketingSalesComponent } from '../marketing-sales/marketing-sales.comp
     RecordDeedFormComponent,
     PaymentCompleteFormComponent,
     MarketingSalesComponent,
+    ReadOnlyFormDirective,
   ],
   providers: [
     {
@@ -49,7 +53,6 @@ import { MarketingSalesComponent } from '../marketing-sales/marketing-sales.comp
   ],
 })
 export class PropertyIntakeComponent {
-  readOnly = true;
   public propertyIntakeModel = inject(PropertyIntakeModel);
   PropertIntakeFormEnum = PropertIntakeFormEnum;
   propertyIntakeFormData: SubmitIntakeScriptOfferFormData;

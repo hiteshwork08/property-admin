@@ -96,7 +96,7 @@ export class ManageImagesComponent {
     if (index !== -1) {
       this.Items.splice(index, 1);
       this.Items = [...this.Items];
-      this.toastr.success('Image deleted successfully.');
+      this.toastr.success('Image details deleted successfully.');
       this.recalculatePositions();
     }
   }
@@ -107,7 +107,7 @@ export class ManageImagesComponent {
     this.Items = [...this.Items];
     this.resetAll();
     this.recalculatePositions();
-    this.toastr.success('Image added successfully.');
+    this.toastr.success('Image details added successfully.');
   }
 
   onUpdate() {
@@ -120,7 +120,7 @@ export class ManageImagesComponent {
       }
       this.Items = [...this.Items];
       this.resetAll();
-      this.toastr.success('Image updated successfully.');
+      this.toastr.success('Image details updated successfully.');
     }
   }
 

@@ -1,5 +1,6 @@
-<form class="pb-6 min-h-full flex flex-col justify-start w-full" [formGroup]="form" appForm="received-doc-form"
-  [ngClass]="{'pointer-events-none': readOnly}">
+<form class="pb-6 min-h-full flex flex-col justify-start w-full relative" [formGroup]="form" [readOnlyForm]="readOnly"
+  [messageToDisplayOnCLick]="form.valid ? 'Click edit to make changes':'Please fill the above form'"
+  appForm="received-doc-form">
 
   <div>
     <app-drop-files label="Upload Deed Document" elementRef="deedFileDropRefReceive"

@@ -33,7 +33,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgxMaskModule } from 'ngx-mask';
 import { MatButtonModule } from '@angular/material/button';
 import { tap } from 'rxjs';
-import { SubmitIntakeReceiveOfferFormAdaptor } from './receive-offer.adaptor';
+import { SubmitIntakeReceiveOfferFormAdaptor } from './receive-offer-form.adaptor';
+import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
 @Component({
   selector: 'app-receive-offer-form',
   templateUrl: './receive-offer-form.component.html',
@@ -55,6 +56,7 @@ import { SubmitIntakeReceiveOfferFormAdaptor } from './receive-offer.adaptor';
     MatNativeDateModule,
     NgxMaskModule,
     MatButtonModule,
+    ReadOnlyFormDirective,
   ],
   providers: [
     provideFetchAdaptor(FetchStatesAdaptor, true),

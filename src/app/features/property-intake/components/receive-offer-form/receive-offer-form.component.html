@@ -1,6 +1,7 @@
 <ng-container *appFetch="'fetch-states'; let states; loading: loading; error: error">
-  <form class="pb-6 min-h-full flex flex-col justify-center" [formGroup]="form" appForm="submit-intake-receive-offer"
-    [ngClass]="{'pointer-events-none': readOnly}">
+  <form class="pb-6 min-h-full flex flex-col justify-center relative" [formGroup]="form"
+    appForm="submit-intake-receive-offer" [readOnlyForm]="readOnly"
+    [messageToDisplayOnCLick]="form.valid ? 'Click edit to make changes':'Please fill the above form'">
 
     <div class="flex items-center gap-3 md:flex-col ">
       <mat-form-field class="w-full">

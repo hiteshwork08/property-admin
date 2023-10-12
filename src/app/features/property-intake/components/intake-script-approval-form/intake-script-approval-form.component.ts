@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -25,6 +26,7 @@ import { IntakeScriptApprovalFormAdaptor } from './intake-script-approval-form.a
 import { FetchModule } from '@common/fetch/fetch.directive';
 import { FormErrorModule } from '@common/form/field-error.directive';
 import { MatRadioModule } from '@angular/material/radio';
+import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
 
 @Component({
   selector: 'app-intake-script-approval-form',
@@ -45,21 +47,19 @@ import { MatRadioModule } from '@angular/material/radio';
     MatRadioModule,
     MatButtonModule,
     FormsModule,
+    ReadOnlyFormDirective,
   ],
   templateUrl: './intake-script-approval-form.component.html',
   styleUrls: ['./intake-script-approval-form.component.scss'],
   providers: [provideFormAdaptor(IntakeScriptApprovalFormAdaptor, true)],
 })
-export class IntakeScriptApprovalFormComponent implements OnInit {
-  form: FormGroup;
+export class IntakeScriptApprovalFormComponent {
+  form = new FormGroup({
+    comment: new FormControl(''),
+  });
   @Input() readOnly = false;
   constructor(private formBuilder: FormBuilder) {}
 
-  ngOnInit() {
-    this.form = this.formBuilder.group({
-      comment: [''],
-    });
-  }
   promptConfirmed(value) {
     console.log(value);
   }

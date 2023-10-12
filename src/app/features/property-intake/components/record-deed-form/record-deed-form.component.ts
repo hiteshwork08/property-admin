@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -20,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DropFilesComponent } from '@common/drop-files/drop-files.component';
+import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
 
 @Component({
   selector: 'app-record-deed-form',
@@ -36,6 +38,7 @@ import { DropFilesComponent } from '@common/drop-files/drop-files.component';
     MatIconModule,
     MatInputModule,
     MatDialogModule,
+    ReadOnlyFormDirective,
   ],
   templateUrl: './record-deed-form.component.html',
   styleUrls: ['./record-deed-form.component.scss'],
@@ -43,18 +46,12 @@ import { DropFilesComponent } from '@common/drop-files/drop-files.component';
 })
 export class RecordDeedFormComponent {
   @Input() readOnly = false;
-  deedForm: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) {}
+  deedForm = new FormGroup({
+    deedDocument: new FormControl<File | FileList>(null, Validators.required),
+  });
 
   get deedDocument() {
     return this.deedForm.controls['deedDocument'];
-  }
-
-  ngOnInit(): void {
-    this.deedForm = this.formBuilder.group({
-      deedDocument: ['', Validators.required],
-    });
   }
 
   onFileDropped(event: Event) {

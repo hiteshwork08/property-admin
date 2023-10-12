@@ -21,6 +21,7 @@ import { PrepareDocsFormAdaptor } from './prepare-doc-form.adaptor';
 import { FetchModule } from '@common/fetch/fetch.directive';
 import { FormErrorModule } from '@common/form/field-error.directive';
 import { DropFilesComponent } from '@common/drop-files/drop-files.component';
+import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
 @Component({
   selector: 'app-prepare-docs-form',
   standalone: true,
@@ -36,6 +37,7 @@ import { DropFilesComponent } from '@common/drop-files/drop-files.component';
     MatButtonModule,
     MatInputModule,
     DropFilesComponent,
+    ReadOnlyFormDirective,
   ],
   templateUrl: './prepare-docs-form.component.html',
   styleUrls: ['./prepare-docs-form.component.scss'],
@@ -43,16 +45,15 @@ import { DropFilesComponent } from '@common/drop-files/drop-files.component';
 })
 export class PrepareDocsFormComponent {
   @Input() readOnly = false;
-  form: FormGroup;
+  form = new FormGroup({
+    deedDocument: new FormControl<File | FileList>(null, Validators.required),
+    salesAgreementDocument: new FormControl<File | FileList>(
+      null,
+      Validators.required
+    ),
+    notes: new FormControl(''),
+  });
   showUploadField = false;
-
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      deedDocument: ['', Validators.required],
-      salesAgreementDocument: ['', Validators.required],
-      notes: [''],
-    });
-  }
 
   get salesAgreementDocument() {
     return this.form.controls['salesAgreementDocument'];

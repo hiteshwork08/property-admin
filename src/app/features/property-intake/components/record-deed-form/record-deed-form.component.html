@@ -1,5 +1,7 @@
-<form class="pb-6 min-h-full flex flex-col justify-start w-full" [formGroup]="deedForm" appForm="record-deed-form"
-  [ngClass]="{'pointer-events-none': readOnly}">
+<form class="pb-6 min-h-full flex flex-col justify-start w-full relative" [formGroup]="deedForm"
+  [readOnlyForm]="readOnly"
+  [messageToDisplayOnCLick]="deedForm.valid ? 'Click edit to make changes':'Please fill the above form'"
+  appForm="record-deed-form">
 
   <div>
     <app-drop-files label="Upload file of recorded deed" elementRef="deedDocument"

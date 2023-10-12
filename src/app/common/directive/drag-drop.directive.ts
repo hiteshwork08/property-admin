@@ -7,10 +7,10 @@ import {
 } from '@angular/core';
 
 @Directive({
-  selector: '[appDnd]',
+  selector: '[dragDropZone]',
   standalone: true,
 })
-export class DndDirective {
+export class DropZoneDirective {
   @Output() fileDropped = new EventEmitter<any>();
 
   @HostListener('dragover', ['$event']) onDragOver(evt) {

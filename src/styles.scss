@@ -15,3 +15,7 @@ body {
 .mat-expansion-indicator::after {
   border-color: black !important;
 }
+
+.read-only-container {
+  @apply absolute h-full w-full inset-0 z-10 bg-transparent;
+}
