@@ -1,0 +1,29 @@
+{
+  "selectedAdId": [
+    {
+      "id": "ID1",
+      "Channel": "facebook",
+      "propertyName": "Alabama-Barbour-12546"
+    },
+    {
+      "id": "ID2",
+      "Channel": "whatsapp",
+      "propertyName": "Alaska-Bethel-12546"
+    },
+    {
+      "id": "ID3",
+      "Channel": "instagram",
+      "propertyName": "Arizona-Cochise-12546"
+    },
+    {
+      "id": "ID4",
+      "Channel": "Arizona",
+      "propertyName": "Alabama-Cochise-12546"
+    },
+    {
+      "id": "ID5",
+      "Channel": "Alaska",
+      "propertyName": "Alabama-Anchorage-12546"
+    }
+  ]
+}

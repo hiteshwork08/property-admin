@@ -54,4 +54,15 @@
       <app-manage-channel-ad></app-manage-channel-ad>
     </mat-expansion-panel>
   </mat-accordion>
+
+  <mat-accordion class="example-headers-align" multi class="mt-1">
+    <!-- [disabled]="marketingSalesModal.MarketingSalesStatus !== MaketingSalesEnum.manageChannelAd"> -->
+    <mat-expansion-panel class="mt-3"
+      [expanded]="marketingSalesModal.MarketingSalesStatus === MaketingSalesEnum.LeadInfo">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-xl">Leads Information</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-leads-info></app-leads-info>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>
