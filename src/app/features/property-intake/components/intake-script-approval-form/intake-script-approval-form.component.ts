@@ -13,11 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { CancelFormComponent } from '@common/cancel-btn/cancel-btn.component';
-import {
-  IntakeScriptFormControlStates,
-  SubmitIntakeScriptOfferFormData,
-} from '../intake-script-form/intake-script-form.adaptor';
+
 import {
   FormHandlerModule,
   provideFormAdaptor,
@@ -27,6 +23,8 @@ import { FetchModule } from '@common/fetch/fetch.directive';
 import { FormErrorModule } from '@common/form/field-error.directive';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
+import { ConfirmDialogComponent } from '@common/confirm-dialog/confirm-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-intake-script-approval-form',
@@ -34,7 +32,7 @@ import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directiv
   imports: [
     ReactiveFormsModule,
     CommonModule,
-    CancelFormComponent,
+    MatIconModule,
     FormHandlerModule,
     FormErrorModule,
     FetchModule,
@@ -47,6 +45,7 @@ import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directiv
     MatRadioModule,
     MatButtonModule,
     FormsModule,
+    ConfirmDialogComponent,
     ReadOnlyFormDirective,
   ],
   templateUrl: './intake-script-approval-form.component.html',

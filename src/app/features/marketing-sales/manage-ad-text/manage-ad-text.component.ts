@@ -23,6 +23,7 @@ import {
 } from '@common/form/form.directive';
 import { adsDetails, adsDetailsResFormAdaptor } from './Manage-ad-text.adaptor';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmDialogComponent } from '@common/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-manage-ad-text',
@@ -40,6 +41,7 @@ import { ToastrService } from 'ngx-toastr';
     MatIconModule,
     FormHandlerModule,
     FormErrorModule,
+    ConfirmDialogComponent,
     FetchModule,
   ],
   templateUrl: './manage-ad-text.component.html',
@@ -79,7 +81,8 @@ export class ManageAdTextComponent {
   }
   ngOnInit(): void {}
 
-  deleteItem(itemToDelete: adsDetails) {
+  deleteItem(isConfirm: boolean, itemToDelete: adsDetails) {
+    if (!isConfirm) return;
     const index = this.AdsDetails.findIndex(
       (item) => item.id === itemToDelete.id
     );

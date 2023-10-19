@@ -25,6 +25,7 @@ import {
 import { FetchModule } from '@common/fetch/fetch.directive';
 import { FormErrorModule } from '@common/form/field-error.directive';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmDialogComponent } from '@common/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-manage-channel-ad',
@@ -41,6 +42,7 @@ import { ToastrService } from 'ngx-toastr';
     FormHandlerModule,
     FormErrorModule,
     FetchModule,
+    ConfirmDialogComponent,
     MatIconModule,
   ],
   templateUrl: './manage-channel-ad.component.html',
@@ -83,7 +85,8 @@ export class ManageChannelAdComponent {
 
   ngOnInit(): void {}
 
-  deleteItem(itemToDelete: ChannelAds) {
+  deleteItem(isConfirm: boolean, itemToDelete: ChannelAds) {
+    if (!isConfirm) return;
     const index = this.channelAds.findIndex(
       (item) => item.id === itemToDelete.id
     );

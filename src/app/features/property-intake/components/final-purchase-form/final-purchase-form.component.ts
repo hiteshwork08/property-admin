@@ -4,7 +4,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { CancelFormComponent } from '@common/cancel-btn/cancel-btn.component';
 import {
   FormBuilder,
   FormControl,
@@ -22,6 +21,7 @@ import {
 import { FinalPurcahseAmountFormAdaptor } from './final-purchase-form.adaptor';
 import { NgxMaskModule } from 'ngx-mask';
 import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
+import { ConfirmDialogComponent } from '@common/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-final-purchase-form',
@@ -39,7 +39,7 @@ import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directiv
     MatCheckboxModule,
     FormsModule,
     MatButtonModule,
-    CancelFormComponent,
+    ConfirmDialogComponent,
     ReadOnlyFormDirective,
   ],
   templateUrl: './final-purchase-form.component.html',

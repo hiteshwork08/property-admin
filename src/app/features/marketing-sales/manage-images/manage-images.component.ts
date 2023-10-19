@@ -11,7 +11,7 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DropFilesComponent } from '@common/drop-files/drop-files.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
@@ -26,6 +26,8 @@ import {
 import { FetchModule } from '@common/fetch/fetch.directive';
 import { FormErrorModule } from '@common/form/field-error.directive';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmDialogContentComponent } from '@common/confirm-dialog/confirm-dialog-content/confirm-dialog-content.component';
+import { ConfirmDialogComponent } from '@common/confirm-dialog/confirm-dialog.component';
 @Component({
   selector: 'app-manage-images',
   standalone: true,
@@ -37,6 +39,7 @@ import { ToastrService } from 'ngx-toastr';
     MatInputModule,
     MatButtonModule,
     DropFilesComponent,
+    ConfirmDialogComponent,
     MatDialogModule,
     MatTableModule,
     MatIconModule,
@@ -67,7 +70,8 @@ export class ManageImagesComponent {
 
   constructor(
     private toastr: ToastrService,
-    private imageFormAdaptor: ImageFormAdaptor
+    private imageFormAdaptor: ImageFormAdaptor,
+    public dialog: MatDialog
   ) {
     this.imageFormAdaptor.imageData$.subscribe(() => {
       if (this.editData) {
@@ -91,7 +95,8 @@ export class ManageImagesComponent {
     return this.form.get('ImageFile') as FormControl;
   }
 
-  deleteItem(itemToDelete: Image) {
+  deleteItem(isConfirm: boolean, itemToDelete: Image) {
+    if (!isConfirm) return;
     const index = this.Items.findIndex((item) => item.id === itemToDelete.id);
     if (index !== -1) {
       this.Items.splice(index, 1);

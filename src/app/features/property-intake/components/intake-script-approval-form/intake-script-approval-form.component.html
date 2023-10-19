@@ -9,7 +9,13 @@
   </div>
 
   <div class="flex items-start justify-end space-x-6">
-    <cancel-btn (promptConfirmed)="promptConfirmed($event)" [hidden]="readOnly"></cancel-btn>
+    <app-confirm-dialog (promptConfirmed)="promptConfirmed($event)" [hidden]="readOnly"
+      [message]="'Are you sure you want to cancel this property?'">
+      <button type="button" mat-raised-button color="warn"
+        class="[height:44px!important] [width:100px!important] text-lg ">Cancel</button></app-confirm-dialog>
+
+
+
     <button type="submit" mat-raised-button color="primary"
       class="[height:44px!important] [width:100px!important] text-lg" [hidden]="readOnly">Approve</button>
   </div>

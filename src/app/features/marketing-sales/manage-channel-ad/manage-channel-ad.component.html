@@ -56,9 +56,10 @@
         <button mat-icon-button color="primary" (click)="openEditDialog(row)">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button color="warn" (click)="deleteItem(row)">
-          <mat-icon>delete</mat-icon>
-        </button>
+        <app-confirm-dialog [message]="'Are you sure want to delete this record?'"
+          (promptConfirmed)="deleteItem($event,row)">
+          <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+        </app-confirm-dialog>
       </td>
     </ng-container>
 
