@@ -3,9 +3,9 @@ export class MaketingSales {
 }
 
 export enum MaketingSalesEnum {
-  marketingApproval = 3,
-  manageChannelAd = 2,
   manageImages = 1,
+  manageChannelAd = 2,
+  marketingApproval = 3,
   manageAdText = 4,
   PreMarketing = 5,
   LeadInfo = 6,

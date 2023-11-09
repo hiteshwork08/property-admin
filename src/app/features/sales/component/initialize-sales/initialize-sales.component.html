@@ -1,0 +1,80 @@
+<form class="flex flex-col justify-center" [formGroup]="form" [readOnlyForm]="readOnly"
+  [messageToDisplayOnCLick]="form.valid ? 'Click edit to make changes':'Please fill the above form'"
+  appForm="Intialize-Sales-Form">
+  <div class="flex gap-3 md:flex-col">
+    <mat-form-field class="flex w-full">
+      <mat-label>Client Property</mat-label>
+      <mat-select formControlName="propertyName" placeholder="Select a Client Property">
+        <mat-option *ngFor="let property of clientPropertyList" [value]="property">{{ property }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="flex w-full">
+      <mat-label>Lead</mat-label>
+      <mat-select formControlName="lead" placeholder="search by email">
+        <input type="search" #countySearchInput class="p-4 w-full [height:44px] focus:outline-0"
+          placeholder="Search email" />
+        <mat-option *ngFor="let email of searchedLeadEmail | searchFilter : countySearchInput.value" [value]="email">
+          {{ email }}
+        </mat-option>
+        <mat-option *ngIf="!((searchedLeadEmail | searchFilter : countySearchInput.value).length)">
+          <button type="button" mat-button (click)="openDialogWithRef(addLeads)">Add New</button>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <div class="flex items-center gap-3 md:flex-col">
+    <mat-form-field class="w-full">
+      <mat-label>Doc Fee</mat-label>
+      <input type="text" formControlName="docfee" matInput prefix="$ " mask="separator.2" thousandSeparator=","
+        placeholder="0.00" />
+    </mat-form-field>
+    <mat-form-field class="w-full">
+      <mat-label>Down Payment Amount</mat-label>
+      <input type="text" formControlName="downpayment" matInput prefix="$ " mask="separator.2" thousandSeparator=","
+        placeholder="0.00" />
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Initial Amount</mat-label>
+      <input type="text" formControlName="initialAmount" matInput prefix="$ " mask="separator.2" thousandSeparator=","
+        placeholder="0.00" />
+    </mat-form-field>
+  </div>
+
+
+  <div class="md:w-full text-left [min-width:300px] mt-4">
+    <mat-label class="md:flex-col 2xl:w-full">Buyer Type </mat-label>
+    <mat-radio-group class="flex items-center gap-2" aria-label="Select an option" formControlName="buyertype" required>
+      <mat-radio-button color="primary" class="inline-block [width:100px]"
+        value="wholesale">Wholesale</mat-radio-button>
+      <mat-radio-button color="primary" class="inline-block [width:100px]" value="retail">Retail</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="md:w-full text-left [min-width:300px] mt-4">
+    <mat-label class="md:flex-col 2xl:w-full">Sale Type </mat-label>
+    <mat-radio-group class="flex items-center gap-2" aria-label="Select an option" formControlName="saletype" required>
+      <mat-radio-button color="primary" class="inline-block [width:100px]" value="cash">Cash</mat-radio-button>
+      <mat-radio-button color="primary" class="inline-block [width:100px]" value="terms">Terms</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="flex items-start justify-end space-x-6 mt-3">
+    <button type="button" mat-raised-button color="warn" class="[height:44px!important] [width:100px!important] text-lg"
+      (click)="form.reset()">Cancel</button>
+    <button type="submit" mat-raised-button color="primary"
+      class="[height:44px!important] [width:100px!important] text-lg">Submit</button>
+  </div>
+
+
+</form>
+
+<ng-template #addLeads>
+  <h2 matDialogTitle>Add Lead</h2>
+  <mat-dialog-content>
+    <app-lead-info-manager (formData)="saveData($event)" (discardFormData)="dialog.closeAll()"></app-lead-info-manager>
+  </mat-dialog-content>
+</ng-template>

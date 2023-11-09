@@ -1,0 +1,95 @@
+<div class="p-4">
+  <mat-accordion class="example-headers-align" multi class="mt-1">
+    <!-- [disabled]="saleStatus.value !== SALES_ENUM.INITIALIZE_SALES"> -->
+    <mat-expansion-panel class="mt-3" [expanded]="saleStatus.value === SALES_ENUM.INITIALIZE_SALES">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-xl"> Initialize Sales </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-initialize-sales [readOnly]="saleStatus.value !== SALES_ENUM.INITIALIZE_SALES"></app-initialize-sales>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-accordion class="example-headers-align" multi class="mt-1">
+    <!-- [disabled]="saleStatus.value !== SALES_ENUM.ADDITIONAL_BUYER"> -->
+    <mat-expansion-panel class="mt-3" [expanded]="saleStatus.value === SALES_ENUM.ADDITIONAL_BUYER">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-xl"> Additional Buyer </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-additional-buyer [readOnly]="saleStatus.value !== SALES_ENUM.ADDITIONAL_BUYER"></app-additional-buyer>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-accordion class="example-headers-align" multi class="mt-1">
+    <!-- [disabled]="saleStatus.value !== SALES_ENUM.SALES_DETAILS_INFO"> -->
+    <mat-expansion-panel class="mt-3" [expanded]="saleStatus.value === SALES_ENUM.SALES_DETAILS_INFO">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-xl"> Sales Details Info </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-sales-details-info (formData)="onFormDatasalesDetails($event)"
+        [readOnly]="saleStatus.value !== SALES_ENUM.SALES_DETAILS_INFO"></app-sales-details-info>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+  <mat-accordion class="example-headers-align" multi class="mt-1">
+    <!-- [disabled]="saleStatus.value !== SALES_ENUM.INVESTER_REVIEW"> -->
+    <mat-expansion-panel class="mt-3" [expanded]="saleStatus.value === SALES_ENUM.INVESTER_REVIEW">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-xl"> Investor Review </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-sales-details-info [salesDetailsFormData]="salesDetailsform"
+        [readOnly]="saleStatus.value !== SALES_ENUM.INVESTER_REVIEW"></app-sales-details-info>
+      <app-investor-review></app-investor-review>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-accordion class="example-headers-align" multi class="mt-1">
+    <!-- [disabled]="saleStatus.value !== SALES_ENUM.GENERATE_DOCS"> -->
+    <mat-expansion-panel class="mt-3" [expanded]="saleStatus.value === SALES_ENUM.GENERATE_DOCS">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-xl"> Generate Document </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-generate-doc></app-generate-doc>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-accordion class="example-headers-align" multi class="mt-1">
+    <!-- [disabled]="saleStatus.value !== SALES_ENUM.RECEIVED_DOC"> -->
+    <mat-expansion-panel class="mt-3" [expanded]="saleStatus.value === SALES_ENUM.RECEIVED_DOC">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-xl"> Receive Document </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-receive-docs [readOnly]="saleStatus.value !== SALES_ENUM.RECEIVED_DOC"></app-receive-docs>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-accordion class="example-headers-align" multi class="mt-1">
+    <!-- [disabled]="saleStatus.value !== SALES_ENUM.NOTE_DETAILS"> -->
+    <mat-expansion-panel class="mt-3" [expanded]="saleStatus.value === SALES_ENUM.NOTE_DETAILS">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-xl"> Note Details </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-note-details [readOnly]="saleStatus.value !== SALES_ENUM.NOTE_DETAILS"></app-note-details>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-accordion class="example-headers-align" multi class="mt-1">
+    <!-- [disabled]="saleStatus.value !== SALES_ENUM.CONFIRM_PAYMENT"> -->
+    <mat-expansion-panel class="mt-3" [expanded]="saleStatus.value === SALES_ENUM.CONFIRM_PAYMENT">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-xl"> Confirm Payment </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-confirm-payment [readOnly]="saleStatus.value !== SALES_ENUM.CONFIRM_PAYMENT"></app-confirm-payment>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-accordion class="example-headers-align" multi class="mt-1">
+    <!-- [disabled]="saleStatus.value !== SALES_ENUM.RECORD_DEED"> -->
+    <mat-expansion-panel class="mt-3" [expanded]="saleStatus.value === SALES_ENUM.RECORD_DEED">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="text-xl"> Record Deed </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-record-deed-sale [readOnly]="saleStatus.value !== SALES_ENUM.RECORD_DEED"></app-record-deed-sale>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

@@ -40,11 +40,14 @@ export class DropFilesComponent implements OnChanges {
         : this.setFiles(this.existingDocuments);
     }
   }
-  inteceptFileDrop(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    this.onFileDropped.next(
-      this.multiple ? inputElement.files : inputElement.files[0]
-    );
+
+  inteceptFileDrop(event: Event | FileList | File) {
+    if (event instanceof Event) {
+      const inputElement = event.target as HTMLInputElement;
+      this.onFileDropped.emit(
+        this.multiple ? inputElement.files : inputElement.files[0]
+      );
+    } else this.onFileDropped.emit(event);
   }
 
   setFiles(inputElement: FileList) {

@@ -1,0 +1,22 @@
+<form class="flex flex-col justify-center" [formGroup]="form" [readOnlyForm]="readOnly"
+  [messageToDisplayOnCLick]="form.valid ? 'Click edit to make changes':'Please fill the above form'"
+  appForm="Confirm-Payment-Form">
+  <div class="w-full mt-5 md:flex-col 2xl:w-full">
+    <mat-form-field class="w-full">
+      <mat-label>{{ saleType.value === 'cash' ? 'Cash Notes' : 'Terms Notes' }}</mat-label>
+      <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="note"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="w-full">
+    <mat-slide-toggle formControlName="paymentconfirm">Approve</mat-slide-toggle>
+  </div>
+  <div class="w-full mt-5 font-semibold" *ngIf="form.get('paymentconfirm').value">
+    <div>{{ saleType.value === 'cash' ? 'Cash Received' : 'Payment terms completed' }}</div>
+  </div>
+  <div class="flex items-start justify-end space-x-6 mt-3">
+    <button type="submit" mat-raised-button color="primary"
+      class="[height:44px!important] [width:100px!important] text-lg"
+      *ngIf="form.get('paymentconfirm').value">Save</button>
+  </div>
+</form>

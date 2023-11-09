@@ -13,6 +13,7 @@ import { ManageChannelAdComponent } from './manage-channel-ad/manage-channel-ad.
 import { MaketingSales, MaketingSalesEnum } from './marketing-sales.model';
 import { Image } from './manage-images/manage-images.adaptor';
 import { LeadsInfoComponent } from './leads-info/leads-info.component';
+import { SalesComponent } from '../sales/sales.component';
 @Component({
   selector: 'app-marketing-sales',
   standalone: true,
@@ -29,6 +30,7 @@ import { LeadsInfoComponent } from './leads-info/leads-info.component';
     LeadsInfoComponent,
     PreMarketingApprovalComponent,
     ManageChannelAdComponent,
+    SalesComponent,
   ],
   templateUrl: './marketing-sales.component.html',
   styleUrls: ['./marketing-sales.component.scss'],

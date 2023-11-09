@@ -37,9 +37,8 @@ import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directiv
 })
 export class ProcessTitleComponent {
   @Input() readOnly = false;
-  files: File[] = [];
   form = new FormGroup({
-    images: new FormControl(null, Validators.required),
+    images: new FormControl<File | FileList>(null, Validators.required),
   });
 
   get images() {

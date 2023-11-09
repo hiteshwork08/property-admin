@@ -1,14 +1,14 @@
 export const INTAKE_TYPES = [
   {
     id: 1,
-    name: "Retail",
+    name: 'Retail',
   },
   {
     id: 2,
-    name: "Wholesale",
+    name: 'Wholesale',
   },
   {
     id: 3,
-    name: "LandArb",
+    name: 'LandArb',
   },
 ];

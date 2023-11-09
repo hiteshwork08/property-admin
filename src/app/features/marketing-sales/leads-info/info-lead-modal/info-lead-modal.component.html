@@ -1,0 +1,19 @@
+<div class="modal-content p-6 bg-white rounded-lg shadow-lg">
+  <h2 class="text-2xl font-semibold mb-4">Lead Information</h2>
+  <button class="close-button absolute top-4 right-4" mat-icon-button (click)="closeAlert()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div class="mb-4">
+    <p>Ad ID: {{ data.adId }}</p>
+    <p>Channel: {{ data.channel }}</p>
+    <p>Property Name: {{ data.propertyName }}</p>
+    <p>Phone Number: {{ data.phoneNumber }}</p>
+    <p>Email: {{ data.email }}</p>
+    <p>First Name: {{ data.firstName }}</p>
+    <p>Last Name: {{ data.lastName }}</p>
+    <p>Date Added: {{ data.dateAdded | date: 'dd/MM/yyyy' }}</p>
+    <p>Message: {{ data.message }}</p>
+  </div>
+
+</div>

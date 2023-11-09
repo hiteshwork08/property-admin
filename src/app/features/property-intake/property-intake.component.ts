@@ -21,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MarketingSalesComponent } from '../marketing-sales/marketing-sales.component';
 import { CommonModule } from '@angular/common';
 import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
+import { SalesComponent } from '../sales/sales.component';
 @Component({
   selector: 'app-property-intake',
   templateUrl: './property-intake.component.html',
@@ -44,6 +45,7 @@ import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directiv
     PaymentCompleteFormComponent,
     MarketingSalesComponent,
     ReadOnlyFormDirective,
+    SalesComponent,
   ],
   providers: [
     {

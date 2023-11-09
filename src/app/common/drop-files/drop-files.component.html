@@ -1,10 +1,11 @@
 <h1 class="w-full text-base mb-4">{{label}}</h1>
 <div *ngIf="!documents.length">
-  <div class="w-full h-52 p-8 text-center border-dashed border-2 border-gray-300 relative mx-auto" dragDropZone>
+  <div class="w-full h-52 p-8 text-center border-dashed border-2 border-gray-300 relative mx-auto" dragDropZone
+    (fileDropped)="inteceptFileDrop($event)">
     <label [for]="elementRef"
       class="flex flex-col items-center justify-center text-gray-700 cursor-pointer w-full h-full">
       <input type="file" #inputFile [id]="elementRef" [multiple]="multiple" [accept]="accept"
-        class="opacity-0 absolute z-[-1] w-full h-full top-0 left-0" (change)="inteceptFileDrop($event)" />
+        class="opacity-0 absolute z-[-1] w-full h-full top-0 left-0" (input)="inteceptFileDrop($event)" />
       <img src="assets/images/pngwing.com.png" width="63" height="64" alt="Drag and Drop" />
       <h3>Drag and Drop Files here</h3>
       <h3>or</h3>

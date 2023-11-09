@@ -1,0 +1,15 @@
+<form class="pb-6 min-h-full flex flex-col justify-start relative" [formGroup]="form" [readOnlyForm]="readOnly"
+  [messageToDisplayOnCLick]="form.valid ? 'Click edit to make changes':'Please fill the above form'"
+  appForm="Note-Details">
+  <div class="flex items-start gap-3 mb-3">
+    <mat-form-field class="w-full">
+      <mat-label>Note Details</mat-label>
+      <textarea matInput cols="35" rows="8" placeholder="Comment here..." formControlName="noteDetails"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="flex items-start justify-end space-x-6">
+    <button type="submit" mat-raised-button color="primary"
+      class="[height:44px!important] [width:100px!important] text-lg">Save</button>
+  </div>
+</form>

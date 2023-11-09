@@ -1,0 +1,76 @@
+<form class="p-4" [formGroup]="form" appForm="lead-info-manager">
+
+  <div class="flex items-center gap-3 md:flex-col">
+    <mat-form-field class="w-full">
+      <mat-label>Ad ID</mat-label>
+      <mat-select formControlName="adId" (ngModelChange)="onAdIdChange($event)">
+        <mat-option *ngFor="let adId of selectedAdId" [value]="adId.id">
+          {{ adId.id }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="flex w-full">
+      <mat-label>Channel Name</mat-label>
+      <input matInput formControlName="channel" placeholder="Facebook, LandCentury, …">
+    </mat-form-field>
+
+  </div>
+
+  <div class="flex items-center gap-3 md:flex-col">
+    <mat-form-field class="flex w-full">
+      <mat-label>Property Name</mat-label>
+      <input matInput formControlName="propertyName" placeholder="State-County-APN">
+    </mat-form-field>
+
+
+    <mat-form-field class="flex w-full">
+      <mat-label>Phone Number</mat-label>
+      <input type="number" matInput formControlName="phoneNumber" placeholder="Please enter the text..">
+    </mat-form-field>
+  </div>
+
+  <div class="flex items-center gap-3 md:flex-col ">
+    <mat-form-field class="flex w-full">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" placeholder="Please enter the text..">
+    </mat-form-field>
+
+    <mat-form-field class="flex w-full">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" placeholder="Please enter the text..">
+    </mat-form-field>
+  </div>
+
+  <div class="flex items-center gap-3 md:flex-col ">
+
+    <mat-form-field class="flex w-full">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" placeholder="Please enter the text..">
+    </mat-form-field>
+
+    <mat-form-field class="flex w-full">
+      <mat-label>Date Added</mat-label>
+      <input matInput formControlName="dateAdded" [matDatepicker]="picker" />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+
+  <div class="flex items-center gap-3">
+    <mat-form-field class="flex w-full">
+      <mat-label>Message</mat-label>
+      <textarea matInput cols="35" rows="8" placeholder="Note" formControlName="message"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="flex items-start justify-end space-x-6 mt-3">
+    <button type="button" mat-raised-button color="warn" class="[height:44px!important] [width:100px!important] text-lg"
+      (click)="discard()">Cancel</button>
+    <button type="submit" mat-raised-button color="primary"
+      class="[height:44px!important] [width:100px!important] text-lg">Submit</button>
+  </div>
+
+</form>

@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SalesModel } from './features/sales/sales.model';
 
 export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
 
@@ -25,7 +26,12 @@ export const options: Partial<null | IConfig> | (() => Partial<IConfig>) = null;
     NgxMaskModule.forRoot(options),
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: SalesModel,
+      useFactory: () => new SalesModel(),
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

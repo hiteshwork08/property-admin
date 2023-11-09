@@ -8,7 +8,7 @@
       (resetControl)="deedDocument.reset()"></app-drop-files>
   </div>
 
-  <div>
+  <div class="mt-4">
     <app-drop-files label="Upload Sales Agreement" elementRef="salesFileDropRef"
       (onFileDropped)="salesAgreementDocument.setValue($event)" [existingDocuments]="salesAgreementDocument.value"
       (resetControl)="salesAgreementDocument.reset()"></app-drop-files>

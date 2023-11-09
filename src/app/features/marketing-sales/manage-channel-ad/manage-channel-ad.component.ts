@@ -14,10 +14,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-import {
-  ChannelAds,
-  ChannelAdsResFormAdaptor,
-} from './Manage-channel-ad.adaptor';
+
 import {
   FormHandlerModule,
   provideFormAdaptor,
@@ -26,6 +23,10 @@ import { FetchModule } from '@common/fetch/fetch.directive';
 import { FormErrorModule } from '@common/form/field-error.directive';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmDialogComponent } from '@common/confirm-dialog/confirm-dialog.component';
+import {
+  ChannelAds,
+  ChannelAdsResFormAdaptor,
+} from './Manage-channel-ad.adaptor';
 
 @Component({
   selector: 'app-manage-channel-ad',

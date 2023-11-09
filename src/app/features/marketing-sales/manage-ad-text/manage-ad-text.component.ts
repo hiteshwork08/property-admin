@@ -21,9 +21,9 @@ import {
   FormHandlerModule,
   provideFormAdaptor,
 } from '@common/form/form.directive';
-import { adsDetails, adsDetailsResFormAdaptor } from './Manage-ad-text.adaptor';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmDialogComponent } from '@common/confirm-dialog/confirm-dialog.component';
+import { adsDetails, adsDetailsResFormAdaptor } from './manage-ad-text.adaptor';
 
 @Component({
   selector: 'app-manage-ad-text',

@@ -39,7 +39,6 @@ import { MatIconModule } from '@angular/material/icon';
     MatFormFieldModule,
     MatInputModule,
     MatChipsModule,
-    MatButtonModule,
     MatSlideToggleModule,
     MatSelectModule,
     MatRadioModule,

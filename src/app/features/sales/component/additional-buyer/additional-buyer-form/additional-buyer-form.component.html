@@ -1,0 +1,71 @@
+<form class="pb-6 min-h-full flex flex-col justify-center relative" [formGroup]="form" [readOnlyForm]="readOnly"
+  [messageToDisplayOnCLick]="form.valid ? 'Click edit to make changes':'Please fill the above form'"
+  appForm="Additional-Buyer">
+
+
+  <div class="flex items-center gap-3 md:flex-col">
+    <mat-form-field class="w-full">
+      <mat-label>First Name</mat-label>
+      <input type="text" matInput formControlName="firstName" placeholder="Enter First Name">
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Last Name</mat-label>
+      <input type="text" matInput formControlName="lastName" placeholder="Enter Last Name">
+    </mat-form-field>
+  </div>
+
+  <div class="flex items-center gap-3 md:flex-col">
+    <mat-form-field class="w-full">
+      <mat-label>Address 1</mat-label>
+      <textarea matInput formControlName="address1" placeholder="Enter Address 1"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Address 2</mat-label>
+      <textarea matInput formControlName="address2" placeholder="Enter Address 2"></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="flex items-center gap-3 md:flex-col">
+    <mat-form-field class="w-full">
+      <mat-label>City</mat-label>
+      <input type="text" matInput formControlName="city" placeholder="Enter City">
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>State</mat-label>
+      <input type="text" matInput formControlName="state" placeholder="Enter State">
+    </mat-form-field>
+  </div>
+
+  <div class="flex items-center gap-3 md:flex-col">
+    <mat-form-field class="w-full">
+      <mat-label>Postal Code</mat-label>
+      <input matInput formControlName="postalCode" placeholder="Enter Postal Code">
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Phone Number</mat-label>
+      <input matInput formControlName="phoneNumber" placeholder="Enter Phone Number">
+    </mat-form-field>
+  </div>
+
+  <div class="flex items-center gap-3 md:flex-col">
+    <mat-form-field class="w-full">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Enter Email">
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Company Name</mat-label>
+      <input matInput formControlName="companyName" placeholder="Enter Company Name">
+    </mat-form-field>
+  </div>
+  <div class="flex items-start justify-end space-x-6 mt-3">
+    <button type="button" mat-raised-button color="warn" class="[height:44px!important] [width:100px!important] text-lg"
+      (click)="discard()">Cancel</button>
+    <button type="submit" mat-raised-button color="primary"
+      class="[height:44px!important] [width:100px!important] text-lg">Submit</button>
+  </div>
+</form>
