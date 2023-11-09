@@ -4,7 +4,7 @@ import { Subject, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { WrapFormControl } from '@common/form/abstract-form.adaptor';
 import { FormGroup } from '@angular/forms';
-import { SalesStatus } from '../../sales.model';
+import { SALES_ENUM, SalesStatus } from '../../sales.model';
 
 export interface ReceiveDocsFormData {
   buyerDoc: File | FileList;
@@ -22,6 +22,7 @@ export class ReceiveDocsFormAdaptor extends AbstractRequestFormAdaptor<
   private toastr = inject(ToastrService);
   readonly formData$ = new Subject<ReceiveDocsFormData>();
   override onRequest(formGroup: ReceiveDocsFormData) {
+    this.salesStatus.value = SALES_ENUM.NOTE_DETAILS;
     console.log('Form saved...', formGroup);
     this.toastr.success('Success!', 'Record was saved successfully');
     return of({});
