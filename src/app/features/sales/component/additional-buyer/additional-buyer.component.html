@@ -1,6 +1,4 @@
-<button mat-raised-button color="primary" (click)="showForm=!showForm" [readOnlyForm]="readOnly"
-  [messageToDisplayOnCLick]="dataSource ? 'Click edit to make changes':'Please fill the above form'"
-  *ngIf="!showForm">Add
+<button mat-raised-button color="primary" (click)="showForm=!showForm" *ngIf="!showForm">Add
   Details</button>
 
 <app-additional-buyer-form *ngIf="showForm" (formData)="fetchFormData($event)"
@@ -68,21 +66,30 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let row">
-        <!-- <button mat-icon-button color="primary" (click)="openEditDialog(row)">
+        <button mat-icon-button color="primary">
           <mat-icon>edit</mat-icon>
-        </button> -->
-        <!-- <app-confirm-dialog [message]="'Are you sure want to delete this record?'"
-          (promptConfirmed)="deleteItem($event,row)">
+        </button>
+        <!-- (click)="openEditDialog(row)" -->
+
+        <app-confirm-dialog [message]="'Are you sure want to delete this record?'">
+          <!-- (promptConfirmed)="deleteItem($event,row)" -->
           <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
-        </app-confirm-dialog> -->
+        </app-confirm-dialog>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
 </div>
 <div class="flex items-start justify-end space-x-6 mt-3">
-  <button type="submit" mat-raised-button color="primary"
-    class="[height:44px!important] [width:100px!important] text-lg">Done</button>
+
+  <form class="pb-6 min-h-full flex flex-col justify-center relative" [formGroup]="form" [readOnlyForm]="readOnly"
+    [messageToDisplayOnCLick]="form.valid ? 'Click edit to make changes':'Please fill the above form'"
+    appForm="Additional-Buyer">
+
+    <button type="submit" mat-raised-button color="primary"
+      class="[height:44px!important] [width:100px!important] text-lg">Done</button>
+  </form>
 </div>

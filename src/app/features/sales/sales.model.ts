@@ -11,6 +11,7 @@ export class SalesStatus {
     | SALES_ENUM.RECEIVED_DOC
     | SALES_ENUM.NOTE_DETAILS
     | SALES_ENUM.CONFIRM_PAYMENT
+    | SALES_ENUM.complete
     | null = 1;
 }
 
@@ -24,6 +25,7 @@ export enum SALES_ENUM {
   NOTE_DETAILS = 7,
   CONFIRM_PAYMENT = 8,
   RECORD_DEED = 9,
+  complete = 10,
 }
 
 export class SalesModel {

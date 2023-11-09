@@ -1,13 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormErrorModule } from '@common/form/field-error.directive';
-import { FormHandlerModule } from '@common/form/form.directive';
+import {
+  FormHandlerModule,
+  provideFormAdaptor,
+} from '@common/form/form.directive';
 import { AdditonalBuyerForm } from './additional-buyer-form/additional-buyer-form.adaptor';
 import { ConfirmDialogComponent } from '@common/confirm-dialog/confirm-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -15,6 +18,7 @@ import { MatTableModule } from '@angular/material/table';
 import { AdditionalBuyerFormComponent } from './additional-buyer-form/additional-buyer-form.component';
 import { DropFilesComponent } from '@common/drop-files/drop-files.component';
 import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
+import { AdditonalBuyertableFormAdaptor } from './additional-buyer.adaptor';
 
 @Component({
   selector: 'app-additional-buyer',
@@ -39,6 +43,7 @@ import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directiv
   ],
   templateUrl: './additional-buyer.component.html',
   styleUrls: ['./additional-buyer.component.scss'],
+  providers: [provideFormAdaptor(AdditonalBuyertableFormAdaptor, true)],
 })
 export class AdditionalBuyerComponent {
   @Input() readOnly = false;
@@ -59,6 +64,7 @@ export class AdditionalBuyerComponent {
     'companyName',
     'actions',
   ];
+  form = new FormGroup({});
 
   // constructor(
   //   private toastr: ToastrService,

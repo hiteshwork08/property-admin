@@ -4,7 +4,7 @@ import { Subject, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { WrapFormControl } from '@common/form/abstract-form.adaptor';
 import { FormGroup } from '@angular/forms';
-import { SalesStatus } from '../../sales.model';
+import { SALES_ENUM, SalesStatus } from '../../sales.model';
 
 export interface RecordDeedFormData {
   buyerDoc: File | FileList;
@@ -22,7 +22,7 @@ export class RecordDeedFormAdaptor extends AbstractRequestFormAdaptor<
   private toastr = inject(ToastrService);
   readonly formData$ = new Subject<RecordDeedFormData>();
   override onRequest(formGroup: RecordDeedFormData) {
-    // this.salesStatus.propertyIntakeStatus = PropertIntakeFormEnum.scriptForm;
+    this.salesStatus.value = SALES_ENUM.complete;
 
     console.log('Form saved...', formGroup);
     this.toastr.success('Success!', 'Record was saved successfully');

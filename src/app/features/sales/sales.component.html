@@ -15,7 +15,8 @@
       <mat-expansion-panel-header>
         <mat-panel-title class="text-xl"> Additional Buyer </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-additional-buyer [readOnly]="saleStatus.value !== SALES_ENUM.ADDITIONAL_BUYER"></app-additional-buyer>
+      <!-- [readOnly]="saleStatus.value !== SALES_ENUM.ADDITIONAL_BUYER" -->
+      <app-additional-buyer></app-additional-buyer>
     </mat-expansion-panel>
   </mat-accordion>
 
@@ -25,8 +26,8 @@
       <mat-expansion-panel-header>
         <mat-panel-title class="text-xl"> Sales Details Info </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-sales-details-info (formData)="onFormDatasalesDetails($event)"
-        [readOnly]="saleStatus.value !== SALES_ENUM.SALES_DETAILS_INFO"></app-sales-details-info>
+      <!-- [readOnly]="saleStatus.value !== SALES_ENUM.SALES_DETAILS_INFO" -->
+      <app-sales-details-info (formData)="onFormDatasalesDetails($event)"></app-sales-details-info>
     </mat-expansion-panel>
   </mat-accordion>
 

@@ -114,7 +114,7 @@ export class InitializeSalesComponent {
         docfeeValue
           ? this.downPayment.removeValidators(Validators.required)
           : this.downPayment.addValidators(Validators.required);
-        docfeeValue && this.downPayment.value
+        docfeeValue
           ? this.initialAmount.disable()
           : this.initialAmount.enable();
         this.form.updateValueAndValidity();
@@ -126,7 +126,7 @@ export class InitializeSalesComponent {
         downpaymentValue
           ? this.docFee.removeValidators(Validators.required)
           : this.docFee.addValidators(Validators.required);
-        downpaymentValue && this.docFee.value
+        downpaymentValue
           ? this.initialAmount.disable()
           : this.initialAmount.enable();
         this.form.updateValueAndValidity();

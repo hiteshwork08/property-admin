@@ -31,18 +31,18 @@
     <div class="flex items-end gap-3 md:flex-col">
       <mat-form-field class="w-full">
         <mat-label>Monthly Note Fee</mat-label>
-        <input type="text" formControlName="monthlyNoteFee" matInput placeholder="Monthly Note Fee" />
+        <input type="number" formControlName="monthlyNoteFee" matInput placeholder="Monthly Note Fee" />
       </mat-form-field>
 
       <mat-form-field class="w-full">
         <mat-label>Interest Rate</mat-label>
-        <input type="text" formControlName="interestRate" matInput placeholder="Interest Rate" />
+        <input type="number" formControlName="interestRate" matInput placeholder="Interest Rate" />
       </mat-form-field>
     </div>
     <div class="flex items-end gap-3 md:flex-col">
       <mat-form-field class="w-full">
         <mat-label>Consideration</mat-label>
-        <input type="text" formControlName="consideration" matInput placeholder="Consideration" />
+        <input type="number" formControlName="consideration" matInput placeholder="Consideration" />
       </mat-form-field>
       <mat-form-field class="w-full">
         <mat-label>Grace Period Days</mat-label>
@@ -66,11 +66,11 @@
     <div class="flex items-end gap-3 md:flex-col">
       <mat-form-field class="w-full">
         <mat-label>Monthly Terms Price</mat-label>
-        <input type="text" formControlName="monthlyTermsPrice" matInput placeholder="Monthly Terms Price" />
+        <input type="number" formControlName="monthlyTermsPrice" matInput placeholder="Monthly Terms Price" />
       </mat-form-field>
       <mat-form-field class="w-full">
         <mat-label>Total Monthly Payment</mat-label>
-        <input type="text" formControlName="totalMonthlyPayment" matInput placeholder="Total Monthly Payment" />
+        <input type="number" formControlName="totalMonthlyPayment" matInput placeholder="Total Monthly Payment" />
       </mat-form-field>
     </div>
     <div class="flex items-end gap-3 md:flex-col">
@@ -80,13 +80,13 @@
       </mat-form-field>
       <mat-form-field class="w-full">
         <mat-label>Monthly Taxes</mat-label>
-        <input type="text" formControlName="monthlyTaxes" matInput placeholder="Monthly Taxes" />
+        <input type="number" formControlName="monthlyTaxes" matInput placeholder="Monthly Taxes" />
       </mat-form-field>
     </div>
   </div>
 
 
-  <div class="flex items-center justify-end mt-6 space-x-4">
+  <div class="flex items-center justify-end mt-6 space-x-4" *ngIf="!readOnly">
     <button type="submit" mat-raised-button color="primary" class="[height:44px!important] text-lg" [hidden]="readOnly">
       <!-- [disabled]="!isSaveButtonEnabled" -->
       Save
