@@ -16,7 +16,7 @@
         <mat-expansion-panel-header>
           <mat-panel-title class="text-xl"> Primary Buyer </mat-panel-title>
         </mat-expansion-panel-header>
-        <app-primary-buyer></app-primary-buyer>
+        <app-primary-buyer [readOnly]="saleStatus.value !== SALES_ENUM.PRIMARY_BUYER"></app-primary-buyer>
         <!-- [readOnly]="saleStatus.value !== SALES_ENUM.PRIMARY_BUYER" -->
       </mat-expansion-panel>
     </mat-accordion>
@@ -25,8 +25,8 @@
       <mat-expansion-panel-header>
         <mat-panel-title class="text-xl"> Additional Buyer </mat-panel-title>
       </mat-expansion-panel-header>
-      <!-- [readOnly]="saleStatus.value !== SALES_ENUM.ADDITIONAL_BUYER" -->
-      <app-additional-buyer></app-additional-buyer>
+      <!--  -->
+      <app-additional-buyer [readOnly]="saleStatus.value !== SALES_ENUM.ADDITIONAL_BUYER"></app-additional-buyer>
     </mat-expansion-panel>
   </mat-accordion>
 

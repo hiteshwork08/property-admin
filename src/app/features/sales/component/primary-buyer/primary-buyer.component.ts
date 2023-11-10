@@ -63,8 +63,8 @@ export class PrimaryBuyerComponent {
     'actions',
   ];
   private SalesStatus = inject(SalesStatus);
-  onSubmit() {
-    this.SalesStatus.value = SALES_ENUM.SALES_DETAILS_INFO;
+  onSubmitPrimaryBuyer() {
+    this.SalesStatus.value = SALES_ENUM.ADDITIONAL_BUYER;
   }
 
   // Other component code

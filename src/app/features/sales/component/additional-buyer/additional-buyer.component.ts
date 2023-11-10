@@ -61,7 +61,7 @@ export class AdditionalBuyerComponent {
     'actions',
   ];
   private SalesStatus = inject(SalesStatus);
-  onSubmit() {
+  onSubmitAdditonalBuyer() {
     this.SalesStatus.value = SALES_ENUM.SALES_DETAILS_INFO;
   }
 

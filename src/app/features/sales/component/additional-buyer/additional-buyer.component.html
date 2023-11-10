@@ -62,12 +62,9 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
 </div>
+
 <div class="flex items-start justify-end space-x-6 mt-3">
-
-
   <button type="submit" mat-raised-button color="primary"
-    class="[height:44px!important] [width:100px!important] text-lg" (click)="onSubmit()">Done</button>
-
+    class="[height:44px!important] [width:100px!important] text-lg" (click)="onSubmitAdditonalBuyer()">Done</button>
 </div>

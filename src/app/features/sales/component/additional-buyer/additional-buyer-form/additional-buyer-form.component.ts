@@ -59,7 +59,7 @@ export class AdditionalBuyerFormComponent {
     firstName: new FormControl<string>('', Validators.required),
     lastName: new FormControl<string>('', Validators.required),
     phoneNumber: new FormControl<string>('', Validators.required),
-    email: new FormControl<string>('', Validators.required),
+    email: new FormControl<string>('', [Validators.required, Validators.email]),
     companyName: new FormControl<string>('', Validators.required),
   });
 

@@ -56,7 +56,7 @@ export class PrimaryBuyerFormComponent {
     state: new FormControl<string>('', Validators.required),
     postalCode: new FormControl<string>('', Validators.required),
     phoneNumber: new FormControl<string>('', Validators.required),
-    email: new FormControl<string>('', Validators.required),
+    email: new FormControl<string>('', [Validators.required, Validators.email]),
     companyName: new FormControl<string>('', Validators.required),
   });
 
