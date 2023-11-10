@@ -66,13 +66,13 @@ export class InitializeSalesComponent {
     'Alabama-Anchorage-12546',
   ];
   form = new FormGroup({
-    propertyName: new FormControl<string>(null),
-    lead: new FormControl<string>(''),
-    docFee: new FormControl<string>(''),
-    downPayment: new FormControl<string>(''),
+    propertyName: new FormControl<string>(null, Validators.required),
+    lead: new FormControl<string>('', Validators.required),
+    docFee: new FormControl<string>('', Validators.required),
+    downPayment: new FormControl<string>('', Validators.required),
     initialAmount: new FormControl<string>(''),
-    buyerType: new FormControl<string>(''),
-    saleType: new FormControl<string>(''),
+    buyerType: new FormControl<string>('', Validators.required),
+    saleType: new FormControl<string>('', Validators.required),
   });
 
   get docFee() {
@@ -88,53 +88,100 @@ export class InitializeSalesComponent {
     return this.form.get('saleType');
   }
 
+  // constructor(public dialog: MatDialog, private salesModel: SalesModel) {
+  //   // this.initialAmount.valueChanges
+  //   //   .pipe(distinctUntilChanged())
+  //   //   .subscribe((initialAmountValue) => {
+  //   //     if (initialAmountValue) {
+  //   //       this.docFee.removeValidators(Validators.required);
+  //   //       this.downPayment.removeValidators(Validators.required);
+  //   //       this.docFee.reset();
+  //   //       this.downPayment.reset();
+  //   //       this.docFee.disable();
+  //   //       this.downPayment.disable();
+  //   //     } else {
+  //   //       this.docFee.addValidators(Validators.required);
+  //   //       this.downPayment.addValidators(Validators.required);
+  //   //       this.docFee.enable();
+  //   //       this.downPayment.enable();
+  //   //     }
+  //   //     this.form.updateValueAndValidity();
+  //   //   });
+
+  //   this.initialAmount.disable();
+
+  //   this.docFee.valueChanges
+  //     .pipe(distinctUntilChanged())
+  //     .subscribe((docfeeValue) => {
+  //       if (docfeeValue) {
+  //         this.downPayment.removeValidators(Validators.required);
+  //       } else {
+  //         this.downPayment.addValidators(Validators.required);
+  //       }
+  //       // if (docfeeValue) {
+  //       //   this.initialAmount.disable();
+  //       // } else {
+  //       //   this.initialAmount.disable();
+  //       // }
+  //       this.form.updateValueAndValidity();
+  //     });
+
+  //   this.downPayment.valueChanges
+  //     .pipe(distinctUntilChanged())
+  //     .subscribe((downpaymentValue) => {
+  //       if (downpaymentValue) {
+  //         this.docFee.removeValidators(Validators.required);
+  //       } else {
+  //         this.docFee.addValidators(Validators.required);
+  //       }
+  //       // if (downpaymentValue) {
+  //       //   this.initialAmount.disable();
+  //       // } else {
+  //       //   this.initialAmount.disable();
+  //       // }
+  //       this.form.updateValueAndValidity();
+  //     });
+  //   this.saleType.valueChanges.subscribe((value) =>
+  //     this.salesModel.saleType.next(value)
+  //   );
+  // }
+
   constructor(public dialog: MatDialog, private salesModel: SalesModel) {
-    this.initialAmount.valueChanges
-      .pipe(distinctUntilChanged())
-      .subscribe((initialAmountValue) => {
-        if (initialAmountValue) {
-          this.docFee.removeValidators(Validators.required);
-          this.downPayment.removeValidators(Validators.required);
-          this.docFee.reset();
-          this.downPayment.reset();
-          this.docFee.disable();
-          this.downPayment.disable();
-        } else {
-          this.docFee.addValidators(Validators.required);
-          this.downPayment.addValidators(Validators.required);
-          this.docFee.enable();
-          this.downPayment.enable();
-        }
-        this.form.updateValueAndValidity();
-      });
+    this.initialAmount.disable();
 
     this.docFee.valueChanges
       .pipe(distinctUntilChanged())
       .subscribe((docfeeValue) => {
-        docfeeValue
-          ? this.downPayment.removeValidators(Validators.required)
-          : this.downPayment.addValidators(Validators.required);
-        docfeeValue
-          ? this.initialAmount.disable()
-          : this.initialAmount.enable();
+        if (docfeeValue) {
+          this.downPayment.clearValidators();
+          this.downPayment.removeValidators(Validators.required);
+          this.downPayment.updateValueAndValidity();
+        } else {
+          this.downPayment.addValidators(Validators.required);
+        }
+
         this.form.updateValueAndValidity();
       });
 
     this.downPayment.valueChanges
       .pipe(distinctUntilChanged())
       .subscribe((downpaymentValue) => {
-        downpaymentValue
-          ? this.docFee.removeValidators(Validators.required)
-          : this.docFee.addValidators(Validators.required);
-        downpaymentValue
-          ? this.initialAmount.disable()
-          : this.initialAmount.enable();
+        if (downpaymentValue) {
+          this.docFee.clearValidators();
+          this.docFee.removeValidators(Validators.required);
+          this.docFee.updateValueAndValidity();
+        } else {
+          this.docFee.addValidators(Validators.required);
+        }
+
         this.form.updateValueAndValidity();
       });
+
     this.saleType.valueChanges.subscribe((value) =>
       this.salesModel.saleType.next(value)
     );
   }
+
   openDialogWithRef(templateRef: TemplateRef<any>) {
     this.dialog.open(templateRef);
   }
