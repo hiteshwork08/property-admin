@@ -4,9 +4,8 @@
   appForm="record-deed-form">
 
   <div>
-    <app-drop-files label="Upload file of recorded deed" elementRef="deedDocument"
-      (onFileDropped)="deedDocument.setValue($event)" [existingDocuments]="deedDocument.value"
-      (resetControl)="deedDocument.reset()"></app-drop-files>
+    <app-drop-files label="Recorded Deed" elementRef="deedDocument" (onFileDropped)="deedDocument.setValue($event)"
+      [existingDocuments]="deedDocument.value" (resetControl)="deedDocument.reset()"></app-drop-files>
   </div>
   <div class="flex items-center justify-end mt-6 space-x-4">
     <button type="submit" mat-raised-button color="primary"

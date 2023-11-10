@@ -51,7 +51,7 @@ import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directiv
   providers: [provideFormAdaptor(ReceivedDocsFormAdaptor, true)],
 })
 export class ReceivedDocsFormComponent {
-  @Input() readOnly = false;
+  @Input() readOnly = true;
 
   form = new FormGroup({
     deedDocument: new FormControl<File | FileList>(null, Validators.required),

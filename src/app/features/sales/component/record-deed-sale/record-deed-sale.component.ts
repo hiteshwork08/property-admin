@@ -21,7 +21,6 @@ import {
   provideFormAdaptor,
 } from '@common/form/form.directive';
 import { RecordDeedFormAdaptor } from './record-deed-sale.adaptor';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-record-deed-sale',
@@ -38,7 +37,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatButtonModule,
     ReadOnlyFormDirective,
     DropFilesComponent,
-    MatCheckboxModule,
     FormsModule,
   ],
   templateUrl: './record-deed-sale.component.html',
@@ -55,7 +53,6 @@ export class RecordDeedSaleComponent {
     ),
     notarizedDeed: new FormControl<File | FileList>(null, Validators.required),
     recordedDeed: new FormControl<File | FileList>(null, Validators.required),
-    docUploadVerified: new FormControl(false),
   });
 
   get unnotarizedDeed() {

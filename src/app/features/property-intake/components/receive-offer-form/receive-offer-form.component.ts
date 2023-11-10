@@ -64,7 +64,7 @@ import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directiv
   ],
 })
 export class ReceiveOfferFormComponent {
-  @Input() readOnly = false;
+  @Input() readOnly = true;
   form = new FormGroup({
     selectedState: new FormControl<StatesInfo>(null, {
       validators: Validators.required,

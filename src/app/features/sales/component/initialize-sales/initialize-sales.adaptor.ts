@@ -9,11 +9,11 @@ import { SALES_ENUM, SalesStatus } from '../../sales.model';
 export interface InitalizesaleFormData {
   propertyName: string;
   lead: string;
-  docfee: string;
-  downpayment: string;
+  docFee: string;
+  downPayment: string;
   initialAmount: string;
-  buyertype: string;
-  saletype: string;
+  buyerType: string;
+  saleType: string;
 }
 export interface InitalizesaleResponse {}
 
@@ -28,7 +28,7 @@ export class InitalizesaleFormAdaptor extends AbstractRequestFormAdaptor<
   readonly formData$ = new Subject<InitalizesaleFormData>();
 
   override onRequest(formGroup: InitalizesaleFormData) {
-    this.salesStatus.value = SALES_ENUM.ADDITIONAL_BUYER;
+    this.salesStatus.value = SALES_ENUM.PRIMARY_BUYER;
 
     console.log('Form saved...', formGroup);
     this.toastr.success('Initalize sales added Successfully');

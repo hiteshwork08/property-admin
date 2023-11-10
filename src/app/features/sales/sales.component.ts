@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { SALES_ENUM, SalesStatus } from './sales.model';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { InitializeSalesComponent } from './component/initialize-sales/initialize-sales.component';
@@ -16,6 +16,7 @@ import { ReceiveDocsComponent } from './component/receive-docs/receive-docs.comp
 import { NoteDetailsComponent } from './component/note-details/note-details.component';
 import { ConfirmPaymentComponent } from './component/confirm-payment/confirm-payment.component';
 import { RecordDeedSaleComponent } from './component/record-deed-sale/record-deed-sale.component';
+import { PrimaryBuyerComponent } from './component/primary-buyer/primary-buyer.component';
 
 @Component({
   selector: 'app-sales',
@@ -35,6 +36,7 @@ import { RecordDeedSaleComponent } from './component/record-deed-sale/record-dee
     ReceiveDocsComponent,
     NoteDetailsComponent,
     ConfirmPaymentComponent,
+    PrimaryBuyerComponent,
     RecordDeedSaleComponent,
   ],
   templateUrl: './sales.component.html',
@@ -47,6 +49,7 @@ import { RecordDeedSaleComponent } from './component/record-deed-sale/record-dee
   ],
 })
 export class SalesComponent {
+  @Input() readOnly: boolean = false;
   saleStatus = inject(SalesStatus);
 
   SALES_ENUM = SALES_ENUM;

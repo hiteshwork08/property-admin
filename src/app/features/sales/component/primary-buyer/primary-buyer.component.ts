@@ -1,28 +1,27 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input, inject } from '@angular/core';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { FormErrorModule } from '@common/form/field-error.directive';
+import { PrimaryBuyerAdaptor } from './primary-buyer.adaptor';
 import {
   FormHandlerModule,
   provideFormAdaptor,
 } from '@common/form/form.directive';
-import { ConfirmDialogComponent } from '@common/confirm-dialog/confirm-dialog.component';
+import { CommonModule } from '@angular/common';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FetchModule } from '@common/fetch/fetch.directive';
+import { FormErrorModule } from '@common/form/field-error.directive';
+import { PrimaryBuyerFormComponent } from './primary-buyer-form/primary-buyer-form.component';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTableModule } from '@angular/material/table';
-import { AdditionalBuyerFormComponent } from './additional-buyer-form/additional-buyer-form.component';
-import { DropFilesComponent } from '@common/drop-files/drop-files.component';
+import { ConfirmDialogComponent } from '@common/confirm-dialog/confirm-dialog.component';
 import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
-import { AdditonalBuyertableFormAdaptor } from './additional-buyer.adaptor';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 import { SALES_ENUM, SalesStatus } from '../../sales.model';
-import { AdditionalBuyerForm } from './additional-buyer-form/additional-buyer-form.adaptor';
+import { PrimaryBuyerFormData } from './primary-buyer-form/primary-buyer-form.adaptor';
 
 @Component({
-  selector: 'app-additional-buyer',
+  selector: 'app-primary-buyer',
   standalone: true,
   imports: [
     CommonModule,
@@ -30,40 +29,45 @@ import { AdditionalBuyerForm } from './additional-buyer-form/additional-buyer-fo
     MatFormFieldModule,
     MatInputModule,
     MatExpansionModule,
-    FormsModule,
     FormHandlerModule,
     FormErrorModule,
-    MatButtonModule,
-    MatTableModule,
-    MatDialogModule,
-    ConfirmDialogComponent,
+    FetchModule,
+    PrimaryBuyerFormComponent,
     MatIconModule,
-    DropFilesComponent,
+    ConfirmDialogComponent,
     ReadOnlyFormDirective,
-    AdditionalBuyerFormComponent,
+    MatTableModule,
+    MatButtonModule,
   ],
-  templateUrl: './additional-buyer.component.html',
-  styleUrls: ['./additional-buyer.component.scss'],
-  providers: [provideFormAdaptor(AdditonalBuyertableFormAdaptor, true)],
+  templateUrl: './primary-buyer.component.html',
+  styleUrls: ['./primary-buyer.component.scss'],
+  providers: [provideFormAdaptor(PrimaryBuyerAdaptor, true)],
 })
-export class AdditionalBuyerComponent {
+export class PrimaryBuyerComponent {
   @Input() readOnly = false;
-  showForm = false;
-  dataSource: AdditionalBuyerForm[] = [];
+  showForm: boolean = true;
+  dataSource: PrimaryBuyerFormData[] = [];
   displayedColumns: string[] = [
     'id',
     'fullName',
     'firstName',
     'lastName',
-    'phoneNumber',
     'email',
     'companyName',
+    'phoneNumber',
+    'city',
+    'state',
+    'postalCode',
+    'address1',
+    'address2',
     'actions',
   ];
   private SalesStatus = inject(SalesStatus);
   onSubmit() {
     this.SalesStatus.value = SALES_ENUM.SALES_DETAILS_INFO;
   }
+
+  // Other component code
 
   // constructor(
   //   private toastr: ToastrService,

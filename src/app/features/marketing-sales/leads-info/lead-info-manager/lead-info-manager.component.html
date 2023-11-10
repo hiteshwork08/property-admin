@@ -51,8 +51,7 @@
 
     <mat-form-field class="flex w-full">
       <mat-label>Date Added</mat-label>
-      <input matInput formControlName="dateAdded" [matDatepicker]="picker" />
-      <mat-hint>MM/DD/YYYY</mat-hint>
+      <input matInput formControlName="dateAdded" [matDatepicker]="picker" placeholder="MM/DD/YYYY" />
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>

@@ -9,14 +9,19 @@
   </div>
 
   <div class="w-full">
-    <mat-slide-toggle formControlName="paymentconfirm">Approve</mat-slide-toggle>
+    <mat-slide-toggle formControlName="paymentConfirm">Approve</mat-slide-toggle>
   </div>
-  <div class="w-full mt-5 font-semibold" *ngIf="form.get('paymentconfirm').value">
+  <div class="w-full mt-5 font-semibold" *ngIf="form.get('paymentConfirm').value">
     <div>{{ saleType.value === 'cash' ? 'Cash Received' : 'Payment terms completed' }}</div>
   </div>
+
+  <div class="flex items-center justify-start mt-6 space-x-4">
+    <mat-checkbox formControlName="docUploadVerified">Confirm to save</mat-checkbox>
+  </div>
+
   <div class="flex items-start justify-end space-x-6 mt-3">
     <button type="submit" mat-raised-button color="primary"
-      class="[height:44px!important] [width:100px!important] text-lg"
-      *ngIf="form.get('paymentconfirm').value">Save</button>
+      class="[height:44px!important] [width:100px!important] text-lg" *ngIf="form.get('docUploadVerified').value"
+      [hidden]="readOnly">Save</button>
   </div>
 </form>

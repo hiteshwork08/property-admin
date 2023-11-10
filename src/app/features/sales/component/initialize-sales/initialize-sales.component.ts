@@ -68,24 +68,24 @@ export class InitializeSalesComponent {
   form = new FormGroup({
     propertyName: new FormControl<string>(null),
     lead: new FormControl<string>(''),
-    docfee: new FormControl(),
-    downpayment: new FormControl(),
-    initialAmount: new FormControl(),
-    buyertype: new FormControl<string>(''),
-    saletype: new FormControl<string>(''),
+    docFee: new FormControl<string>(''),
+    downPayment: new FormControl<string>(''),
+    initialAmount: new FormControl<string>(''),
+    buyerType: new FormControl<string>(''),
+    saleType: new FormControl<string>(''),
   });
 
   get docFee() {
-    return this.form.get('docfee');
+    return this.form.get('docFee');
   }
   get downPayment() {
-    return this.form.get('downpayment');
+    return this.form.get('downPayment');
   }
   get initialAmount() {
     return this.form.get('initialAmount');
   }
-  get saletype() {
-    return this.form.get('saletype');
+  get saleType() {
+    return this.form.get('saleType');
   }
 
   constructor(public dialog: MatDialog, private salesModel: SalesModel) {
@@ -131,7 +131,7 @@ export class InitializeSalesComponent {
           : this.initialAmount.enable();
         this.form.updateValueAndValidity();
       });
-    this.saletype.valueChanges.subscribe((value) =>
+    this.saleType.valueChanges.subscribe((value) =>
       this.salesModel.saleType.next(value)
     );
   }

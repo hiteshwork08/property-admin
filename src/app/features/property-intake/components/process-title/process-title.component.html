@@ -2,9 +2,8 @@
   [messageToDisplayOnCLick]="form.valid ? 'Click edit to make changes':'Please fill the above form'"
   appForm="submit-process-title">
   <div>
-    <app-drop-files label="Upload file of recorded deed" elementRef="fileDropRef"
-      (onFileDropped)="images.setValue($event)" [existingDocuments]="images.value"
-      (resetControl)="images.reset()"></app-drop-files>
+    <app-drop-files label="Recorded Deed" elementRef="fileDropRef" (onFileDropped)="images.setValue($event)"
+      [existingDocuments]="images.value" (resetControl)="images.reset()"></app-drop-files>
   </div>
 
   <div class="flex items-center justify-end mt-6 space-x-4">

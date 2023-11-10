@@ -7,13 +7,8 @@ import { FormGroup } from '@angular/forms';
 import { SALES_ENUM, SalesStatus } from '../../sales.model';
 
 export interface InvestorReviewFormData {
-  propertyName: string;
-  lead: string;
-  docfee: string;
-  downpayment: string;
-  initialAmount: string;
-  buyertype: string;
-  saletype: string;
+  approve: string;
+  note: string;
 }
 export interface InvestorReviewResponse {}
 

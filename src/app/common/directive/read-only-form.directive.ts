@@ -57,7 +57,6 @@ export class ReadOnlyFormDirective {
       // Create the child element with the class "absolute"
       const childElement = this.renderer.createElement('div');
       this.renderer.addClass(childElement, 'read-only-container');
-
       // Append the child element to the parent element
       this.renderer.appendChild(this.el.nativeElement, childElement);
       resolve();

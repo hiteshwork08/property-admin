@@ -1,4 +1,4 @@
-<h1 class="w-full text-base mb-4">{{label}}</h1>
+<h1 class="w-full text-base mb-4">Upload file <b>{{label}}</b></h1>
 <div *ngIf="!documents.length">
   <div class="w-full h-52 p-8 text-center border-dashed border-2 border-gray-300 relative mx-auto" dragDropZone
     (fileDropped)="inteceptFileDrop($event)">

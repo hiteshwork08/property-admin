@@ -1,34 +1,29 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import {
+  ReactiveFormsModule,
+  FormsModule,
   FormControl,
   FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatTableModule } from '@angular/material/table';
-import { ConfirmDialogComponent } from '@common/confirm-dialog/confirm-dialog.component';
 import { FormErrorModule } from '@common/form/field-error.directive';
 import {
   FormHandlerModule,
   provideFormAdaptor,
 } from '@common/form/form.directive';
-
-import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
 import {
-  AdditionalBuyerForm,
-  AdditionalBuyerFormAdaptor,
-} from './additional-buyer-form.adaptor';
+  PrimaryBuyerFormAdaptor,
+  PrimaryBuyerFormData,
+} from './primary-buyer-form.adaptor';
+import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
 
 @Component({
-  selector: 'app-additional-buyer-form',
+  selector: 'app-primary-buyer-form',
   standalone: true,
   imports: [
     CommonModule,
@@ -40,31 +35,33 @@ import {
     FormHandlerModule,
     FormErrorModule,
     MatButtonModule,
-    MatTableModule,
-    MatDialogModule,
-    ConfirmDialogComponent,
-    MatIconModule,
     ReadOnlyFormDirective,
+    MatButtonModule,
   ],
-  templateUrl: './additional-buyer-form.component.html',
-  styleUrls: ['./additional-buyer-form.component.scss'],
-  providers: [provideFormAdaptor(AdditionalBuyerFormAdaptor, true)],
+  templateUrl: './primary-buyer-form.component.html',
+  styleUrls: ['./primary-buyer-form.component.scss'],
+  providers: [provideFormAdaptor(PrimaryBuyerFormAdaptor, true)],
 })
-export class AdditionalBuyerFormComponent {
+export class PrimaryBuyerFormComponent {
   @Input() readOnly = false;
-  @Output() formData = new EventEmitter<AdditionalBuyerForm>();
-  @Output() discardFormData = new EventEmitter<AdditionalBuyerForm>();
+  @Output() formData = new EventEmitter<PrimaryBuyerFormData>();
+  @Output() discardFormData = new EventEmitter<PrimaryBuyerFormData>();
   form = new FormGroup({
     fullName: new FormControl<string>('', Validators.required),
     firstName: new FormControl<string>('', Validators.required),
     lastName: new FormControl<string>('', Validators.required),
+    address1: new FormControl<string>('', Validators.required),
+    address2: new FormControl<string>(''),
+    city: new FormControl<string>('', Validators.required),
+    state: new FormControl<string>('', Validators.required),
+    postalCode: new FormControl<string>('', Validators.required),
     phoneNumber: new FormControl<string>('', Validators.required),
     email: new FormControl<string>('', Validators.required),
     companyName: new FormControl<string>('', Validators.required),
   });
 
-  constructor(private additionalBuyerFormAdaptor: AdditionalBuyerFormAdaptor) {
-    this.additionalBuyerFormAdaptor.formData$.subscribe((data) =>
+  constructor(private primaryBuyerFormAdaptor: PrimaryBuyerFormAdaptor) {
+    this.primaryBuyerFormAdaptor.formData$.subscribe((data) =>
       this.formData.emit(data)
     );
     this.form.get('firstName').valueChanges.subscribe(() => {
@@ -74,7 +71,6 @@ export class AdditionalBuyerFormComponent {
       this.updateFullName();
     });
   }
-
   private updateFullName() {
     const firstName = this.form.get('firstName').value;
     const lastName = this.form.get('lastName').value;

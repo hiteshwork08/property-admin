@@ -62,8 +62,7 @@
       </mat-form-field>
       <mat-form-field class="w-full">
         <mat-label>Date received</mat-label>
-        <input matInput formControlName="dateReceived" [matDatepicker]="picker" />
-        <mat-hint>MM/DD/YYYY</mat-hint>
+        <input matInput formControlName="dateReceived" [matDatepicker]="picker" placeholder="MM/DD/YYYY" />
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>

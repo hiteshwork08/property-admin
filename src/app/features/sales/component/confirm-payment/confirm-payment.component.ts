@@ -17,6 +17,7 @@ import { SalesModel } from '../../sales.model';
 import { distinctUntilChanged } from 'rxjs';
 import { MatRadioModule } from '@angular/material/radio';
 import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-confirm-payment',
@@ -33,6 +34,7 @@ import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directiv
     MatSlideToggleModule,
     MatButtonModule,
     MatRadioModule,
+    MatCheckboxModule,
     ReadOnlyFormDirective,
   ],
   templateUrl: './confirm-payment.component.html',
@@ -44,7 +46,8 @@ export class ConfirmPaymentComponent {
   form = new FormGroup({
     note: new FormControl(''),
     saleType: new FormControl(''),
-    paymentconfirm: new FormControl(false),
+    paymentConfirm: new FormControl(false),
+    docUploadVerified: new FormControl(false),
   });
 
   get saleType() {

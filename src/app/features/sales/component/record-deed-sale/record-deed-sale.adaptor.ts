@@ -7,7 +7,9 @@ import { FormGroup } from '@angular/forms';
 import { SALES_ENUM, SalesStatus } from '../../sales.model';
 
 export interface RecordDeedFormData {
-  buyerDoc: File | FileList;
+  unnotarizedDeed: File | FileList;
+  notarizedDeed: File | FileList;
+  recordedDeed: File | FileList;
 }
 
 export interface RecordDeedResponse {}

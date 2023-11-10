@@ -8,9 +8,11 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -35,6 +37,24 @@ import { MatRadioModule } from '@angular/material/radio';
 import { ReadOnlyFormDirective } from '@common/directive/read-only-form.directive';
 import { SalesModel } from '../../sales.model';
 import { distinctUntilChanged } from 'rxjs';
+
+function interestRateValidator(
+  control: AbstractControl
+): ValidationErrors | null {
+  const value = control.value;
+  if (value === null || value === undefined || value === '') {
+    return null; // Empty field is allowed (you can adjust this behavior as needed)
+  }
+
+  // Use a regular expression to check if the input matches a percentage format (e.g., "25%").
+  const percentagePattern = /^\d+(\.\d{1,2})?%$/;
+
+  if (!percentagePattern.test(value)) {
+    return { invalidInterestRate: true };
+  }
+
+  return null;
+}
 
 @Component({
   selector: 'app-sales-details-info',
@@ -82,7 +102,10 @@ export class SalesDetailsInfoComponent implements OnChanges {
     saleType: new FormControl<string>(''),
     cashPrice: new FormControl<string>('', Validators.required),
     monthlyNoteFee: new FormControl<string>('', Validators.required),
-    interestRate: new FormControl<string>('', Validators.required),
+    interestRate: new FormControl('', [
+      Validators.required,
+      interestRateValidator,
+    ]),
     consideration: new FormControl<string>('', Validators.required),
     gracePeriodDays: new FormControl<string>('', Validators.required),
     lateFee: new FormControl<string>('', Validators.required),

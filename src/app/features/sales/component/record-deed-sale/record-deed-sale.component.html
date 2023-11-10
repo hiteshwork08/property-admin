@@ -2,26 +2,21 @@
   [messageToDisplayOnCLick]="form.valid ? 'Click edit to make changes':'Please fill the above form'"
   appForm="Record-Deed-Form">
   <div>
-    <app-drop-files label="Upload file of unnotarized deed" elementRef="unnotarizedDeed"
+    <app-drop-files label="Unnotarized Deed" elementRef="unnotarizedDeed"
       (onFileDropped)="unnotarizedDeed.setValue($event)" [existingDocuments]="unnotarizedDeed.value"
       (resetControl)="unnotarizedDeed.reset()"></app-drop-files>
   </div>
   <div class="mt-5">
-    <app-drop-files label="Upload file of notarized deed" elementRef="notarizedDeed"
-      (onFileDropped)="notarizedDeed.setValue($event)" [existingDocuments]="notarizedDeed.value"
-      (resetControl)="notarizedDeed.reset()"></app-drop-files>
+    <app-drop-files label="Notarized Deed" elementRef="notarizedDeed" (onFileDropped)="notarizedDeed.setValue($event)"
+      [existingDocuments]="notarizedDeed.value" (resetControl)="notarizedDeed.reset()"></app-drop-files>
   </div>
   <div class="mt-5">
-    <app-drop-files label="Upload file of recorded deed" elementRef="recordedDeed"
-      (onFileDropped)="recordedDeed.setValue($event)" [existingDocuments]="recordedDeed.value"
-      (resetControl)="recordedDeed.reset()"></app-drop-files>
+    <app-drop-files label="Recorded Deed" elementRef="recordedDeed" (onFileDropped)="recordedDeed.setValue($event)"
+      [existingDocuments]="recordedDeed.value" (resetControl)="recordedDeed.reset()"></app-drop-files>
   </div>
-  <div class="flex items-center justify-start mt-6 space-x-4">
-    <mat-checkbox formControlName="docUploadVerified">Confirm to save</mat-checkbox>
-  </div>
+
 
   <div class="flex items-center justify-end mt-6 space-x-4">
     <button type="submit" mat-raised-button color="primary"
-      class="[height:44px!important] [width:100px!important] text-lg"
-      [hidden]="!form.get('docUploadVerified').value || readOnly">Save</button>
+      class="[height:44px!important] [width:100px!important] text-lg" [hidden]="readOnly">Save</button>
   </div>

@@ -28,12 +28,12 @@
   <div class="flex items-center gap-3 md:flex-col">
     <mat-form-field class="w-full">
       <mat-label>Doc Fee</mat-label>
-      <input type="text" formControlName="docfee" matInput prefix="$ " mask="separator.2" thousandSeparator=","
+      <input type="text" formControlName="docFee" matInput prefix="$ " mask="separator.2" thousandSeparator=","
         placeholder="0.00" />
     </mat-form-field>
     <mat-form-field class="w-full">
       <mat-label>Down Payment Amount</mat-label>
-      <input type="text" formControlName="downpayment" matInput prefix="$ " mask="separator.2" thousandSeparator=","
+      <input type="text" formControlName="downPayment" matInput prefix="$ " mask="separator.2" thousandSeparator=","
         placeholder="0.00" />
     </mat-form-field>
 
@@ -47,7 +47,7 @@
 
   <div class="md:w-full text-left [min-width:300px] mt-4">
     <mat-label class="md:flex-col 2xl:w-full">Buyer Type </mat-label>
-    <mat-radio-group class="flex items-center gap-2" aria-label="Select an option" formControlName="buyertype" required>
+    <mat-radio-group class="flex items-center gap-2" aria-label="Select an option" formControlName="buyerType" required>
       <mat-radio-button color="primary" class="inline-block [width:100px]"
         value="wholesale">Wholesale</mat-radio-button>
       <mat-radio-button color="primary" class="inline-block [width:100px]" value="retail">Retail</mat-radio-button>
@@ -56,7 +56,7 @@
 
   <div class="md:w-full text-left [min-width:300px] mt-4">
     <mat-label class="md:flex-col 2xl:w-full">Sale Type </mat-label>
-    <mat-radio-group class="flex items-center gap-2" aria-label="Select an option" formControlName="saletype" required>
+    <mat-radio-group class="flex items-center gap-2" aria-label="Select an option" formControlName="saleType" required>
       <mat-radio-button color="primary" class="inline-block [width:100px]" value="cash">Cash</mat-radio-button>
       <mat-radio-button color="primary" class="inline-block [width:100px]" value="terms">Terms</mat-radio-button>
     </mat-radio-group>
@@ -64,9 +64,9 @@
 
   <div class="flex items-start justify-end space-x-6 mt-3">
     <button type="button" mat-raised-button color="warn" class="[height:44px!important] [width:100px!important] text-lg"
-      (click)="form.reset()">Cancel</button>
+      (click)="form.reset()" [hidden]="readOnly">Cancel</button>
     <button type="submit" mat-raised-button color="primary"
-      class="[height:44px!important] [width:100px!important] text-lg">Submit</button>
+      class="[height:44px!important] [width:100px!important] text-lg" [hidden]="readOnly">Save</button>
   </div>
 
 

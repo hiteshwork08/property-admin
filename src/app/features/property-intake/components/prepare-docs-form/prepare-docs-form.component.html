@@ -8,13 +8,12 @@
   </div>
 
   <div>
-    <app-drop-files label="Upload Deed Document" elementRef="deedFileDropRef"
-      (onFileDropped)="deedDocument.setValue($event)" [existingDocuments]="deedDocument.value"
-      (resetControl)="deedDocument.reset()"></app-drop-files>
+    <app-drop-files label="Deed Document" elementRef="deedFileDropRef" (onFileDropped)="deedDocument.setValue($event)"
+      [existingDocuments]="deedDocument.value" (resetControl)="deedDocument.reset()"></app-drop-files>
   </div>
 
   <div *ngIf="showUploadField" class="mt-8">
-    <app-drop-files label="Upload Sales Agreement" elementRef="salesFileDropRef" [multiple]="false"
+    <app-drop-files label="Sales Agreement" elementRef="salesFileDropRef" [multiple]="false"
       (onFileDropped)="salesAgreementDocument.setValue($event)" [existingDocuments]="salesAgreementDocument.value"
       (resetControl)="salesAgreementDocument.reset()"></app-drop-files>
   </div>

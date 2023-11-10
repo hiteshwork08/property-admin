@@ -10,6 +10,16 @@
   </mat-accordion>
 
   <mat-accordion class="example-headers-align" multi class="mt-1">
+    <mat-accordion class="example-headers-align" multi class="mt-1">
+      <!-- [disabled]="saleStatus.value !== SALES_ENUM.PRIMARY_BUYER"> -->
+      <mat-expansion-panel class="mt-3" [expanded]="saleStatus.value === SALES_ENUM.PRIMARY_BUYER">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="text-xl"> Primary Buyer </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-primary-buyer></app-primary-buyer>
+        <!-- [readOnly]="saleStatus.value !== SALES_ENUM.PRIMARY_BUYER" -->
+      </mat-expansion-panel>
+    </mat-accordion>
     <!-- [disabled]="saleStatus.value !== SALES_ENUM.ADDITIONAL_BUYER"> -->
     <mat-expansion-panel class="mt-3" [expanded]="saleStatus.value === SALES_ENUM.ADDITIONAL_BUYER">
       <mat-expansion-panel-header>
@@ -26,10 +36,11 @@
       <mat-expansion-panel-header>
         <mat-panel-title class="text-xl"> Sales Details Info </mat-panel-title>
       </mat-expansion-panel-header>
-      <!-- [readOnly]="saleStatus.value !== SALES_ENUM.SALES_DETAILS_INFO" -->
-      <app-sales-details-info (formData)="onFormDatasalesDetails($event)"></app-sales-details-info>
+      <app-sales-details-info (formData)="onFormDatasalesDetails($event)"
+        [readOnly]="saleStatus.value !== SALES_ENUM.SALES_DETAILS_INFO"></app-sales-details-info>
     </mat-expansion-panel>
   </mat-accordion>
+
 
 
   <mat-accordion class="example-headers-align" multi class="mt-1">
@@ -38,9 +49,9 @@
       <mat-expansion-panel-header>
         <mat-panel-title class="text-xl"> Investor Review </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-sales-details-info [salesDetailsFormData]="salesDetailsform"
-        [readOnly]="saleStatus.value !== SALES_ENUM.INVESTER_REVIEW"></app-sales-details-info>
-      <app-investor-review></app-investor-review>
+      <!--  -->
+      <app-sales-details-info [salesDetailsFormData]="salesDetailsform" [readOnly]="true"></app-sales-details-info>
+      <app-investor-review [readOnly]="saleStatus.value !== SALES_ENUM.INVESTER_REVIEW"></app-investor-review>
     </mat-expansion-panel>
   </mat-accordion>
 
@@ -93,4 +104,5 @@
       <app-record-deed-sale [readOnly]="saleStatus.value !== SALES_ENUM.RECORD_DEED"></app-record-deed-sale>
     </mat-expansion-panel>
   </mat-accordion>
+
 </div>

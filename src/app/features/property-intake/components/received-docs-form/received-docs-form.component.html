@@ -3,13 +3,13 @@
   appForm="received-doc-form">
 
   <div>
-    <app-drop-files label="Upload Deed Document" elementRef="deedFileDropRefReceive"
+    <app-drop-files label="Deed Document" elementRef="deedFileDropRefReceive"
       (onFileDropped)="deedDocument.setValue($event)" [existingDocuments]="deedDocument.value"
       (resetControl)="deedDocument.reset()"></app-drop-files>
   </div>
 
   <div class="mt-4">
-    <app-drop-files label="Upload Sales Agreement" elementRef="salesFileDropRef"
+    <app-drop-files label="Sales Agreement" elementRef="salesFileDropRef"
       (onFileDropped)="salesAgreementDocument.setValue($event)" [existingDocuments]="salesAgreementDocument.value"
       (resetControl)="salesAgreementDocument.reset()"></app-drop-files>
   </div>

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -55,6 +55,8 @@ import { SalesComponent } from '../sales/sales.component';
   ],
 })
 export class PropertyIntakeComponent {
+  @Input() readOnly: boolean = true;
+
   public propertyIntakeModel = inject(PropertyIntakeModel);
   PropertIntakeFormEnum = PropertIntakeFormEnum;
   propertyIntakeFormData: SubmitIntakeScriptOfferFormData;

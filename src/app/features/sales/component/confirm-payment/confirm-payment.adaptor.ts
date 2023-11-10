@@ -2,19 +2,15 @@ import { Injectable, inject } from '@angular/core';
 import { AbstractRequestFormAdaptor } from '@common/form/abstract-request-form.adaptor';
 import { Subject, of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { WrapFormControl } from '@common/form/abstract-form.adaptor';
-import { FormGroup } from '@angular/forms';
 import { SALES_ENUM, SalesStatus } from '../../sales.model';
 
 export interface ConfirmPaymentFormData {
-  propertyName: string;
-  lead: string;
-  docfee: string;
-  downpayment: string;
-  initialAmount: string;
-  buyertype: string;
-  saletype: string;
+  note: string;
+  saleType: string;
+  paymentConfirm: string;
+  docUploadVerified: string;
 }
+
 export interface ConfirmPaymentResponse {}
 
 @Injectable()

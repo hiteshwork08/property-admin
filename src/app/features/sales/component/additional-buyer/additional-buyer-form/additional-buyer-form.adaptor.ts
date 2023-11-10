@@ -6,42 +6,37 @@ import { FormGroup } from '@angular/forms';
 import { WrapFormControl } from '@common/form/abstract-form.adaptor';
 import { SalesStatus } from '../../../sales.model';
 
-export interface AdditonalBuyerForm {
+export interface AdditionalBuyerForm {
   id: string;
   fullName: string;
   firstName: string;
   lastName: string;
-  address1: string;
-  address2?: string;
-  city: string;
-  state: string;
-  postalCode: string;
-  phoneNumber?: string;
-  email?: string;
-  companyName?: string;
+  phoneNumber: string;
+  email: string;
+  companyName: string;
 }
 
-export interface AdditonalBuyerFormResponse {}
+export interface AdditionalBuyerFormResponse {}
 
 @Injectable()
-export class AdditonalBuyerFormAdaptor extends AbstractRequestFormAdaptor<
-  AdditonalBuyerForm,
-  AdditonalBuyerFormResponse
+export class AdditionalBuyerFormAdaptor extends AbstractRequestFormAdaptor<
+  AdditionalBuyerForm,
+  AdditionalBuyerFormResponse
 > {
   override name = 'Additional-Buyer';
 
   private toastr = inject(ToastrService);
-  readonly formData$ = new Subject<AdditonalBuyerForm>();
+  readonly formData$ = new Subject<AdditionalBuyerForm>();
 
-  override onRequest(formGroup: AdditonalBuyerForm) {
-    this.toastr.success('leads added Successfully');
+  override onRequest(formGroup: AdditionalBuyerForm) {
+    this.toastr.success('Data added Successfully');
     return of({});
   }
 
   override onSuccess(
-    formData: AdditonalBuyerForm,
-    res: AdditonalBuyerForm,
-    formGroup: FormGroup<WrapFormControl<AdditonalBuyerForm>>
+    formData: AdditionalBuyerForm,
+    res: AdditionalBuyerForm,
+    formGroup: FormGroup<WrapFormControl<AdditionalBuyerForm>>
   ): void {
     this.formData$.next(formData);
   }
