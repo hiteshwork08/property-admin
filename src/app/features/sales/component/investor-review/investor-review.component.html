@@ -3,8 +3,7 @@
   appForm="Investor-Review-Form">
   <div class="items-start md:flex-col">
     <div class="w-full">
-      <mat-slide-toggle formControlName="approve"
-        (change)="toggleNoteRequired($event)">Approve-{{readOnly}}</mat-slide-toggle>
+      <mat-slide-toggle formControlName="approve" (change)="toggleNoteRequired($event)">Approve</mat-slide-toggle>
     </div>
     <div class="w-full mt-5 md:flex-col 2xl:w-full">
       <mat-form-field class="w-full">
